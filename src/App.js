@@ -7,15 +7,10 @@ import Login from "./components/navigation/Login.js"
 import Doctors from "./components/Doctors.js"
 import { useState } from "react"
 import React from 'react'
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const Beverage = () => (
-  <div>
-    <FontAwesomeIcon icon="check-square" />
-    Your <FontAwesomeIcon icon="coffee" /> is hot and ready!
-  </div>
-)
+import NavBar from './components/navigation/NavBar'
+
+
 
 function App() {
   // lesson code
@@ -23,12 +18,12 @@ function App() {
     localStorage.removeItem("token");
     console.log("logged out");
   };
-
   return (
     <div className="App">
-    <Beverage/>
     <h1>Hi</h1>
-    <FontAwesomeIcon icon={faHome} />
+    <NavBar/>
+    {/* <FontAwesomeIcon icon={} /> */}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/users/register" element={<Register />} />

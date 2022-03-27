@@ -17,6 +17,7 @@ const Doctors = () => {
     getData()
   }, [])
   console.log({ doctorData })
+  if(!doctorData)return <h1>Loading</h1>
   return (
     <div>
       <h1>This is the doctors page</h1>
