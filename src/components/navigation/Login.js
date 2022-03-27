@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
-const Login = () => {
+const Login = ({updateStorageToken}) => {
   const [formData, setFormData] = useState({})
   const [errorMessage, setErrorMessage] = useState(null)
 
@@ -17,11 +17,14 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await axios.post("https://findmeadoc.herokuapp.com/login", formData)
+      console.log(formData)
+      const res = await axios.post("https://findmeadoc.herokuapp.com/users/login", formData)
       console.log(res)
       if (res.data.token) {
         console.log("Success")
         localStorage.setItem("token", res.data.token)
+        updateStorageToken(localStorage.token)
+        console.log(localStorage.token)
         navigate("/doctors")
       }
     } catch (e) {
@@ -35,8 +38,8 @@ const Login = () => {
       <form onSubmit={onSubmit}>
         <input
           type="text"
-          placeholder="Username"
-          name="userName"
+          placeholder="email"
+          name="email"
           onChange={onChange}
         />
         <input
