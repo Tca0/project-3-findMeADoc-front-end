@@ -13,7 +13,10 @@ function SearchBar({ placeholder, data }) {
     setWordEntered(event.target.value);
     const searchWord = event.target.value.toLowerCase();
     const newFilter = data.filter((value) => {
-      return value.fullName.toLowerCase().includes(searchWord);
+      return (
+        value.fullName.toLowerCase().includes(searchWord) ||
+        value.email.toLowerCase().includes(searchWord)
+      );
     });
 
     if (searchWord === "") {
@@ -51,7 +54,7 @@ function SearchBar({ placeholder, data }) {
       </div>
       {filteredData.length !== 0 && (
         <div className="dataResult">
-          {filteredData.map((value) => {
+          {filteredData.slice(0, 15).map((value) => {
             return (
               <Link key={value.fullName} to="/doctors">
                 <div className="dataItem">
