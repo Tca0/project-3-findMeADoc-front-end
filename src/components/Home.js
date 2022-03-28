@@ -1,7 +1,9 @@
+import SearchBar from "./search/SearchBar";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import React from "react";
 
-const Doctors = () => {
+const Home = () => {
   const [doctorData, setDoctorData] = useState([]);
 
   useEffect(() => {
@@ -16,20 +18,19 @@ const Doctors = () => {
     };
     getData();
   }, []);
-  console.log({ doctorData });
-  if (!doctorData) return <h1>Loading</h1>;
+
+  console.log(doctorData);
+
   return (
-    <div>
-      <h1>This is the doctors page</h1>
-      {doctorData.map((doctor, idx) => (
-        <div className="movie-tile" key={idx}>
-          <h4>{doctor.fullName}</h4>
-          <p>{doctor.specialities}</p>
-          <p>{doctor.languages}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      <h1 onClick={() => setDoctorData("New data")}>
+        Welcome to the doctors database
+      </h1>
+      <div>
+        <SearchBar placeholder="Doctor name" data={doctorData} />
+      </div>
+    </>
   );
 };
 
-export default Doctors;
+export default Home;
