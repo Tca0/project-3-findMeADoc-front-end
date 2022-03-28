@@ -1,0 +1,33 @@
+/* mapbox */
+
+.map-container {
+  height: 30vh;
+  width: 30vw;
+}
+
+.sidebar {
+  background-color: rgba(35, 55, 75, 0.9);
+  color: #fff;
+  padding: 6px 12px;
+  font-family: monospace;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  border-radius: 4px;
+}
+
+.marker {
+  display: block;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  width: 50;
+  height: auto;
+}
+
+.popup {
+  color: blue;
+}
