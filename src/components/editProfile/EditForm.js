@@ -1,14 +1,30 @@
 import axios from 'axios'
 import {useState,useEffect} from 'react'
 
+import EditPatient from './EditPatient'
+import EditDoctor from './EditDoctor'
+
 
 const EditForm = ({token,collection,id,model,role}) =>{
-    console.log(token,"token")
-    console.log(collection,"collection")
-    console.log(id,"id")
-    console.log(model,"model")
-    console.log(role,"role")
-    return <h1> Edit Form</h1>
+
+    const [userInfo,setUserInfo] = useState({model})
+    useEffect(async ()=>{
+        await fetch(`https://findmeadoc.herokuapp.com/${collection}/${id}`,{
+            "headers":{
+                "Authorization" :`Bearer ${token}`
+            }
+        })
+        .then(res=>res.json())
+        .then(json=>{
+            setUserInfo({...json})
+        })
+    },[])
+
+    if(role==="patient") return <EditPatient profileInformation={userInfo} collection={collection} id={id} token={token} />
+    if(role==="doctor") return <EditDoctor profileInformation={userInfo} collection={collection} id={id} token={token}/>
+    
+
 }
+
 
 export default EditForm

@@ -6,24 +6,24 @@ const EditPage = () =>{
     }
 
     const patientModel = {
-        firstName:null,
-        secondName:null,
-        fullName:null,
-        DOB:null,
-        gender:null,
-        address:{
-            addressLine1:null,
-            addressLine2:null,
-            town:null,
-            country:null,
-            postcode:null,
-            enteredDate:null,
-        },
-        registerAt:null,
-        phone:null,
-        email:null,
-        completedAt:null,
-        completed:null,
+        // firstName:null,
+        // secondName:null,
+        // fullName:null,
+        // DOB:null,
+        // gender:null,
+        // address:{
+        //     addressLine1:null,
+        //     addressLine2:null,
+        //     town:null,
+        //     country:null,
+        //     postcode:null,
+        //     enteredDate:null,
+        // },
+        // registerAt:null,
+        // phone:null,
+        // email:null,
+        // completedAt:null,
+        // completed:null,
     }
     const doctorModel = {
 
