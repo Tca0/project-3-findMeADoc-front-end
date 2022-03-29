@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 
 import Register from "./Register.js";
 import Login from "./Login.js";
-import Doctors from "../Doctors.js";
+import DoctorsIndex from "../doctors/DoctorsIndexCard";
 
 //https://react-bootstrap.netlify.app/components/navbar/
 function NavBar({ storageToken, updateStorageToken }) {

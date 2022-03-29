@@ -4,23 +4,21 @@ import {useEffect, useState} from 'react'
 // import {useNavigate} from 'react-router-dom'
 
 const EditPatient = ({profileInformation,token,collection,id}) =>{
-    console.log(localStorage.token)
     const [formData,setFormData] = useState(profileInformation)
     const [errorMessage, setErrorMessage] = useState(null)
+    
     useEffect(()=>{
-        //will update the form fields with current info
         setFormData(profileInformation)},[profileInformation])
-    const onChange = (e) =>{
-        console.log(e.target)
+    
+        const onChange = (e) =>{
         setFormData({...formData, [e.target.name]: e.target.value })
     }
 
     const onChangeAddress = (e) =>{
         const street=formData.address[e.target.name]=e.target.value
-        console.log(street)
         setFormData({...formData,street })
-        
         }
+
     const handleSubmit = async (e) =>{
         e.preventDefault()
         try{
