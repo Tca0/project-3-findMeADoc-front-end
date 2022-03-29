@@ -57,6 +57,10 @@ const Doctors = () => {
       zoom: zoom,
     });
 
+    // doctorData.map((doctor) =>
+    //   doctor.address.map((element, i) => console.log(Object.values(element)))
+    // );
+
     const marker1 = new mapboxgl.Marker()
       .setLngLat([-0.11, 51.5])
       .setPopup(
@@ -95,12 +99,32 @@ const Doctors = () => {
         {doctorData.map((doctor, idx) => (
           <div className="movie-tile" key={idx}>
             <h4>{doctor.fullName}</h4>
-            <p>{doctor.specialties}</p>
-            <p>{doctor.languages}</p>
+            {doctor.specialties.map((element) => (
+              <p key={element}>{element}</p>
+            ))}
+            {doctor.languages.map((element) => (
+              <p key={element}>{element}</p>
+            ))}
+            {doctor.address.map((element, i) => (
+              // console.log(Object.values(element))
+              <div key={i}>
+                <p key={Object.values(element)[0]}>
+                  {Object.values(element)[0]}
+                </p>
+                <p key={Object.values(element)[2]}>
+                  {Object.values(element)[2]}
+                </p>
+                <p key={Object.values(element)[3]}>
+                  {Object.values(element)[3]}
+                </p>
+                <p key={Object.values(element)[4]}>
+                  {Object.values(element)[4]}
+                </p>
+              </div>
+            ))}
           </div>
         ))}
       </div>
-
       <div>
         {/* <div className="sidebar">
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
