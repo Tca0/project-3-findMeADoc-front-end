@@ -7,7 +7,7 @@ import React from "react";
 import NavBar from "./components/navigation/NavBar";
 import Register from "./components/navigation/Register";
 import Login from "./components/navigation/Login";
-import Doctors from "./components/Doctors";
+import DoctorsIndex from "./components/doctors/DoctorsIndex";
 import Home from "./components/Home";
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
           element={<Login updateStorageToken={updateStorageToken} />}
         />
         {/* <Route path="/users/forgotPassword" element={<PasswordResest />} /> */}
-        <Route path="/doctors" element={<Doctors />} />
+        <Route path="/doctors" element={<DoctorsIndex />} />
         /*{" "}
       </Routes>
       {localStorage.getItem("token") && (
