@@ -1,14 +1,18 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { faIdCard } from "@fortawesome/free-regular-svg-icons";
-import { faHospitalUser, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHospitalUser,
+  faUserPlus,
+  faUserPen,
+} from "@fortawesome/free-solid-svg-icons";
 // import {} from "@fortawesome/fontawesome-free-brands";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 
 import Register from "./Register.js";
 import Login from "./Login.js";
-import DoctorsIndex from "../doctors/DoctorsIndex.js";
+import Doctors from "../Doctors.js";
 
 //https://react-bootstrap.netlify.app/components/navbar/
 function NavBar({ storageToken, updateStorageToken }) {
@@ -53,16 +57,24 @@ function NavBar({ storageToken, updateStorageToken }) {
             <Nav>
               {storageToken ? (
                 //check with Niklas why does this run
-                <Nav.Link
-                  onClick={() => {
-                    console.log("clicked");
-                    localStorage.removeItem("token");
-                    updateStorageToken(localStorage.token);
-                  }}
-                >
-                  {" "}
-                  Logout{" "}
-                </Nav.Link>
+                <>
+                  <LinkContainer to="/users/edit">
+                    <Nav.Link>
+                      {" "}
+                      Edit Profile <FontAwesomeIcon icon={faUserPen} />
+                    </Nav.Link>
+                  </LinkContainer>
+                  <Nav.Link
+                    onClick={() => {
+                      console.log("clicked");
+                      localStorage.removeItem("token");
+                      updateStorageToken(localStorage.token);
+                    }}
+                  >
+                    {" "}
+                    Logout{" "}
+                  </Nav.Link>
+                </>
               ) : (
                 <>
                   <LinkContainer to="/users/login">

@@ -30,6 +30,9 @@ const popupOffsets = {
   right: [-markerRadius, (markerHeight - markerRadius) * -1],
 };
 
+const backEndLink = process.env.BACKEND_CONNECTION
+  ? process.env.BACKEND_CONNECTION
+  : "http://localhost:4000";
 const DoctorsIndex = () => {
   const [doctorData, setDoctorData] = useState([]);
 
@@ -49,7 +52,7 @@ const DoctorsIndex = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get("https://findmeadoc.herokuapp.com/doctors", {
+      const res = await axios.get(`${backEndLink}/doctors`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

@@ -1,10 +1,16 @@
 // Code from lesson
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom";
 
+
+const backEndLink = process.env.BACKEND_CONNECTION
+  ? process.env.BACKEND_CONNECTION
+  : "http://localhost:4000";
 const Login = ({updateStorageToken}) => {
+  console.log("backend link",backEndLink)
   const [formData, setFormData] = useState({})
   const [errorMessage, setErrorMessage] = useState(null)
 
@@ -18,7 +24,10 @@ const Login = ({updateStorageToken}) => {
     e.preventDefault()
     try {
       console.log(formData)
-      const res = await axios.post("https://findmeadoc.herokuapp.com/users/login", formData)
+      const res = await axios.post(
+        `${backEndLink}/users/login`,
+        formData
+      );
       console.log(res)
       if (res.data.token) {
         console.log("Success")
@@ -28,30 +37,39 @@ const Login = ({updateStorageToken}) => {
         navigate("/doctors")
       }
     } catch (e) {
-      setErrorMessage(e.response.data.message)
+      console.log(e)
+      setErrorMessage(e.response)
     }
   }
+  const resetPassword = () => {
+    navigate("/resetpassword")
+  }
   return (
-    <div className="login-page">
-      <h1>Login</h1>
-      {errorMessage && <div className="failure">{errorMessage}</div>}
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder="email"
-          name="email"
-          onChange={onChange}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          onChange={onChange}
-        />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  )
+    <>
+      <div className="login-page">
+        <h1>Login</h1>
+        {errorMessage && <div className="failure">{errorMessage}</div>}
+        <form onSubmit={onSubmit}>
+          <input
+            type="text"
+            placeholder="email"
+            name="email"
+            onChange={onChange}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            onChange={onChange}
+          />
+          <button type="submit">Login</button>
+        </form>
+        <p>
+          Forgot your password <span onClick={resetPassword}>click to reset password</span>
+        </p>
+      </div>
+    </>
+  );
 }
 
 export default Login
