@@ -8,6 +8,7 @@ import Register from "./components/navigation/Register";
 import Login from "./components/navigation/Login";
 import Doctors from "./components/Doctors";
 import Home from "./components/Home";
+import WelcomeRegistration from "./components/Welcome";
 import EditPage from './components/editProfile/EditPage'
 
 function App() {
@@ -32,6 +33,10 @@ function App() {
 
         //user routes
         <Route path="/users/register" element={<Register />} />
+        <Route
+          path="/users/confirm/:code/account"
+          element={<WelcomeRegistration />}
+        ></Route>
         <Route
           path="/users/login"
           element={<Login updateStorageToken={updateStorageToken} />}
