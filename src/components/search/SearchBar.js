@@ -9,13 +9,16 @@ function SearchBar({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 
+  console.log(data);
   const handleFilter = (event) => {
     setWordEntered(event.target.value);
     const searchWord = event.target.value.toLowerCase();
     const newFilter = data.filter((value) => {
       return (
         value.fullName.toLowerCase().includes(searchWord) ||
-        value.email.toLowerCase().includes(searchWord)
+        value.specialties.some((specialty) =>
+          specialty.toLowerCase().includes(searchWord)
+        )
       );
     });
 
@@ -57,8 +60,17 @@ function SearchBar({ placeholder, data }) {
           {filteredData.slice(0, 15).map((value) => {
             return (
               <Link key={value.fullName} to="/doctors">
-                <div className="dataItem">
-                  <p>{value.fullName}</p>
+                <div>
+                  <ul className="dataItem">
+                    <li>{value.fullName}</li>
+                  </ul>
+                  {/* {value.specialties.length && (
+                    <ul className="dataItem">
+                      {value.specialties.map((specialty) => (
+                        <li key={specialty.id}>{specialty.name}</li>
+                      ))}
+                    </ul>
+                  )} */}
                 </div>
               </Link>
             );

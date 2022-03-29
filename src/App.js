@@ -6,10 +6,10 @@ import React from "react";
 import NavBar from "./components/navigation/NavBar";
 import Register from "./components/navigation/Register";
 import Login from "./components/navigation/Login";
-import Doctors from "./components/Doctors";
+import DoctorsIndex from "./components/doctors/DoctorsIndex";
 import Home from "./components/Home";
 import WelcomeRegistration from "./components/Welcome";
-import EditPage from './components/editProfile/EditPage'
+import EditPage from "./components/editProfile/EditPage";
 
 function App() {
   const [storageToken, updateStorageToken] = useState(localStorage.token);
@@ -25,13 +25,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<Doctors />} />
-
         //patient routes
-        <Route path="/users/edit" element = {<EditPage/>} /> 
-
-        //doctor routes
-
-        //user routes
+        <Route path="/users/edit" element={<EditPage />} />
+        //doctor routes //user routes
         <Route path="/users/register" element={<Register />} />
         <Route
           path="/users/confirm/:code/account"
@@ -42,10 +38,9 @@ function App() {
           element={<Login updateStorageToken={updateStorageToken} />}
         />
         {/* <Route path="/users/forgotPassword" element={<PasswordResest />} /> */}
-        
+        <Route path="/doctors" element={<DoctorsIndex />} />
         /*{" "}
       </Routes>
-
     </div>
   );
 }

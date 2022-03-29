@@ -50,6 +50,7 @@ const Register = () => {
       return false;
     }
   };
+  console.log("backend URL", backEndLink)
   const onSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
