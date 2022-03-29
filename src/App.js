@@ -9,6 +9,7 @@ import Register from "./components/navigation/Register";
 import Login from "./components/navigation/Login";
 import Doctors from "./components/Doctors";
 import Home from "./components/Home";
+import WelcomeRegistration from "./components/Welcome";
 
 function App() {
   const [storageToken, updateStorageToken] = useState(localStorage.token);
@@ -29,6 +30,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/users/register" element={<Register />} />
         <Route
+          path="/users/confirm/:code/account"
+          element={<WelcomeRegistration />}
+        ></Route>
+        <Route
           path="/users/login"
           element={<Login updateStorageToken={updateStorageToken} />}
         />
@@ -36,6 +41,7 @@ function App() {
         <Route path="/doctors" element={<Doctors />} />
         /*{" "}
       </Routes>
+
       {localStorage.getItem("token") && (
         <button onClick={onLogout}>Logout</button>
       )}

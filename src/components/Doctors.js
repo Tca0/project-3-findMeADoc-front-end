@@ -1,13 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+const backEndLink = process.env.BACKEND_CONNECTION
+  ? process.env.BACKEND_CONNECTION
+  : "http://localhost:4000";
 const Doctors = () => {
   const [doctorData, setDoctorData] = useState([]);
 
   useEffect(() => {
     console.log("Running useEffect");
     const getData = async () => {
-      const res = await axios.get("https://findmeadoc.herokuapp.com/doctors", {
+      const res = await axios.get(`${backEndLink}/doctors`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
