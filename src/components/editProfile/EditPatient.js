@@ -34,16 +34,47 @@ const EditPatient = ({profileInformation,token,collection,id}) =>{
         <h1>Edit Patient</h1>
         <Form onSubmit={handleSubmit}>
             <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridEmail">
+                <Form.Group as={Col} controlId="firstName">
                 <Form.Label>First Name</Form.Label>
-                <Form.Control name="firstName" value ={formData.firstName} onChange={onChange} type="text" placeholder="Enter your first name" />
+                <Form.Control name="firstName" value ={formData.firstName} onChange={onChange} type="text" placeholder="First name" />
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Group as={Col} controlId="secondName">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control name="secondName" value ={formData.secondName} onChange={onChange} type="text" placeholder="Last Name" />
                 </Form.Group>
             </Row>
+
+            <Row className="mb-3">
+                <Form.Group 
+                as={Col} 
+                name="DOB" 
+                onChange={onChange} 
+                onClick={(e)=>{console.log(e.target.value)}}
+                defaultValue={formData.DOB}>
+                    <Form.Label>Select your Date of Birth</Form.Label>
+                    <Form.Control 
+                    type="date" 
+                    name="DOB" 
+                    defaultValue={formData.DOB} 
+                    placeholder="Date of Birth" />
+                </Form.Group>
+
+                <Form.Label>Specify your gender
+                <Form.Select
+                    type="select"
+                    name="gender"
+                    defaultValue={formData.gender}
+                    onChange={onChange}>
+                    
+                    <option hidden >Select Gender</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                </Form.Select></Form.Label>    
+            </Row>
+            
+
 
             <Form.Group className="mb-3" controlId="formGridAddress1">
                 <Form.Label>Address</Form.Label>
