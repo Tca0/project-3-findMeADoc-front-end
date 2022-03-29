@@ -1,7 +1,7 @@
 import {Navbar,Container,Nav,NavDropdown} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import {faIdCard} from "@fortawesome/free-regular-svg-icons";
-import {faHospitalUser, faUserPlus} from "@fortawesome/free-solid-svg-icons";
+import {faHospitalUser, faUserPlus, faUserPen} from "@fortawesome/free-solid-svg-icons";
 // import {} from "@fortawesome/fontawesome-free-brands";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {useState,useEffect} from 'react'
@@ -47,10 +47,15 @@ function NavBar({storageToken,updateStorageToken}){
     <Nav>
     {storageToken?
     //check with Niklas why does this run
+    <>
+    <LinkContainer to="/users/edit">
+      <Nav.Link> Edit Profile <FontAwesomeIcon icon={faUserPen}/></Nav.Link>
+    </LinkContainer>
     <Nav.Link onClick={()=>{
       console.log("clicked")
       localStorage.removeItem("token")
       updateStorageToken(localStorage.token)}}> Logout </Nav.Link>
+    </>
     :
     <>
     <LinkContainer to="/users/login">

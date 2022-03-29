@@ -28,9 +28,10 @@ const Login = ({updateStorageToken}) => {
         navigate("/doctors")
       }
     } catch (e) {
-      setErrorMessage(e.response.data.message)
+      console.log(e)
     }
   }
+
   return (
     <div className="login-page">
       <h1>Login</h1>

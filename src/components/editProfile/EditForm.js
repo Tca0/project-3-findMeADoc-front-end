@@ -16,6 +16,7 @@ const EditForm = ({token,collection,id,model,role}) =>{
         })
         .then(res=>res.json())
         .then(json=>{
+            console.log(json)
             setUserInfo({...json})
         })
     },[])
