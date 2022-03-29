@@ -1,7 +1,12 @@
+import React from "react";
 import axios from "axios";
 import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+
+// geocode related
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 // popup offsets
 const markerHeight = 50;
@@ -27,6 +32,20 @@ const popupOffsets = {
 const Doctors = () => {
   const [doctorData, setDoctorData] = useState([]);
 
+  //geocode related
+  const [convertedPostcodesData, setConvertedPostcodesData] = useState([]);
+
+  //geocode related
+  function convertPostcodes() {
+    if (!doctorData) return console.log("loading");
+    const convertedPostcodes = doctorData.map((doctor) =>
+      doctor.address.map((element, i) =>
+        Object.values(element)[4].replace(/ /g, "_")
+      )
+    );
+    setConvertedPostcodesData(convertedPostcodes);
+  }
+
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get("https://findmeadoc.herokuapp.com/doctors", {
@@ -35,9 +54,12 @@ const Doctors = () => {
         },
       });
       setDoctorData(res.data);
+      convertPostcodes();
     };
     getData();
   }, []);
+
+  console.log(convertedPostcodesData);
 
   mapboxgl.accessToken =
     "pk.eyJ1IjoianBhcmswMjI0IiwiYSI6ImNsMWI3cWF3bTA1NWQzZHBia2FvM3hmb3QifQ.WCZsUVFd574rEp88K7TEfA";
@@ -48,6 +70,24 @@ const Doctors = () => {
   const [lat, setLat] = useState(51.5);
   const [zoom, setZoom] = useState(9);
 
+  //geocode related
+  const [geocode, setGeocode] = React.useState(undefined);
+  const [markers, setMarkers] = useState([]);
+
+  //geocode related
+  React.useEffect(() => {
+    async function fetchGeocode(postcode) {
+      const resp = await fetch(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${postcode}.json?access_token=pk.eyJ1IjoianBhcmswMjI0IiwiYSI6ImNsMWI3cWF3bTA1NWQzZHBia2FvM3hmb3QifQ.WCZsUVFd574rEp88K7TEfA`
+      );
+      const data = await resp.json();
+      setGeocode(data);
+      console.log(data);
+      console.log(resp);
+    }
+    convertedPostcodesData.forEach((postcode) => fetchGeocode(postcode));
+  }, []);
+
   useEffect(() => {
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
@@ -56,10 +96,6 @@ const Doctors = () => {
       center: [lng, lat],
       zoom: zoom,
     });
-
-    // doctorData.map((doctor) =>
-    //   doctor.address.map((element, i) => console.log(Object.values(element)))
-    // );
 
     const marker1 = new mapboxgl.Marker()
       .setLngLat([-0.11, 51.5])
@@ -78,6 +114,14 @@ const Doctors = () => {
         },
         trackUserLocation: true,
         showUserHeading: true,
+      })
+    );
+
+    // geocode related
+    map.current.addControl(
+      new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
       })
     );
   });
