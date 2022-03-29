@@ -3,6 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
+const backEndLink = process.env.BACKEND_CONNECTION
+  ? process.env.BACKEND_CONNECTION
+  : "http://localhost:4000";
 const WelcomeRegistration = () => {
     const [isConfirmed, setConfirmation] = useState(false)
     const [results, displayResults] = useState(null)
@@ -16,7 +19,7 @@ const WelcomeRegistration = () => {
       async function checkConfirmation() {
         try{
           const res = await fetch(
-            `$https://findmeadoc.herokuapp.com/users/confirm/${code}/account`,
+            `${backEndLink}/users/confirm/${code}/account`,
             {
               method: "GET",
               headers: new Headers({

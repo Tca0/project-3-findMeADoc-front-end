@@ -51,7 +51,7 @@ const Register = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const res = await axios.post(`https://findmeadoc.herokuapp.com/users/register`, formData);
+        const res = await axios.post(`${backEndLink}/users/register`, formData);
         console.log(res.status);
         // const data = await res.json();
         // console.log(data.message, "from response");
