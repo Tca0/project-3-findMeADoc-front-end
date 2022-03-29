@@ -13,6 +13,7 @@ const WelcomeRegistration = () => {
     //send it to the backend then check response to display the right message
   const { code } = useParams();
   // console.log(code, typeof code);
+  console.log("backend URL", backEndLink);
   useEffect(() => {
     
       async function checkConfirmation() {
