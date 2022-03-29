@@ -56,7 +56,6 @@ const EditPage = () =>{
         id={apiParams.id}
         model={apiParams.model}
         role={tokenPayload.role}
-
     />
 }
 

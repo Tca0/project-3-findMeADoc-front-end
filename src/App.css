@@ -19,12 +19,18 @@
   background-color: green;
   width: 50vw;
   margin: 0 auto;
+  margin-top: 10px;
+  text-align: center;
+  padding: 10px;
+  border: 2px solid darkgray;
+  border-radius: 50%;
 }
 
 .failure {
   background-color: red;
   width: 50vw;
   margin: 0 auto;
+  margin-top: 10px;
 }
 
 .App-header {
