@@ -16,8 +16,9 @@ const EditForm = ({token,collection,id,model,role}) =>{
         })
         .then(res=>res.json())
         .then(json=>{
+            const DOB = new Date (json.DOB)
             console.log(json)
-            setUserInfo({...json})
+            setUserInfo({...json, DOB:DOB.toLocaleDateString().split("/").reverse().join("-")})
         })
     },[])
 

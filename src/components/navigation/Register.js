@@ -2,11 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const backEndLink = process.env.BACKEND_CONNECTION
-  ? process.env.BACKEND_CONNECTION
-  : "http://localhost:4000";
-  // a state to store entered data
+// a state to store entered data
 const Register = () => {
+  const backEndLink = process.env.REACT_APP_API
+    ? process.env.REACT_APP_API
+    : "http://localhost:4000";
+    console.log(process.env)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,6 +22,8 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onChange = (e) => {
+    console.log(process.env.REACT_APP_API)
+    console.log(backEndLink)
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const validateForm = () => {
