@@ -3,10 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
-const backEndLink = process.env.BACKEND_CONNECTION
-  ? process.env.BACKEND_CONNECTION
-  : "http://localhost:4000";
+
 const WelcomeRegistration = () => {
+  const backEndLink = process.env.REACT_APP_API_URL
+    ? process.env.REACT_APP_API_URL
+    : "http://localhost:4000";
+    console.log("backend URL", backEndLink);
+    
     const [isConfirmed, setConfirmation] = useState(false)
     const [results, displayResults] = useState(null)
     const navigate = useNavigate();
@@ -14,7 +17,7 @@ const WelcomeRegistration = () => {
     //send it to the backend then check response to display the right message
   const { code } = useParams();
   // console.log(code, typeof code);
-  console.log("backend URL", backEndLink);
+  
   useEffect(() => {
     
       async function checkConfirmation() {

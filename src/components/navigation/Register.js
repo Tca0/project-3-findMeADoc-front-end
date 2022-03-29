@@ -2,18 +2,22 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const backEndLink = process.env.BACKEND_CONNECTION
-  ? process.env.BACKEND_CONNECTION
-  : "http://localhost:4000";
-  // a state to store entered data
+
+
 const Register = () => {
+  const backEndLink = process.env.REACT_APP_API_URL
+    ? process.env.REACT_APP_API_URL
+    : "http://localhost:4000";
+  console.log("backend URL", backEndLink);
+
+  // a state to store entered data
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
   //a state to store errors by typing
-  const [formErrors, setFormErrors] = useState({}); 
+  const [formErrors, setFormErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [isRegistered, setRegistered] = useState(false);
@@ -47,7 +51,6 @@ const Register = () => {
       return false;
     }
   };
-  console.log("backend URL", backEndLink)
   const onSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
@@ -60,7 +63,7 @@ const Register = () => {
         console.log(res.status);
         if (res.status === 200) {
           setSucceeded(true);
-          setSuccessMessage(res.data.message)
+          setSuccessMessage(res.data.message);
         }
       } catch (e) {
         console.log(e.response.data.message);
@@ -70,7 +73,7 @@ const Register = () => {
     }
   };
   console.log(isSucceeded);
-  console.log(successMessage)
+  console.log(successMessage);
   console.log(isRegistered);
   const loginPage = () => {
     console.log("hello");
