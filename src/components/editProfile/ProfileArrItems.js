@@ -48,7 +48,7 @@ const ProfileArrItems = ({formData,onChangeArray,array, add}) =>{
                     onClick={removeItem}>
                     {/* <FontAwesomeIcon 
                     icon={faSquareMinus} /> */}
-Remove
+                    Remove
                     </span> 
                     </Button>
                 </Col>
