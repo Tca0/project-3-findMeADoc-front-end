@@ -13,11 +13,14 @@ function PostcodeLngLat({formData,onChangeAddress,setFormData}){
     const [lng,setLng] = useState(null)
     const [lat,setLat] = useState(null)
     
-    function updateForm(searchTerm,lng,lat){
+    function updateForm(searchTerm,lng,lat,coordinates){
         const obj = {...formData}
+        obj.address.coordinates=[]
         obj.address.postcode=searchTerm
         obj.address.lng=lng
         obj.address.lat=lat
+        obj.address.coordinates.push(lng)
+        obj.address.coordinates.push(lat)
         setFormData(obj)
     }
 
@@ -38,10 +41,12 @@ function PostcodeLngLat({formData,onChangeAddress,setFormData}){
             console.log(data.features[0]);
             console.log(data.features[0].geometry);
             console.log(data.features[0].geometry.coordinates);
+            const coordinates = data.features[0].geometry.coordinates
             const [Lng,Lat] = data.features[0].geometry.coordinates;
+            console.log(coordinates,"cooord")
             setLng(Lng)
             setLat(Lat)
-            updateForm(searchTerm,Lng,Lat)
+            updateForm(searchTerm,Lng,Lat,coordinates)
             //   console.log(resp);
           }
           fetchGeocode(searchTerm)
