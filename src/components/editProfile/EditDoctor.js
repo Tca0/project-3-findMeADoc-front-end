@@ -22,6 +22,12 @@ const EditDoctor = ({profileInformation,token,collection,id}) =>{
         setFormData({...formData,street })
         }
 
+    const onChangeArray = (arrName,newArr) =>{
+        const updatedArr = formData[arrName]=newArr
+        console.log(updatedArr)
+        setFormData({...formData,updatedArr})
+    }
+
     const handleSubmit = async (e) =>{
         e.preventDefault()
         try{
@@ -166,15 +172,17 @@ const EditDoctor = ({profileInformation,token,collection,id}) =>{
 
         <ProfileArrItems 
         formData={formData}
-        onChange={onChange}
+        onChangeArray={onChangeArray}
         array={"languages"}
+        add={"language"}
 
         />
 
         <ProfileArrItems 
         formData={formData}
-        onChange={onChange}
+        onChangeArray={onChangeArray}
         array={"specialties"}
+        add={"speciality"}
         />
 
         <Form.Group className="mb-3" controlId="about">
