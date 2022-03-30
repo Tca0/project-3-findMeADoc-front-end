@@ -2,18 +2,20 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const backEndLink = process.env.BACKEND_CONNECTION
-  ? process.env.BACKEND_CONNECTION
-  : "http://localhost:4000";
-  // a state to store entered data
+
+// a state to store entered data
 const Register = () => {
+  const backEndLink = process.env.REACT_APP_API
+    ? process.env.REACT_APP_API
+    : "http://localhost:4000";
+    console.log(process.env)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
   //a state to store errors by typing
-  const [formErrors, setFormErrors] = useState({}); 
+  const [formErrors, setFormErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [isRegistered, setRegistered] = useState(false);
@@ -21,7 +23,10 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onChange = (e) => {
+    console.log(process.env.REACT_APP_API)
+    console.log(backEndLink)
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormErrors({});
   };
   const validateForm = () => {
     console.log("frontend validator");
@@ -47,7 +52,6 @@ const Register = () => {
       return false;
     }
   };
-  console.log("backend URL", backEndLink)
   const onSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
@@ -60,7 +64,7 @@ const Register = () => {
         console.log(res.status);
         if (res.status === 200) {
           setSucceeded(true);
-          setSuccessMessage(res.data.message)
+          setSuccessMessage(res.data.message);
         }
       } catch (e) {
         console.log(e.response.data.message);
@@ -70,7 +74,7 @@ const Register = () => {
     }
   };
   console.log(isSucceeded);
-  console.log(successMessage)
+  console.log(successMessage);
   console.log(isRegistered);
   const loginPage = () => {
     console.log("hello");
@@ -140,4 +144,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Register

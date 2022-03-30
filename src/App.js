@@ -9,8 +9,10 @@ import Login from "./components/navigation/Login";
 import DoctorsIndex from "./components/doctors/DoctorsIndex";
 import Home from "./components/Home";
 import WelcomeRegistration from "./components/Welcome";
-import EditPage from "./components/editProfile/EditPage";
 import DoctorShow from "./components/doctors/DoctorShow";
+import EditPage from './components/editProfile/EditPage';
+import ResetpasswordRequest from "./components/ResetpasswordRequest";
+import ResetPassword from "./components/PasswordReset";
 
 function App() {
   const [storageToken, updateStorageToken] = useState(localStorage.token);
@@ -27,6 +29,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<DoctorsIndex />} />
         <Route path="/doctors/:doctorID" element={<DoctorShow />} />
+
         //patient routes
         <Route path="/users/edit" element={<EditPage />} />
         //doctor routes //user routes
@@ -36,11 +39,16 @@ function App() {
           element={<WelcomeRegistration />}
         ></Route>
         <Route
+          path="/resetpasswordRequest"
+          element={<ResetpasswordRequest />}
+        ></Route>
+        <Route
           path="/users/login"
           element={<Login updateStorageToken={updateStorageToken} />}
         />
-        {/* <Route path="/users/forgotPassword" element={<PasswordResest />} /> */}
-        /*{" "}
+
+        <Route path="/users/resetPassword/:code" element={<ResetPassword />} />
+
       </Routes>
     </div>
   );

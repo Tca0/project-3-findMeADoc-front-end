@@ -5,6 +5,7 @@ import {
   faHospitalUser,
   faUserPlus,
   faUserPen,
+  faArrowRightFromBracket
 } from "@fortawesome/free-solid-svg-icons";
 // import {} from "@fortawesome/fontawesome-free-brands";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +13,8 @@ import { useState, useEffect } from "react";
 
 import Register from "./Register.js";
 import Login from "./Login.js";
+
+import DoctorsIndex from "../doctors/DoctorsIndexCard";
 
 //https://react-bootstrap.netlify.app/components/navbar/
 function NavBar({ storageToken, updateStorageToken }) {
@@ -71,7 +74,7 @@ function NavBar({ storageToken, updateStorageToken }) {
                     }}
                   >
                     {" "}
-                    Logout{" "}
+                    Logout{" "}<FontAwesomeIcon icon={faArrowRightFromBracket}/>
                   </Nav.Link>
                 </>
               ) : (
