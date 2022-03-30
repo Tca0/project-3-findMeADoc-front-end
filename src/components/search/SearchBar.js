@@ -79,7 +79,7 @@ function SearchBar({ placeholder, doctorData, specialtyData }) {
           <h3>Specialities</h3>
           {filteredSpecialtyData.map((filteredSpecialtyData, i) => {
             return (
-              <Link key={i} to={"/doctors"}>
+              <Link key={i} to={`/doctors`}>
                 <div className="dataItem">
                   <p>{filteredSpecialtyData}</p>
                 </div>

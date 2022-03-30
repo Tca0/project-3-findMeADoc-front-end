@@ -5,21 +5,26 @@ function DocrosIndexCard({ _id, fullName, languages, specialties, address }) {
     <div key={_id}>
       <Link to={`/doctors/${_id}`}>
         <h4>{fullName}</h4>
-        {specialties.map((element) => (
-          <p key={element}>{element}</p>
-        ))}
-        {languages.map((element) => (
-          <p key={element}>{element}</p>
-        ))}
-        {address.map((element, i) => (
-          // console.log(Object.values(element))
-          <div key={i}>
-            <p key={Object.values(element)[0]}>{Object.values(element)[0]}</p>
-            <p key={Object.values(element)[2]}>{Object.values(element)[2]}</p>
-            <p key={Object.values(element)[3]}>{Object.values(element)[3]}</p>
-            <p key={Object.values(element)[4]}>{Object.values(element)[4]}</p>
-          </div>
-        ))}
+        <p>Specialities</p>
+        <ul>
+          {specialties.map((element, i) => (
+            <li key={i}>{element}</li>
+          ))}
+        </ul>
+        <p>Languages</p>
+        <ul>
+          {languages.map((element, i) => (
+            <li key={i}>{element}</li>
+          ))}
+        </ul>
+        <p>Address</p>
+        <ul>
+          {address.addressLine2 && <li>{address.addressLine2}</li>}
+          <li>{address.addressLine1}</li>
+          <li>{address.town}</li>
+          <li>{address.country}</li>
+          <li>{address.postcode.toUpperCase()}</li>
+        </ul>
       </Link>
     </div>
   );
