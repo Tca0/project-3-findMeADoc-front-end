@@ -146,7 +146,8 @@ const EditPatient = ({profileInformation,token,collection,id}) =>{
                     placeholder="United Kingdom" />
                 </Form.Group>
 
-
+                //
+                
                 <Form.Group as={Col} controlId="Postcode">
                 <Form.Label>Post Code</Form.Label>
                 <Form.Control 

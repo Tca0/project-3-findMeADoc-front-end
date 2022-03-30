@@ -3,6 +3,7 @@ import axios from 'axios'
 import {useState,useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import ProfileArrItems from './ProfileArrItems'
+import PostcodeLngLat from './PostcodeLngLat'
 
 const EditDoctor = ({profileInformation,token,collection,id}) =>{
     const [formData,setFormData] = useState(profileInformation)
@@ -26,6 +27,7 @@ const EditDoctor = ({profileInformation,token,collection,id}) =>{
         const updatedArr = formData[arrName]=newArr
         setFormData({...formData,updatedArr})
     }
+
 
     const handleSubmit = async (e) =>{
         e.preventDefault()
@@ -159,14 +161,21 @@ const EditDoctor = ({profileInformation,token,collection,id}) =>{
             </Form.Group>
 
 
-            <Form.Group as={Col} controlId="Postcode">
-            <Form.Label>Post Code</Form.Label>
-            <Form.Control 
-                name="postcode"
-                value ={formData.address.postcode} 
-                onChange={onChangeAddress}
-                placeholder="E1 7PT"/>
-            </Form.Group>
+            //
+                <PostcodeLngLat 
+                formData={formData}
+                onChangeAddress={onChangeAddress}
+                setFormData={setFormData}/>
+
+
+                {/* <Form.Group as={Col} controlId="Postcode">
+                <Form.Label>Post Code</Form.Label>
+                <Form.Control 
+                    name="postcode"
+                    value ={formData.address?formData.address.postcode:""} 
+                    onChange={onChangeAddress}
+                    placeholder="E1 7PT"/>
+                </Form.Group> */}
         </Row>
 
         <ProfileArrItems 
