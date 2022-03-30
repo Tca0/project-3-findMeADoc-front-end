@@ -5,6 +5,7 @@ import {
   faHospitalUser,
   faUserPlus,
   faUserPen,
+  faArrowRightFromBracket
 } from "@fortawesome/free-solid-svg-icons";
 // import {} from "@fortawesome/fontawesome-free-brands";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -72,7 +73,7 @@ function NavBar({ storageToken, updateStorageToken }) {
                     }}
                   >
                     {" "}
-                    Logout{" "}
+                    Logout{" "}<FontAwesomeIcon icon={faArrowRightFromBracket}/>
                   </Nav.Link>
                 </>
               ) : (
