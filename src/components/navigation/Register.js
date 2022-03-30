@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
+// a state to store entered data
 const Register = () => {
   const backEndLink = process.env.REACT_APP_API
     ? process.env.REACT_APP_API
@@ -142,4 +144,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Register
