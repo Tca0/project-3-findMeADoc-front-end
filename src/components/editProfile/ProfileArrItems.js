@@ -31,9 +31,15 @@ const ProfileArrItems = ({formData,onChangeArray,array, add}) =>{
     }
     
     function removeItem(e){
+        const updateArr = [...arrItems]
+        const index = e.target.classList[0]
+        updateArr.splice(index,1)
         console.log("clicked")
         console.log(e.target)
-        console.log(e.target.value)
+        console.log(e.target.classList)
+        console.log(e.target.classList[0])
+        setArrItems(updateArr)
+
     }
 
     if(!arrItems || arrItems.length<1) return <h1>No {array}</h1>
@@ -44,11 +50,11 @@ const ProfileArrItems = ({formData,onChangeArray,array, add}) =>{
                 return <Col key={i}>
                     <Button variant="light" key={i}>{item} 
                     <span 
-                    value={i}
-                    onClick={removeItem}>
+                    className={i}
+                    value={i} 
+                    onClick={removeItem}> 
                     {/* <FontAwesomeIcon 
-                    icon={faSquareMinus} /> */}
-                    Remove
+                    icon={faSquareMinus} /> */}   X
                     </span> 
                     </Button>
                 </Col>

@@ -24,7 +24,6 @@ const EditDoctor = ({profileInformation,token,collection,id}) =>{
 
     const onChangeArray = (arrName,newArr) =>{
         const updatedArr = formData[arrName]=newArr
-        console.log(updatedArr)
         setFormData({...formData,updatedArr})
     }
 
