@@ -57,16 +57,19 @@ function SearchBar({ placeholder, data }) {
       </div>
       {filteredData.length !== 0 && (
         <div className="dataResult">
-          {filteredData.slice(0, 15).map((value) => {
+          {filteredData.slice(0, 15).map((filteredData) => {
             return (
-              <Link key={value.fullName} to="/doctors">
+              <Link
+                key={filteredData.fullName}
+                to={`/doctors/${filteredData._id}`}
+              >
                 <div>
-                  <ul className="dataItem">
-                    <li>{value.fullName}</li>
-                  </ul>
-                  {/* {value.specialties.length && (
+                  <div className="dataItem">
+                    <p>{filteredData.fullName}</p>
+                  </div>
+                  {/* {filteredData.specialties.length && (
                     <ul className="dataItem">
-                      {value.specialties.map((specialty) => (
+                      {filteredData.specialties.map((specialty) => (
                         <li key={specialty.id}>{specialty.name}</li>
                       ))}
                     </ul>

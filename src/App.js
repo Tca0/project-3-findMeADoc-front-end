@@ -9,6 +9,7 @@ import Login from "./components/navigation/Login";
 import DoctorsIndex from "./components/doctors/DoctorsIndex";
 import Home from "./components/Home";
 import WelcomeRegistration from "./components/Welcome";
+import DoctorShow from "./components/doctors/DoctorShow";
 import EditPage from './components/editProfile/EditPage';
 import ResetpasswordRequest from "./components/ResetpasswordRequest";
 import ResetPassword from "./components/PasswordReset";
@@ -26,8 +27,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-
-        {/* <Route path="/doctors" element={<Doctors />} /> */}
+        <Route path="/doctors" element={<DoctorsIndex />} />
+        <Route path="/doctors/:doctorID" element={<DoctorShow />} />
 
         //patient routes
         <Route path="/users/edit" element={<EditPage />} />
@@ -47,7 +48,7 @@ function App() {
         />
 
         <Route path="/users/resetPassword/:code" element={<ResetPassword />} />
-        <Route path="/doctors" element={<DoctorsIndex />} />
+
       </Routes>
     </div>
   );
