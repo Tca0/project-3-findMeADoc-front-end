@@ -1,4 +1,4 @@
-import {Form, Row, Col,Button, InputGroup, FormControl, Container, ButtonGroup} from 'react-bootstrap'
+import {Badge,Form, Row, Col,Button, InputGroup, FormControl, Container, ButtonGroup} from 'react-bootstrap'
 import {faSquareMinus, faSquarePlus} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {useState,useEffect} from 'react'
@@ -7,6 +7,7 @@ import {useState,useEffect} from 'react'
 const ProfileArrItems = ({formData,onChangeArray,array, add}) =>{
     const [arrItems, setArrItems] = useState(formData[array])
     const [currentValue,setCurrentValue] = useState("")
+    const [specialties, setSpecialty] = useState([])
 
     useEffect(()=>{
         if(arrItems.length!==formData[array].length){
@@ -17,6 +18,18 @@ const ProfileArrItems = ({formData,onChangeArray,array, add}) =>{
             // console.log(formData,"afterupdate")
         }
     },[arrItems,formData])
+
+    useEffect(async () => {
+        if(add==="speciality"){
+            await fetch("https://findmeadoc.herokuapp.com/specialties")
+              .then((resp) => resp.json())
+              .then((data) => {
+                //   console.log(data[0].specialties)
+                  setSpecialty(data[0].specialties)});
+
+        }
+      }, []);
+
     function handleAdd(e){
         setCurrentValue(e.target.value)
     }
@@ -36,6 +49,7 @@ const ProfileArrItems = ({formData,onChangeArray,array, add}) =>{
         updateArr.splice(index,1)
         console.log("clicked")
         console.log(e.target)
+        console.log(e.target.value)
         console.log(e.target.classList)
         console.log(e.target.classList[0])
         setArrItems(updateArr)
@@ -45,21 +59,26 @@ const ProfileArrItems = ({formData,onChangeArray,array, add}) =>{
     if(!arrItems || arrItems.length<1) return <h1>No {array}</h1>
     return <>
         <Row>
-            <ButtonGroup>
+            <div>
             {arrItems.map((item,i)=>{
-                return <Col key={i}>
-                    <Button variant="light" key={i}>{item} 
+                return <Badge pill bg="secondary" key={i}>{item} 
                     <span 
                     className={i}
                     value={i} 
                     onClick={removeItem}> 
                     {/* <FontAwesomeIcon 
-                    icon={faSquareMinus} /> */}   X
+                    icon={faSquareMinus} /> */}   &#x02A2F;
                     </span> 
-                    </Button>
-                </Col>
+                    </Badge>
             })}
-            </ButtonGroup>
+            </div>
+            {add==="speciality"?
+            <Form.Select aria-label="Default select example" onChange={(e)=>setArrItems([...arrItems,...[e.target.value]])}>
+                {specialties.map((specialty,i)=>{
+                    return <option value={specialty} key={i} >{specialty} </option>
+                })}
+            </Form.Select>
+            :
             <InputGroup className="mb-3">
                 <FormControl
                 placeholder={`add a ${add}`}
@@ -71,11 +90,11 @@ const ProfileArrItems = ({formData,onChangeArray,array, add}) =>{
                 onClick={handleSubmit}
                 variant="outline-secondary"
                 id="add">
-                add a {add} 
-                <FontAwesomeIcon
-                icon={faSquarePlus} />
+                Add a {add} 
+                {/* <FontAwesomeIcon
+                icon={faSquarePlus} /> */}
                 </Button>
-            </InputGroup>
+            </InputGroup>}
         </Row>
     </>
 }
