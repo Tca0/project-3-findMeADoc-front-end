@@ -70,14 +70,29 @@ form {
   margin-top: 15px;
 } */
 
-button {
+/* button {
   margin-top: 30px;
-}
+} */
 
 .login-page {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 1;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
   background-color: aquamarine;
+  padding: 20px 0px;
+  height: 350px;
 }
-
+.login-page > button {
+  margin-top: 0;
+  cursor: grab;
+  box-sizing: border-box;
+  box-shadow: #282c34;
+}
 a {
   display: block;
 }

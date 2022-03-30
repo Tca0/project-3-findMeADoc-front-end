@@ -12,32 +12,49 @@ const Login = ({updateStorageToken}) => {
   console.log("backend link",backEndLink)
   const [formData, setFormData] = useState({})
   const [errorMessage, setErrorMessage] = useState(null)
+  const [formErrors, setFormErrors] = useState({});
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+    setFormErrors({});
   }
 
   const navigate = useNavigate()
-
+const validateForm = () => {
+  let errors = {};
+  if (!formData.email) {
+    errors.email = "email address required";
+  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    errors.email = "Email address is invalid";
+  }
+  if (!formData.password) {
+    errors.password = "password required";
+  }
+  setFormErrors(errors);
+  if (Object.keys(errors).length === 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
   const onSubmit = async (e) => {
     e.preventDefault()
-    try {
-      console.log(formData)
-      const res = await axios.post(
-        `${backEndLink}/users/login`,
-        formData
-      );
-      console.log(res)
-      if (res.data.token) {
-        console.log("Success")
-        localStorage.setItem("token", res.data.token)
-        updateStorageToken(localStorage.token)
-        console.log(localStorage.token)
-        navigate("/doctors")
+    if(validateForm()) {
+      try {
+        console.log(formData);
+        const res = await axios.post(`${backEndLink}/users/login`, formData);
+        console.log(res);
+        if (res.data.token) {
+          console.log("Success");
+          localStorage.setItem("token", res.data.token);
+          updateStorageToken(localStorage.token);
+          console.log(localStorage.token);
+          navigate("/doctors");
+        }
+      } catch (e) {
+        console.log(e);
+        setErrorMessage(e.response);
       }
-    } catch (e) {
-      console.log(e)
-      setErrorMessage(e.response)
     }
   }
   const resetPassword = () => {
@@ -54,18 +71,40 @@ const Login = ({updateStorageToken}) => {
             placeholder="email"
             name="email"
             onChange={onChange}
+            style={{ marginTop: "10px" }}
           />
+          {formErrors.email && (
+            <p className="text-warning">{formErrors.email}</p>
+          )}
           <input
             type="password"
             placeholder="Password"
             name="password"
             onChange={onChange}
+            style={{ marginTop: "10px" }}
           />
-          <button type="submit">Login</button>
+          {formErrors.password && (
+            <p className="text-warning">{formErrors.password}</p>
+          )}
+          <button type="submit" style={{ marginTop: "10px" }}>
+            Login
+          </button>
         </form>
-        <p>
-          Forgot your password <span onClick={resetPassword}>click to reset password</span>
-        </p>
+        <div>
+          <p style={{ marginTop: "10px" }}>
+            Forgot your password{" "}
+            <span
+              onClick={resetPassword}
+              style={{
+                textDecoration: "underline",
+                color: "purple",
+                cursor: "pointer",
+              }}
+            >
+              click to reset password
+            </span>
+          </p>
+        </div>
       </div>
     </>
   );
