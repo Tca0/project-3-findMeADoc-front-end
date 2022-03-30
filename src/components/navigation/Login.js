@@ -43,7 +43,7 @@ const validateForm = () => {
       try {
         console.log(formData);
         const res = await axios.post(`${backEndLink}/users/login`, formData);
-        console.log(res);
+        console.log("response",res);
         if (res.data.token) {
           console.log("Success");
           localStorage.setItem("token", res.data.token);
@@ -52,8 +52,8 @@ const validateForm = () => {
           navigate("/doctors");
         }
       } catch (e) {
-        console.log(e);
-        setErrorMessage(e.response);
+        console.log(e.response.data.message);
+        setErrorMessage(e.response.data.message);
       }
     }
   }
@@ -63,35 +63,43 @@ const validateForm = () => {
   return (
     <>
       <div className="login-page">
-        <h1>Login</h1>
-        {errorMessage && <div className="failure">{errorMessage}</div>}
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            placeholder="email"
-            name="email"
-            onChange={onChange}
-            style={{ marginTop: "10px" }}
-          />
-          {formErrors.email && (
-            <p className="text-warning">{formErrors.email}</p>
-          )}
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={onChange}
-            style={{ marginTop: "10px" }}
-          />
-          {formErrors.password && (
-            <p className="text-warning">{formErrors.password}</p>
-          )}
-          <button type="submit" style={{ marginTop: "10px" }}>
-            Login
-          </button>
-        </form>
         <div>
-          <p style={{ marginTop: "10px" }}>
+          <h1 style={{ textAlign: "center" }}>Login</h1>
+        </div>
+        {errorMessage && (
+          <div className="failure">
+            <p style={{ textAlign: "center" }}>{errorMessage}</p>
+          </div>
+        )}
+        <div className="formContainer">
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              placeholder="email"
+              name="email"
+              onChange={onChange}
+              style={{ marginTop: "10px" }}
+            />
+            {formErrors.email && (
+              <p className="text-warning">{formErrors.email}</p>
+            )}
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={onChange}
+              style={{ marginTop: "10px" }}
+            />
+            {formErrors.password && (
+              <p className="text-warning">{formErrors.password}</p>
+            )}
+            <button type="submit" style={{ marginTop: "10px" }}>
+              Login
+            </button>
+          </form>
+        </div>
+        <div>
+          <p style={{ marginTop: "10px", textAlign: "center" }}>
             Forgot your password{" "}
             <span
               onClick={resetPassword}
