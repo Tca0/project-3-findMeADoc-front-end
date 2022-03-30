@@ -58,14 +58,7 @@ function ResetpasswordRequest() {
   };
   return (
     <div
-      className="container"
-      style={{
-        marginTop: "50px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-      }}
+      className="RestPassword-container"
     >
       <div className="forgotPassword">
         <form onSubmit={onSubmit}>
@@ -80,7 +73,7 @@ function ResetpasswordRequest() {
           <button type="submit">Send</button>
         </form>
       </div>
-      <div className="forgotRes" style={{ marginTop: "20px" }}>
+      <div className="forgotRes">
         {!status ? (
           <p style={{ color: "red" }}>{response}</p>
         ) : (

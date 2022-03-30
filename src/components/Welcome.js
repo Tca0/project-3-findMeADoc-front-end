@@ -59,7 +59,7 @@ const WelcomeRegistration = () => {
     navigate("/users/login");
   }
   return (
-    <div>
+    <div className="confirmationResults">
       <p>{results}</p>
       {isConfirmed && <button onClick={loginPage}>Login</button>}
     </div>
