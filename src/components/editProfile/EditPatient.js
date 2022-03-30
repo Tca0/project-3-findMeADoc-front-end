@@ -19,6 +19,12 @@ const EditPatient = ({profileInformation,token,collection,id}) =>{
         setFormData({...formData,street })
         }
 
+    function undefinedCheck(input){
+        console.log(input)
+        if(input) return input
+        return ""
+    }
+
     const handleSubmit = async (e) =>{
         e.preventDefault()
         try{
@@ -34,6 +40,7 @@ const EditPatient = ({profileInformation,token,collection,id}) =>{
             console.log(e)
         }
     }
+    
 
     if(!formData.email) return <h1>Getting info</h1>
     return <>
@@ -106,7 +113,7 @@ const EditPatient = ({profileInformation,token,collection,id}) =>{
                     <Form.Label>Address</Form.Label>
                     <Form.Control 
                     name="addressLine1"
-                    value ={formData.address.addressLine1} 
+                    value ={formData.address?formData.address.addressLine1:""} 
                     onChange={onChangeAddress}
                     placeholder="1st Floor, The Relay Building" />
                 </Form.Group>
@@ -115,7 +122,7 @@ const EditPatient = ({profileInformation,token,collection,id}) =>{
                     <Form.Label>Address 2</Form.Label>
                     <Form.Control 
                     name="addressLine2"
-                    value ={formData.address.addressLine2} 
+                    value ={formData.address?formData.address.addressLine2:""} 
                     onChange={onChangeAddress}
                     placeholder="114 Whitechapel High St" />
                 </Form.Group>
@@ -125,7 +132,7 @@ const EditPatient = ({profileInformation,token,collection,id}) =>{
                     <Form.Label>Town</Form.Label>
                     <Form.Control 
                     name="town"
-                    value ={formData.address.town} 
+                    value ={formData.address?formData.address.town:""} 
                     onChange={onChangeAddress}
                     placeholder="London" />
                 </Form.Group>
@@ -134,7 +141,7 @@ const EditPatient = ({profileInformation,token,collection,id}) =>{
                     <Form.Label>Country</Form.Label>
                     <Form.Control 
                     name="country"
-                    value ={formData.address.country} 
+                    value ={formData.address?formData.address.country:""} 
                     onChange={onChangeAddress}
                     placeholder="United Kingdom" />
                 </Form.Group>
@@ -144,7 +151,7 @@ const EditPatient = ({profileInformation,token,collection,id}) =>{
                 <Form.Label>Post Code</Form.Label>
                 <Form.Control 
                     name="postcode"
-                    value ={formData.address.postcode} 
+                    value ={formData.address?formData.address.postcode:""} 
                     onChange={onChangeAddress}
                     placeholder="E1 7PT"/>
                 </Form.Group>
