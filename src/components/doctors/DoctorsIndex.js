@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import DoctorsIndexCard from "./DoctorsIndexCard";
 
 // geocode related
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
@@ -32,7 +33,7 @@ const popupOffsets = {
 const backEndLink = process.env.BACKEND_CONNECTION
   ? process.env.BACKEND_CONNECTION
   : "http://localhost:4000";
-const Doctors = () => {
+const DoctorsIndex = () => {
   const [doctorData, setDoctorData] = useState([]);
 
   //geocode related
@@ -143,34 +144,15 @@ const Doctors = () => {
     <>
       <div>
         <h1>This is the doctors page</h1>
-        {doctorData.map((doctor, idx) => (
-          <div className="movie-tile" key={idx}>
-            <h4>{doctor.fullName}</h4>
-            {doctor.specialties.map((element) => (
-              <p key={element}>{element}</p>
-            ))}
-            {doctor.languages.map((element) => (
-              <p key={element}>{element}</p>
-            ))}
-            {doctor.address.map((element, i) => (
-              // console.log(Object.values(element))
-              <div key={i}>
-                <p key={Object.values(element)[0]}>
-                  {Object.values(element)[0]}
-                </p>
-                <p key={Object.values(element)[2]}>
-                  {Object.values(element)[2]}
-                </p>
-                <p key={Object.values(element)[3]}>
-                  {Object.values(element)[3]}
-                </p>
-                <p key={Object.values(element)[4]}>
-                  {Object.values(element)[4]}
-                </p>
-              </div>
-            ))}
-          </div>
-        ))}
+        <div>
+          {/* {doctorData.length !== 0 ? (
+            filterDoctors().map((doctor) => (
+              <DoctorsIndexCard key={doctor._id} {...doctorData} />
+            ))
+          ) : (
+            <p>...loading</p>
+          )} */}
+        </div>
       </div>
       <div>
         {/* <div className="sidebar">
@@ -182,4 +164,4 @@ const Doctors = () => {
   );
 };
 
-export default Doctors;
+export default DoctorsIndex;

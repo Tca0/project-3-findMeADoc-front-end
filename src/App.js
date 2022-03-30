@@ -6,7 +6,7 @@ import React from "react";
 import NavBar from "./components/navigation/NavBar";
 import Register from "./components/navigation/Register";
 import Login from "./components/navigation/Login";
-import Doctors from "./components/Doctors";
+import DoctorsIndex from "./components/doctors/DoctorsIndex";
 import Home from "./components/Home";
 import WelcomeRegistration from "./components/Welcome";
 import EditPage from './components/editProfile/EditPage';
@@ -26,7 +26,9 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+
         <Route path="/doctors" element={<Doctors />} />
+
         //patient routes
         <Route path="/users/edit" element={<EditPage />} />
         //doctor routes //user routes
@@ -43,8 +45,9 @@ function App() {
           path="/users/login"
           element={<Login updateStorageToken={updateStorageToken} />}
         />
+
         <Route path="/users/resetPassword/:code" element={<ResetPassword />} />
-        /*{" "}
+        <Route path="/doctors" element={<DoctorsIndex />} />
       </Routes>
     </div>
   );

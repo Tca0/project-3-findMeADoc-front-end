@@ -6,11 +6,10 @@ import { useNavigate } from "react-router-dom"
 
 
 const Login = ({updateStorageToken}) => {
-  const backEndLink = process.env.REACT_APP_API_URL
-    ? process.env.REACT_APP_API_URL
+  const backEndLink = process.env.REACT_APP_API
+    ? process.env.REACT_APP_API
     : "http://localhost:4000";
-  console.log("backend URL", backEndLink);
-
+  console.log("backend link",backEndLink)
   const [formData, setFormData] = useState({})
   const [errorMessage, setErrorMessage] = useState(null)
 
