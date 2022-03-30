@@ -19,9 +19,13 @@ import DoctorsIndex from "../doctors/DoctorsIndexCard";
 //https://react-bootstrap.netlify.app/components/navbar/
 function NavBar({ storageToken, updateStorageToken }) {
   // const [storageToken,updateStorageToken] = useState(localStorage.token)
-  console.log(updateStorageToken);
   useEffect(() => console.log("rerendered"), [storageToken]);
-  console.log(localStorage.token, "token");
+  let info
+  if(storageToken){
+    info = JSON.parse(atob(storageToken.split('.')[1]))
+  }
+  
+  console.log()
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -59,7 +63,9 @@ function NavBar({ storageToken, updateStorageToken }) {
             <Nav>
               {storageToken ? (
                 //check with Niklas why does this run
-                <>
+                <>  
+                <Nav.Link disabled>Logged in as: {info.email
+                  }({info.role}) </Nav.Link>
                   <LinkContainer to="/users/edit">
                     <Nav.Link>
                       {" "}

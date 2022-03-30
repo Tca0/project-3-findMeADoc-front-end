@@ -13,6 +13,7 @@ import DoctorShow from "./components/doctors/DoctorShow";
 import EditPage from './components/editProfile/EditPage';
 import ResetpasswordRequest from "./components/ResetpasswordRequest";
 import ResetPassword from "./components/PasswordReset";
+import Testing from './components/mapbox/Testing'
 
 function App() {
   const [storageToken, updateStorageToken] = useState(localStorage.token);
@@ -45,6 +46,10 @@ function App() {
         <Route
           path="/users/login"
           element={<Login updateStorageToken={updateStorageToken} />}
+        />
+        <Route
+          path="/test"
+          element={<Testing />}
         />
 
         <Route path="/users/resetPassword/:code" element={<ResetPassword />} />
