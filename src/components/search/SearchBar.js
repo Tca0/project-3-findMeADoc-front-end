@@ -5,32 +5,34 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-function SearchBar({ placeholder, data }) {
-  const [filteredData, setFilteredData] = useState([]);
+function SearchBar({ placeholder, doctorData, specialtyData }) {
+  const [filteredDoctorData, setFilteredDoctorData] = useState([]);
+  const [filteredSpecialtyData, setFilteredSpecialtyData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 
-  console.log(data);
   const handleFilter = (event) => {
     setWordEntered(event.target.value);
-    const searchWord = event.target.value.toLowerCase();
-    const newFilter = data.filter((value) => {
-      return (
-        value.fullName.toLowerCase().includes(searchWord) ||
-        value.specialties.some((specialty) =>
-          specialty.toLowerCase().includes(searchWord)
-        )
-      );
+    const doctorSearchWord = event.target.value.toLowerCase();
+    const doctorFilter = doctorData.filter((doctor) => {
+      return doctor.fullName.toLowerCase().includes(doctorSearchWord);
+    });
+    const specialtySearchWord = event.target.value.toLowerCase();
+    const specialtyFilter = specialtyData[0].specialties.filter((specialty) => {
+      return specialty.toLowerCase().includes(specialtySearchWord);
     });
 
-    if (searchWord === "") {
-      setFilteredData([]);
+    if (doctorSearchWord === "" || specialtySearchWord === "") {
+      setFilteredDoctorData([]);
+      setFilteredSpecialtyData([]);
     } else {
-      setFilteredData(newFilter);
+      setFilteredDoctorData(doctorFilter);
+      setFilteredSpecialtyData(specialtyFilter);
     }
   };
 
   const clearInput = () => {
-    setFilteredData([]);
+    setFilteredDoctorData([]);
+    setFilteredSpecialtyData([]);
     setWordEntered("");
   };
 
@@ -44,7 +46,8 @@ function SearchBar({ placeholder, data }) {
           onChange={handleFilter}
         />
         <div className="searchIcon">
-          {filteredData.length === 0 ? (
+          {filteredDoctorData.length === 0 &&
+          filteredSpecialtyData.length === 0 ? (
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           ) : (
             <FontAwesomeIcon
@@ -55,25 +58,30 @@ function SearchBar({ placeholder, data }) {
           )}
         </div>
       </div>
-      {filteredData.length !== 0 && (
+      {filteredDoctorData.length !== 0 && (
         <div className="dataResult">
-          {filteredData.slice(0, 15).map((filteredData) => {
+          <h3>Doctors</h3>
+          {filteredDoctorData.map((doctor, i) => {
             return (
-              <Link
-                key={filteredData.fullName}
-                to={`/doctors/${filteredData._id}`}
-              >
+              <Link key={i} to={`/doctors/${doctor._id}`}>
                 <div>
                   <div className="dataItem">
-                    <p>{filteredData.fullName}</p>
+                    <p>{doctor.fullName}</p>
                   </div>
-                  {/* {filteredData.specialties.length && (
-                    <ul className="dataItem">
-                      {filteredData.specialties.map((specialty) => (
-                        <li key={specialty.id}>{specialty.name}</li>
-                      ))}
-                    </ul>
-                  )} */}
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      )}
+      {filteredSpecialtyData.length !== 0 && (
+        <div className="dataResult">
+          <h3>Specialities</h3>
+          {filteredSpecialtyData.map((filteredSpecialtyData, i) => {
+            return (
+              <Link key={i} to={"/doctors"}>
+                <div className="dataItem">
+                  <p>{filteredSpecialtyData}</p>
                 </div>
               </Link>
             );
