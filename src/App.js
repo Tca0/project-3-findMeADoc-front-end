@@ -10,6 +10,7 @@ import DoctorsIndex from "./components/doctors/DoctorsIndex";
 import Home from "./components/Home";
 import WelcomeRegistration from "./components/Welcome";
 import EditPage from "./components/editProfile/EditPage";
+import DoctorShow from "./components/doctors/DoctorShow";
 
 function App() {
   const [storageToken, updateStorageToken] = useState(localStorage.token);
@@ -24,7 +25,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/doctors" element={<Doctors />} />
+        <Route path="/doctors" element={<DoctorsIndex />} />
+        <Route path="/doctors/:doctorID" element={<DoctorShow />} />
         //patient routes
         <Route path="/users/edit" element={<EditPage />} />
         //doctor routes //user routes
@@ -38,7 +40,6 @@ function App() {
           element={<Login updateStorageToken={updateStorageToken} />}
         />
         {/* <Route path="/users/forgotPassword" element={<PasswordResest />} /> */}
-        <Route path="/doctors" element={<DoctorsIndex />} />
         /*{" "}
       </Routes>
     </div>

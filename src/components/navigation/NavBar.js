@@ -12,7 +12,6 @@ import { useState, useEffect } from "react";
 
 import Register from "./Register.js";
 import Login from "./Login.js";
-import Doctors from "../Doctors.js";
 
 //https://react-bootstrap.netlify.app/components/navbar/
 function NavBar({ storageToken, updateStorageToken }) {
