@@ -11,7 +11,7 @@ import Home from "./components/Home";
 import WelcomeRegistration from "./components/Welcome";
 import EditPage from './components/editProfile/EditPage';
 import ResetpasswordRequest from "./components/ResetpasswordRequest";
-import PasswordReset from "./components/PasswordReset";
+import ResetPassword from "./components/PasswordReset";
 
 function App() {
   const [storageToken, updateStorageToken] = useState(localStorage.token);
@@ -43,7 +43,7 @@ function App() {
           path="/users/login"
           element={<Login updateStorageToken={updateStorageToken} />}
         />
-        <Route path="/users/resetPassword" element={<PasswordReset />} />
+        <Route path="/users/resetPassword/:code" element={<ResetPassword />} />
         /*{" "}
       </Routes>
     </div>

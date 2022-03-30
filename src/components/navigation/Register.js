@@ -26,6 +26,7 @@ const Register = () => {
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormErrors({});
   };
   const validateForm = () => {
     console.log("frontend validator");
