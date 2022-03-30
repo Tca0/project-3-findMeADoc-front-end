@@ -2,8 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 function ResetPassword() {
-  const backEndLink = process.env.REACT_APP_API_URL
-    ? process.env.REACT_APP_API_URL
+  const backEndLink = process.env.REACT_APP_API
+    ? process.env.REACT_APP_API
     : "http://localhost:4000";
   // console.log("backend URL", backEndLink);
   const [formData, setFormData] = useState({
