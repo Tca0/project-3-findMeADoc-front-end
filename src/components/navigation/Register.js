@@ -3,8 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-// a state to store entered data
-const Register = () => {
   const backEndLink = process.env.REACT_APP_API
     ? process.env.REACT_APP_API
     : "http://localhost:4000";
