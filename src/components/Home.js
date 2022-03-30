@@ -5,6 +5,7 @@ import React from "react";
 
 const Home = () => {
   const [doctorData, setDoctorData] = useState([]);
+  const [specialtyData, setSpecialty] = useState([]);
 
   useEffect(() => {
     console.log("Running useEffect");
@@ -19,7 +20,11 @@ const Home = () => {
     getData();
   }, []);
 
-  console.log(doctorData);
+  useEffect(() => {
+    fetch("https://findmeadoc.herokuapp.com/specialties")
+      .then((resp) => resp.json())
+      .then((data) => setSpecialty(data));
+  }, []);
 
   return (
     <>
@@ -27,7 +32,11 @@ const Home = () => {
         Welcome to the doctors database
       </h1>
       <div>
-        <SearchBar placeholder="Doctor name" data={doctorData} />
+        <SearchBar
+          placeholder="Speciality or doctor name"
+          doctorData={doctorData}
+          specialtyData={specialtyData}
+        />
       </div>
     </>
   );

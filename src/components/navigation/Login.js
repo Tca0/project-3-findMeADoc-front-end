@@ -1,45 +1,44 @@
 // Code from lesson
 
-import { useState } from "react"
-import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-
-const Login = ({updateStorageToken}) => {
+const Login = ({ updateStorageToken }) => {
   const backEndLink = process.env.REACT_APP_API
     ? process.env.REACT_APP_API
     : "http://localhost:4000";
-  console.log("backend link",backEndLink)
-  const [formData, setFormData] = useState({})
-  const [errorMessage, setErrorMessage] = useState(null)
+  console.log("backend link", backEndLink);
+  const [formData, setFormData] = useState({});
+  const [errorMessage, setErrorMessage] = useState(null);
   const [formErrors, setFormErrors] = useState({});
-
+  console.log(backEndLink);
   const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    setFormData({ ...formData, [e.target.name]: e.target.value });
     setFormErrors({});
-  }
+  };
 
-  const navigate = useNavigate()
-const validateForm = () => {
-  let errors = {};
-  if (!formData.email) {
-    errors.email = "email address required";
-  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-    errors.email = "Email address is invalid";
-  }
-  if (!formData.password) {
-    errors.password = "password required";
-  }
-  setFormErrors(errors);
-  if (Object.keys(errors).length === 0) {
-    return true;
-  } else {
-    return false;
-  }
-};
+  const navigate = useNavigate();
+  const validateForm = () => {
+    let errors = {};
+    if (!formData.email) {
+      errors.email = "email address required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = "Email address is invalid";
+    }
+    if (!formData.password) {
+      errors.password = "password required";
+    }
+    setFormErrors(errors);
+    if (Object.keys(errors).length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   const onSubmit = async (e) => {
-    e.preventDefault()
-    if(validateForm()) {
+    e.preventDefault();
+    if (validateForm()) {
       try {
         console.log(formData);
         const res = await axios.post(`${backEndLink}/users/login`, formData);
@@ -56,10 +55,10 @@ const validateForm = () => {
         setErrorMessage(e.response.data.message);
       }
     }
-  }
+  };
   const resetPassword = () => {
     navigate("/resetpasswordRequest");
-  }
+  };
   return (
     <>
       <div className="login-page">
@@ -116,6 +115,6 @@ const validateForm = () => {
       </div>
     </>
   );
-}
+};
 
-export default Login
+export default Login;
