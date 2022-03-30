@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const Register = () => {
 // a state to store entered data
 const Register = () => {
   const backEndLink = process.env.REACT_APP_API
@@ -14,7 +15,7 @@ const Register = () => {
     confirmPassword: "",
   });
   //a state to store errors by typing
-  const [formErrors, setFormErrors] = useState({}); 
+  const [formErrors, setFormErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [isRegistered, setRegistered] = useState(false);
@@ -25,6 +26,7 @@ const Register = () => {
     console.log(process.env.REACT_APP_API)
     console.log(backEndLink)
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormErrors({});
   };
   const validateForm = () => {
     console.log("frontend validator");
@@ -50,7 +52,6 @@ const Register = () => {
       return false;
     }
   };
-  console.log("backend URL", backEndLink)
   const onSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
@@ -63,7 +64,7 @@ const Register = () => {
         console.log(res.status);
         if (res.status === 200) {
           setSucceeded(true);
-          setSuccessMessage(res.data.message)
+          setSuccessMessage(res.data.message);
         }
       } catch (e) {
         console.log(e.response.data.message);
@@ -73,7 +74,7 @@ const Register = () => {
     }
   };
   console.log(isSucceeded);
-  console.log(successMessage)
+  console.log(successMessage);
   console.log(isRegistered);
   const loginPage = () => {
     console.log("hello");
