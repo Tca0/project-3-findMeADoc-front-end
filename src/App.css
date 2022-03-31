@@ -1,4 +1,8 @@
-lesson code .App {
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.App {
   text-align: center;
 }
 
