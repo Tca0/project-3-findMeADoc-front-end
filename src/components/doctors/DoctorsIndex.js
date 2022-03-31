@@ -16,13 +16,22 @@ const DoctorsIndex = () => {
 
   useEffect(() => {
     // fetch(`${backEndLink}/doctors`)
-    fetch(`https://findmeadoc.herokuapp.com/doctors/`)
+    fetch(
+      `https://findmeadoc.herokuapp.com/doctors/search?speciality=${speciality}`
+    )
       .then((resp) => resp.json())
       .then((data) => setDoctorData(data));
   }, []);
 
   console.log(doctorData);
 
+  if (Object.keys(doctorData)[0] === "message") {
+    return (
+      <>
+        <div>{Object.values(doctorData)[0]}</div>
+      </>
+    );
+  }
   return (
     <>
       <div>
