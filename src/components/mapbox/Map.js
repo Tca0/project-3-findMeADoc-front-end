@@ -2,17 +2,8 @@ import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-const Map = (doctorData) => {
+const Map = ({ doctorData }) => {
   console.log(doctorData);
-  console.log(
-    Object.values(doctorData).map((doctor) => doctor.address.coordinates)
-  );
-
-  for (let doctor of Object.values(doctorData)) {
-    console.log(doctor.address.coordinates);
-  }
-
-  console.log(Object.values(doctorData));
 
   // popup offsets
   const markerHeight = 50;
@@ -45,7 +36,7 @@ const Map = (doctorData) => {
   const [zoom, setZoom] = useState(9);
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
+    if (map.current || !doctorData.length) return; // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
@@ -55,11 +46,8 @@ const Map = (doctorData) => {
 
     for (const doctor of Object.values(doctorData)) {
       // create a HTML element for each feature
-      const markerElement = document.createElement("div");
-      markerElement.className = "marker";
-
       // make a marker for each feature and add it to the map
-      const dynamicMarker = new mapboxgl.Marker(markerElement)
+      new mapboxgl.Marker()
         .setLngLat(doctor.address.coordinates)
         .setPopup(
           new mapboxgl.Popup({ offset: 25 }) // add popups
@@ -72,17 +60,7 @@ const Map = (doctorData) => {
         </ul>`)
         )
         .addTo(map.current);
-
-      console.log(dynamicMarker);
     }
-
-    const marker1 = new mapboxgl.Marker()
-      .setLngLat([lng, lat])
-      .setPopup(
-        new mapboxgl.Popup({ offset: 25 }) // add popups
-          .setHTML(`<p>example marker</p>`)
-      )
-      .addTo(map.current);
 
     map.current.addControl(
       new mapboxgl.GeolocateControl({
@@ -100,7 +78,7 @@ const Map = (doctorData) => {
       setLat(map.current.getCenter().lat.toFixed(4));
       setZoom(map.current.getZoom().toFixed(2));
     });
-  });
+  }, [doctorData]);
 
   return <div ref={mapContainer} className="map-container" />;
 };

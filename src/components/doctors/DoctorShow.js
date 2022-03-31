@@ -42,6 +42,7 @@ function DoctorShow() {
                 <li>{doctor.address.country}</li>
                 <li>{doctor.address.postcode.toUpperCase()}</li>
               </ul>
+              {console.log(doctor.address.coordinates)}
             </div>
           </Container>
           <div>{<DoctorShowMap {...doctor} />}</div>
