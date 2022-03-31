@@ -1,4 +1,6 @@
-lesson code
+body {
+  font-family: "Montserrat", sans-serif;
+}
 
 .App {
   text-align: center;
@@ -83,7 +85,9 @@ form {
   margin-top: 30px;
 } */
 
-.login-page, .registerPage, .RestPassword-container {
+.login-page,
+.registerPage,
+.RestPassword-container {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -110,7 +114,7 @@ form {
 }
 .confirmationResults {
   margin-top: 20%;
-  display:  flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   justify-items: center;

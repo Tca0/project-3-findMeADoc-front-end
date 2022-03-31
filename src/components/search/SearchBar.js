@@ -60,7 +60,9 @@ function SearchBar({ placeholder, doctorData, specialtyData }) {
       </div>
       {filteredDoctorData.length !== 0 && (
         <div className="dataResult">
-          <h3>Doctors</h3>
+          <div className="dataItem">
+            <p class="dataHeading">Doctors</p>
+          </div>
           {filteredDoctorData.map((doctor, i) => {
             return (
               <Link key={i} to={`/doctors/${doctor._id}`}>
@@ -76,7 +78,9 @@ function SearchBar({ placeholder, doctorData, specialtyData }) {
       )}
       {filteredSpecialtyData.length !== 0 && (
         <div className="dataResult">
-          <h3>Specialities</h3>
+          <div className="dataItem">
+            <p class="dataHeading">Specialities</p>
+          </div>
           {filteredSpecialtyData.map((speciality, i) => {
             return (
               <Link key={i} to={`/search/speciality=${speciality}`}>
