@@ -38,7 +38,7 @@ const DoctorsIndex = () => {
           )}
         </div>
       </div>
-      <div>{<Map />}</div>
+      <div>{<Map {...doctorData} />}</div>
     </>
   );
 };

@@ -2,14 +2,8 @@ import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-const Map = (doctorData) => {
-  console.log(doctorData);
-  console.log(
-    Object.values(doctorData).map((doctor) => doctor.address.coordinates)
-  );
-  for (let doctor of Object.values(doctorData)) {
-    console.log(doctor.address.coordinates);
-  }
+const DoctorShowMap = ({ address, fullName }) => {
+  console.log(address.coordinates);
   // popup offsets
   const markerHeight = 50;
   const markerRadius = 10;
@@ -39,6 +33,7 @@ const Map = (doctorData) => {
   const [lng, setLng] = useState(-0.11);
   const [lat, setLat] = useState(51.5);
   const [zoom, setZoom] = useState(9);
+  //   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -49,32 +44,19 @@ const Map = (doctorData) => {
       zoom: zoom,
     });
 
-    //   for (const doctor of Object.values(doctorData)) {
-    //     // create a HTML element for each feature
-    //     const markerElement = document.createElement("div");
-    //     markerElement.className = "marker";
-
-    //     // make a marker for each feature and add it to the map
-    //     new mapboxgl.Marker(markerElement)
-    //       .setLngLat(doctor.address.coordinates)
-    //       .setPopup(
-    //         new mapboxgl.Popup({ offset: 25 }) // add popups
-    //           .setHTML(`<h4>${doctor.fullName}</h4>
-    //       <ul>
-    //       <li>${doctor.address.addressLine1}</li>
-    //       <li>${doctor.address.town}</li>
-    //       <li>${doctor.address.country}</li>
-    //       <li>${doctor.address.postcode.toUpperCase()}</li>
-    //     </ul>`)
-    //       )
-    //       .addTo(map.current);
-    //   }
-
-    const marker1 = new mapboxgl.Marker()
-      .setLngLat([lng, lat])
+    const marker = new mapboxgl.Marker()
+      .setLngLat(address.coordinates)
       .setPopup(
-        new mapboxgl.Popup({ offset: 25 }) // add popups
-          .setHTML(`<p>example marker</p>`)
+        new mapboxgl.Popup({
+          offset: popupOffsets,
+          className: "popup",
+        }).setHTML(`<h4>${fullName}</h4>
+          <ul>
+          <li>${address.addressLine1}</li>
+          <li>${address.town}</li>
+          <li>${address.country}</li>
+          <li>${address.postcode.toUpperCase()}</li>
+        </ul>`)
       )
       .addTo(map.current);
 
@@ -99,4 +81,4 @@ const Map = (doctorData) => {
   return <div ref={mapContainer} className="map-container" />;
 };
 
-export default Map;
+export default DoctorShowMap;
