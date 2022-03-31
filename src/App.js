@@ -14,9 +14,11 @@ import EditPage from "./components/editProfile/EditPage";
 import ResetpasswordRequest from "./components/ResetpasswordRequest";
 import ResetPassword from "./components/PasswordReset";
 import Testing from "./components/mapbox/Testing";
+import ChangePassword from "./components/navigation/ChangePassword";
 
 function App() {
   const [storageToken, updateStorageToken] = useState(localStorage.token);
+  console.log("token from App", storageToken)
   // lesson code
   return (
     <div className="App">
@@ -52,6 +54,7 @@ function App() {
         />
         <Route path="/test" element={<Testing />} />
         <Route path="/users/resetPassword/:code" element={<ResetPassword />} />
+        <Route path="/users/me/changePassword" element={<ChangePassword />} />
       </Routes>
     </div>
   );
