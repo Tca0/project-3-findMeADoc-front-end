@@ -16,9 +16,7 @@ const DoctorsIndex = () => {
 
   useEffect(() => {
     // fetch(`${backEndLink}/doctors`)
-    fetch(
-      `https://findmeadoc.herokuapp.com/doctors/search?speciality=${speciality}`
-    )
+    fetch(`https://findmeadoc.herokuapp.com/doctors/`)
       .then((resp) => resp.json())
       .then((data) => setDoctorData(data));
   }, []);
@@ -38,7 +36,7 @@ const DoctorsIndex = () => {
           )}
         </div>
       </div>
-      <div>{<Map />}</div>
+      <div>{<Map doctorData={doctorData} />}</div>
     </>
   );
 };
