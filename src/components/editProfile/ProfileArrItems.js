@@ -45,7 +45,7 @@ const ProfileArrItems = ({formData,onChangeArray,array, add}) =>{
     
     function removeItem(e){
         const updateArr = [...arrItems]
-        const index = e.target.classList[0]
+        const index = e.target.value
         updateArr.splice(index,1)
         console.log("clicked")
         console.log(e.target)
