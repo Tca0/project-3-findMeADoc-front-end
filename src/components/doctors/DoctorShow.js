@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import DoctorShowMap from "../mapbox/DoctorShowMap.js";
 import { Container } from "react-bootstrap";
+import DisplayReviews from './DisplayReviews'
 
 function DoctorShow() {
   const [doctor, setDoctor] = React.useState(undefined);
@@ -46,6 +47,7 @@ function DoctorShow() {
             </div>
           </Container>
           <div>{<DoctorShowMap {...doctor} />}</div>
+          <DisplayReviews reviews={doctor.reviews}/>
         </Container>
       ) : (
         <p>Loading...</p>
