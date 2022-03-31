@@ -1,5 +1,6 @@
 import React from "react";
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import DoctorsIndexCard from "./DoctorsIndexCard.js";
 import Map from "../mapbox/Map.js";
 // import "dotenv/config";
@@ -11,10 +12,13 @@ import Map from "../mapbox/Map.js";
 
 const DoctorsIndex = () => {
   const [doctorData, setDoctorData] = useState([]);
+  const { speciality } = useParams();
 
-  React.useEffect(() => {
+  useEffect(() => {
     // fetch(`${backEndLink}/doctors`)
-    fetch("https://findmeadoc.herokuapp.com/doctors/")
+    fetch(
+      `https://findmeadoc.herokuapp.com/doctors/search?speciality=${speciality}`
+    )
       .then((resp) => resp.json())
       .then((data) => setDoctorData(data));
   }, []);
