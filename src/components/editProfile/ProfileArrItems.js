@@ -5,9 +5,10 @@ import {useState,useEffect} from 'react'
 
 
 const ProfileArrItems = ({formData,onChangeArray,array, add}) =>{
+    
     const [arrItems, setArrItems] = useState(formData[array])
     const [currentValue,setCurrentValue] = useState("")
-    const [specialties, setSpecialty] = useState([])
+    const [options, setOptions] = useState([])
 
     useEffect(()=>{
         if(arrItems.length!==formData[array].length){
@@ -20,15 +21,16 @@ const ProfileArrItems = ({formData,onChangeArray,array, add}) =>{
     },[arrItems,formData])
 
     useEffect(async () => {
-        if(add==="speciality"){
-            await fetch("https://findmeadoc.herokuapp.com/specialties")
-              .then((resp) => resp.json())
-              .then((data) => {
-                //   console.log(data[0].specialties)
-                  setSpecialty(data[0].specialties)});
 
-        }
-      }, []);
+        await fetch(`https://findmeadoc.herokuapp.com/${array}`)
+            .then((resp) => resp.json())
+            .then((data) => {
+                array=="specialties"?
+                setOptions(data[0].specialties):
+                setOptions(data[0].languages)
+            });
+
+    }, []);
 
     function handleAdd(e){
         setCurrentValue(e.target.value)
@@ -44,59 +46,42 @@ const ProfileArrItems = ({formData,onChangeArray,array, add}) =>{
     }
     
     function removeItem(e){
-        const updateArr = [...arrItems]
-        const index = e.target.value
-        updateArr.splice(index,1)
-        console.log("clicked")
-        console.log(e.target)
-        console.log(e.target.value)
-        console.log(e.target.classList)
-        console.log(e.target.classList[0])
-        setArrItems(updateArr)
-
+        setArrItems(arrItems.filter(item=>item!==e.target.dataset.item))
     }
 
-    if(!arrItems || arrItems.length<1) return <h1>No {array}</h1>
+    if(!arrItems || arrItems.length<1) return (
+        <OptionsDropdown />
+    )
+    
     return <>
         <Row>
             <div>
             {arrItems.map((item,i)=>{
                 return <Badge pill bg="secondary" key={i}>{item} 
                     <span 
-                    className={i}
-                    value={i} 
+                    data-item={item}
                     onClick={removeItem}> 
-                    {/* <FontAwesomeIcon 
-                    icon={faSquareMinus} /> */}   &#x02A2F;
+                    &#x02A2F;
                     </span> 
                     </Badge>
             })}
             </div>
-            {add==="speciality"?
-            <Form.Select aria-label="Default select example" onChange={(e)=>setArrItems([...arrItems,...[e.target.value]])}>
-                {specialties.map((specialty,i)=>{
-                    return <option value={specialty} key={i} >{specialty} </option>
-                })}
-            </Form.Select>
-            :
-            <InputGroup className="mb-3">
-                <FormControl
-                placeholder={`add a ${add}`}
-                aria-label={`add a ${add}`}
-                value={currentValue}
-                onChange={handleAdd}
-                />
-                <Button 
-                onClick={handleSubmit}
-                variant="outline-secondary"
-                id="add">
-                Add a {add} 
-                {/* <FontAwesomeIcon
-                icon={faSquarePlus} /> */}
-                </Button>
-            </InputGroup>}
+            <OptionsDropdown />
         </Row>
     </>
+
+function OptionsDropdown(){
+    return <>
+    <Form.Label>Add a {array=="specialties"?"specialty":"language"}: </Form.Label>
+    <Form.Select aria-label="Default select example" onChange={(e)=>setArrItems([...arrItems,...[e.target.value]])}>
+                {options.map((option,i)=>{
+                    return <option value={option} key={i} >{option} </option>
+                })}
+    </Form.Select>
+    </>
 }
+}
+
+
 
 export default ProfileArrItems
