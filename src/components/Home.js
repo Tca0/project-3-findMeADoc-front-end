@@ -2,6 +2,8 @@ import SearchBar from "./search/SearchBar";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import React from "react";
+import "../../src/App.css";
+import { Container } from "react-bootstrap";
 
 const Home = () => {
   const [doctorData, setDoctorData] = useState([]);
@@ -27,18 +29,21 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-      <h1 onClick={() => setDoctorData("New data")}>
-        Welcome to the doctors database
-      </h1>
-      <div>
-        <SearchBar
-          placeholder="Speciality or doctor name"
-          doctorData={doctorData}
-          specialtyData={specialtyData}
-        />
-      </div>
-    </>
+    <Container fluid className="backgroundContainer">
+      <Container className="searchContainer">
+        <h1 id="mainPhrase">Book your healthcare appointment online</h1>{" "}
+        <p id="subPhrase">
+          Search and book instantly. It’s simple, secure and free !
+        </p>
+        <div>
+          <SearchBar
+            placeholder="Speciality or doctor name"
+            doctorData={doctorData}
+            specialtyData={specialtyData}
+          />
+        </div>
+      </Container>
+    </Container>
   );
 };
 
