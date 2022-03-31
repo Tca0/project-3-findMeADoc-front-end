@@ -7,9 +7,13 @@ const Map = (doctorData) => {
   console.log(
     Object.values(doctorData).map((doctor) => doctor.address.coordinates)
   );
+
   for (let doctor of Object.values(doctorData)) {
     console.log(doctor.address.coordinates);
   }
+
+  console.log(Object.values(doctorData));
+
   // popup offsets
   const markerHeight = 50;
   const markerRadius = 10;
@@ -49,26 +53,28 @@ const Map = (doctorData) => {
       zoom: zoom,
     });
 
-    //   for (const doctor of Object.values(doctorData)) {
-    //     // create a HTML element for each feature
-    //     const markerElement = document.createElement("div");
-    //     markerElement.className = "marker";
+    for (const doctor of Object.values(doctorData)) {
+      // create a HTML element for each feature
+      const markerElement = document.createElement("div");
+      markerElement.className = "marker";
 
-    //     // make a marker for each feature and add it to the map
-    //     new mapboxgl.Marker(markerElement)
-    //       .setLngLat(doctor.address.coordinates)
-    //       .setPopup(
-    //         new mapboxgl.Popup({ offset: 25 }) // add popups
-    //           .setHTML(`<h4>${doctor.fullName}</h4>
-    //       <ul>
-    //       <li>${doctor.address.addressLine1}</li>
-    //       <li>${doctor.address.town}</li>
-    //       <li>${doctor.address.country}</li>
-    //       <li>${doctor.address.postcode.toUpperCase()}</li>
-    //     </ul>`)
-    //       )
-    //       .addTo(map.current);
-    //   }
+      // make a marker for each feature and add it to the map
+      const dynamicMarker = new mapboxgl.Marker(markerElement)
+        .setLngLat(doctor.address.coordinates)
+        .setPopup(
+          new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(`<h4>${doctor.fullName}</h4>
+          <ul>
+          <li>${doctor.address.addressLine1}</li>
+          <li>${doctor.address.town}</li>
+          <li>${doctor.address.country}</li>
+          <li>${doctor.address.postcode.toUpperCase()}</li>
+        </ul>`)
+        )
+        .addTo(map.current);
+
+      console.log(dynamicMarker);
+    }
 
     const marker1 = new mapboxgl.Marker()
       .setLngLat([lng, lat])
