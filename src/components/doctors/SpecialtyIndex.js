@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DoctorsIndexCard from "./DoctorsIndexCard.js";
 import Map from "../mapbox/Map.js";
-import SearchBar from "../search/SearchBar.js";
-
 // import "dotenv/config";
 
 // const backEndLink = process.env.BACKEND_CONNECTION
@@ -14,33 +12,29 @@ import SearchBar from "../search/SearchBar.js";
 
 const DoctorsIndex = () => {
   const [doctorData, setDoctorData] = useState([]);
-  const [specialtyData, setSpecialty] = useState([]);
+  const { speciality } = useParams();
 
   useEffect(() => {
     // fetch(`${backEndLink}/doctors`)
-    fetch(`https://findmeadoc.herokuapp.com/doctors/`)
+    fetch(
+      `https://findmeadoc.herokuapp.com/doctors/search?speciality=${speciality}`
+    )
       .then((resp) => resp.json())
       .then((data) => setDoctorData(data));
   }, []);
 
-  useEffect(() => {
-    fetch("https://findmeadoc.herokuapp.com/specialties")
-      .then((resp) => resp.json())
-      .then((data) => setSpecialty(data));
-  }, []);
-
   console.log(doctorData);
 
+  if (Object.keys(doctorData)[0] === "message") {
+    return (
+      <>
+        <div>{Object.values(doctorData)[0]}</div>
+      </>
+    );
+  }
   return (
     <>
       <div>
-        <div>
-          <SearchBar
-            placeholder="Speciality or doctor name"
-            doctorData={doctorData}
-            specialtyData={specialtyData}
-          />
-        </div>
         <div>
           {doctorData ? (
             doctorData.map((doctor) => (
