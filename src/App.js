@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React from "react";
 import NavBar from "./components/navigation/NavBar";
 import Register from "./components/navigation/Register";
@@ -10,10 +10,10 @@ import DoctorsIndex from "./components/doctors/DoctorsIndex";
 import Home from "./components/Home";
 import WelcomeRegistration from "./components/Welcome";
 import DoctorShow from "./components/doctors/DoctorShow";
-import EditPage from './components/editProfile/EditPage';
+import EditPage from "./components/editProfile/EditPage";
 import ResetpasswordRequest from "./components/ResetpasswordRequest";
 import ResetPassword from "./components/PasswordReset";
-import Testing from './components/mapbox/Testing'
+import Testing from "./components/mapbox/Testing";
 
 function App() {
   const [storageToken, updateStorageToken] = useState(localStorage.token);
@@ -30,7 +30,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<DoctorsIndex />} />
         <Route path="/doctors/:doctorID" element={<DoctorShow />} />
-
+        <Route
+          path="/search/speciality=:speciality"
+          element={<DoctorsIndex />}
+        />
         //patient routes
         <Route path="/users/edit" element={<EditPage />} />
         //doctor routes //user routes
@@ -47,13 +50,8 @@ function App() {
           path="/users/login"
           element={<Login updateStorageToken={updateStorageToken} />}
         />
-        <Route
-          path="/test"
-          element={<Testing />}
-        />
-
+        <Route path="/test" element={<Testing />} />
         <Route path="/users/resetPassword/:code" element={<ResetPassword />} />
-
       </Routes>
     </div>
   );
