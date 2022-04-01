@@ -28,7 +28,7 @@ const EditPatient = ({profileInformation,token,collection,id}) =>{
     const handleSubmit = async (e) =>{
         e.preventDefault()
         try{
-            console.log(formData)
+            formData.fullName = `${formData.firstName } ${formData.secondName} `
             const res = await axios.put(`https://findmeadoc.herokuapp.com/${collection}/${id}`,
             formData,
             {"headers":{
