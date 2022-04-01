@@ -1,13 +1,14 @@
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import {Form, Button, FloatingLabel, Card} from 'react-bootstrap'
 import {faStar as regularStar} from '@fortawesome/free-regular-svg-icons'
 import {faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import jwt_decode from 'jwt-decode'
 import axios from 'axios'
 
-function CreateNewReview({doctorID,setDoctor}){
-
+function CreateNewReview({doctorID,setDoctor,userData}){
+    
     const [rating, setRating] = useState(undefined);
     const [hover, setHover] = useState(0);
     const [inputField,setInputField] = useState("")
@@ -17,7 +18,6 @@ function CreateNewReview({doctorID,setDoctor}){
     const [formErrors, setFormErrors] = useState({});
 
     const token = localStorage.token
-    const tokenPayload = JSON.parse(atob(token.split('.')[1]))
 
     function onChange(e){
         setInputField(e.target.value)
@@ -31,7 +31,7 @@ function CreateNewReview({doctorID,setDoctor}){
    
           try {
             console.log(formData);
-            const res = await axios.post(`https://findmeadoc.herokuapp.com/doctors/623f2f4d51320e742490cf5b/reviews`,
+            const res = await axios.post(`https://findmeadoc.herokuapp.com/doctors/${doctorID}/reviews`,
             formData,
             {"headers":{
                 "Authorization" :`Bearer ${token}`
@@ -43,7 +43,6 @@ function CreateNewReview({doctorID,setDoctor}){
             fetch(`https://findmeadoc.herokuapp.com/doctors/${doctorID}`)
             .then((resp) => resp.json())
             .then((data) => {
-                console.log(data,"data")
                 setDoctor(data)});
             
           } catch (e) {
@@ -51,7 +50,7 @@ function CreateNewReview({doctorID,setDoctor}){
             setErrorMessage(e.response.data.message);
         }
       };
-
+    if(!userData || userData.role ==="doctor") return <></>
     return <Card>
     <Card.Body>
         <Card.Title>Leave a review:</Card.Title>
