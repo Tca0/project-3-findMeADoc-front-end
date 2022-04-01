@@ -226,3 +226,17 @@ a {
   margin: 0 auto;
   border-bottom: 1px solid green;
 }
+
+.star-rating>button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+/* .on {
+  color: #000;
+}
+.off {
+  color: #ccc;
+} */
+

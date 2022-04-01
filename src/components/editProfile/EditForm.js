@@ -24,7 +24,6 @@ const EditForm = ({token,collection,id,model,role}) =>{
     // return <h1>Hi</h1>
     if(role==="patient") return <EditPatient profileInformation={userInfo} collection={collection} id={id} token={token} />
     if(role==="doctor") return <EditDoctor profileInformation={userInfo} collection={collection} id={id} token={token}/>
-    
 
 }
 
