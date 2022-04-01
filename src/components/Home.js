@@ -31,10 +31,8 @@ const Home = () => {
   return (
     <Container fluid className="backgroundContainer">
       <Container className="searchContainer">
-        <h1 id="mainPhrase">Book your healthcare appointment online</h1>{" "}
-        <p id="subPhrase">
-          Search and book instantly. It’s simple, secure and free !
-        </p>
+        <h1 id="mainPhrase">Find your best healthcare specialists online</h1>{" "}
+        <p id="subPhrase">Search instantly. It’s simple, secure and free !</p>
         <div>
           <SearchBar
             placeholder="Speciality or doctor name"

@@ -255,7 +255,6 @@ footer {
 
 .doctorsIndex {
   background-color: #eff8ff;
-  height: 95vh;
 }
 
 header {
@@ -263,7 +262,7 @@ header {
   height: 10vh;
 }
 
-.star-rating>button {
+.star-rating > button {
   background-color: transparent;
   border: none;
   outline: none;
@@ -276,3 +275,19 @@ header {
   color: #ccc;
 } */
 
+.editDoctorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.editDoctor {
+  width: 35vw;
+  min-width: 500px;
+}
+
+#editProfileHeading {
+  font-size: 2rem;
+  margin-bottom: 5vh;
+}
