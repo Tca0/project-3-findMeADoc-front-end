@@ -3,12 +3,10 @@ import { useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
-function ChangePassword() {
-  // const backEndLink = process.env.REACT_APP_API
-  //   ? process.env.REACT_APP_API
-  //   : "http://localhost:4000";
-  //if user logged in then change password will be activated in navbar
-  //   const [isLoggedIn, setIsLoggedIn] = useState(false);
+function ChangePassword({ updateStorageToken }) {
+  const backEndLink = process.env.REACT_APP_API
+    ? process.env.REACT_APP_API
+    : "http://localhost:4000";
   const [formData, setFormData] = useState({
     oldPassword: "",
     newPassword: "",
@@ -17,11 +15,15 @@ function ChangePassword() {
   const [results, setResults] = useState("");
   const [formErrors, setFormErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isChanged, setChanged] = useState(false);
+  const [isWriting, setUserStates] = useState(false)
 
   const onChange = (e) => {
     console.log(e.target.value);
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setFormErrors({});
+    setChanged(false)
+    setUserStates(true)
     console.log(formData);
   };
   const validateForm = () => {
@@ -47,6 +49,7 @@ function ChangePassword() {
     }
   };
   const onSubmit = async (e) => {
+    setUserStates(false)
     e.preventDefault();
     if (validateForm()) {
       try {
@@ -55,6 +58,7 @@ function ChangePassword() {
         const userInfo = jwt_decode(token);
         console.log(userInfo.userId);
         const userId = userInfo.userId;
+        console.group(formData);
         const res = await axios.patch(
           `http://localhost:4000/users/${userId}/changePassword`,
           formData,
@@ -64,74 +68,62 @@ function ChangePassword() {
             },
           }
         );
-        console.log(res.json());
         console.log(res.status);
         console.log(res.data.message);
+        setResults(res.data.message);
+        setErrorMessage(null)
+        setChanged(true);
+        localStorage.removeItem("token");
+        updateStorageToken(localStorage.token);
       } catch (e) {
         console.log(e);
         console.log(e.response.data.message);
         setErrorMessage(e.response.data.message);
+        setChanged(false);
       }
     }
   };
 
   return (
-    <div className="changePassword-container">
-      <div className="changePassword-form">
-        <form className="container" onSubmit={onSubmit}>
-          <div className="row">
-            <label htmlFor="oldPassword" className="col-6 col-md-4">
-              Enter old password
-            </label>
-            <input
-              className="col-6 col-sm-3"
-              type="password"
-              name="oldPassword"
-              value={formData.password}
-              onChange={onChange}
-            />
-            {formErrors.oldPassword && (
-              <p className="col-6 col-sm-3" style={{ color: "red" }}>
-                *
-              </p>
-            )}
-            <div class="w-100"></div>
-            <label htmlFor="newPassword" className="col-6 col-md-4">
-              Enter new password
-            </label>
-            <input
-              className="col-6 col-sm-3"
-              type="password"
-              name="newPassword"
-              value={formData.newPassword}
-              onChange={onChange}
-            />
-            {formErrors.newPassword && (
-              <p className="col-6 col-sm-3" style={{ color: "red" }}>
-                *
-              </p>
-            )}
-            <div class="w-100"></div>
-            <label htmlFor="confirmPassword" className="col-6 col-md-4">
-              Confirm password
-            </label>
-            <input
-              className="col-6 col-sm-3"
-              type="password"
-              name="confirmPassword"
-              value={formData.password}
-              onChange={onChange}
-            />
-            {formErrors.confirmPassword && (
-              <p className="col-6 col-sm-3" style={{ color: "red" }}>
-                *
-              </p>
-            )}
-            <div class="w-100"></div>
-            <button type="submit">Set new password</button>
-          </div>
+    <div className="changePassword">
+      {isChanged ? (
+        <div className="passwordChanged">
+          <p>
+            Successfully, {results} .<br /> Please re-login again
+          </p>
+        </div>
+      ) : (
+        <form className="changePassword-form" onSubmit={onSubmit}>
+          {!isChanged && !isWriting && (
+            <p style={{ color: "red", fontSize: "15px" }}>{errorMessage}</p>
+          )}
+          <input
+            type="password"
+            name="oldPassword"
+            placeholder="old password"
+            value={formData.password}
+            onChange={onChange}
+            style={formErrors.oldPassword && { border: "2px solid red" }}
+          />
+          <input
+            type="password"
+            name="newPassword"
+            placeholder="new password"
+            value={formData.newPassword}
+            onChange={onChange}
+            style={formErrors.newPassword && { border: "2px solid red" }}
+          />
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="confirm password"
+            value={formData.password}
+            onChange={onChange}
+            style={formErrors.confirmPassword && { border: "2px solid red" }}
+          />
+          <button type="submit">Set new password</button>
         </form>
-      </div>
+      )}
     </div>
   );
 }

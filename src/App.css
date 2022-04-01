@@ -1,9 +1,21 @@
+html {
+   margin: 0px;
+   height: 100%;
+   width: 100%;
+}
 body {
   font-family: "Montserrat", sans-serif;
+  height: 100vh;
+  width: 100%;
 }
-
+#root {
+  min-height: 100%;
+  width: 100%;
+}
 .App {
   text-align: center;
+  height: 100vh;
+  max-width: 100%;
 }
 
 .App-logo {
@@ -16,34 +28,6 @@ body {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-/* .RestPassword-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: baseline;
-  color: #61dafb;
-} */
-.success {
-  /* background-color: green; */
-  /* width: 50vw; */
-  margin: 0 auto;
-  text-align: center;
-  /* padding: 10px; */
-  /* border: 2px solid darkgray; */
-  /* border-radius: 50%; */
-}
-
-.failure {
-  width: 50vw;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-basis: 1;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -67,41 +51,76 @@ body {
     transform: rotate(360deg);
   }
 }
-
-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* margin: 0 auto; */
-  width: 50vw;
-}
-
-/* input {
-  margin-top: 15px;
-} */
-
-/* button {
-  margin-top: 30px;
-} */
-
-.login-page,
-.registerPage,
 .RestPassword-container {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-basis: 1;
   justify-content: center;
   justify-items: center;
   align-items: center;
   align-content: center;
-  background-color: aquamarine;
   padding: 20px 0px;
-  height: 350px;
+  height: 100%;
 }
-.text-warning {
+.success {
+  font-size: 20px;
+  font-weight: bold;
   margin: 0 auto;
+  text-align: center;
+}
+.login-page, .registerPage, .changePassword, .deletePage {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+}
+.login-page {
+  background-image: url("../src/assets/pexels-karolina-grabowska-4047074.jpg");
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+.login-page > button {
+  margin-top: 0;
+  cursor: grab;
+  box-sizing: border-box;
+  box-shadow: #282c34;
+}
+.login-page > div > .header {
+  text-align: center;
+  font-weight: 900;
+  font-size: 40px;
+}
+.loginForm {
+  box-shadow: 20px 20px 50px 10px rgb(202, 184, 184);
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 250px;
+}
+.registerPage {
+  background-image: url("../src/assets/pexels-nataliya-vaitkevich-5863397.jpg");
+}
+.register {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+}
+.registrationForm, .changePassword-form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.registrationForm {
+  height: 80%;
+  box-shadow: 20px 20px 50px 10px rgb(202, 184, 184);
+  width: 460px;
 }
 .choose-role {
   display: flex;
@@ -111,6 +130,50 @@ form {
 }
 .choose-role > * {
   margin: 0 20px;
+}
+.changePassword {
+  background-image: url("../src/assets/pexels-pavel-danilyuk-5998472.jpg");
+}
+.changePassword-form {
+  height: 50%;
+  transform: translateY(40%);
+  box-sizing: border-box;
+  padding: 10px;
+  box-shadow: 20px 20px 50px 10px pink inset;
+}
+.passwordChanged {
+  box-shadow: 20px 20px 50px 10px pink inset;
+  transform: translateY(200px);
+  font-size: 25px;
+  height: 150px;
+  border-radius: 50%;
+}
+.passwordChanged > p {
+  padding-top: 35px;
+}
+.results{
+  transform: translateY(30vh);
+  box-shadow: 20px 20px 50px 10px gray;
+}
+.results > button {
+  box-sizing: border-box;
+  margin: 10px 0;
+}
+.results > button:hover {
+  background-color: #1e2430;
+  transform: scale(1.2);
+  border-radius: 50%;
+}
+.deletePage {
+  background-image: url("../src/assets/pexels-negative-space-48603.jpg");
+}
+.deletePage > .secondContainer {
+  transform: translateY(200px);
+}
+.delete {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .confirmationResults {
   margin-top: 20%;
@@ -132,38 +195,9 @@ form {
   transform: scale(1.2);
   background-color: #61dafb;
 }
-.changePassword-container {
-  margin: auto;
-  border: 5px solid gray;
-  padding: 10px;
-  background-color: rgb(112, 112, 112);
-  z-index: -1;
-  height: fit-content;
-  width: fit-content;
+.changePassword-form > .changePassword-form {
+  border: 2px solid black;
 }
-.changePassword-form {
-  box-sizing: border-box;
-  padding: 10px;
-  z-index: 100;
-  box-shadow: 20px 20px 50px 10px pink inset;
-}
-/* .changePassword {
-  display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  grid-auto-rows: minmax(auto, auto);
-  column-gap: 10px;
-  row-gap: 10px;
-}
-.changePassword > div {
-  display: grid;
-  grid-template-columns: 2fr 2fr 1fr;
-  column-gap: 10px;
-  row-gap: 10px;
-} */
-/* .changePassword > div > * {
-  margin-right: 5px;
-  position: relative;
-} */
 .confirmationResults > p {
   text-align: center;
   font-weight: bolder;
@@ -176,12 +210,7 @@ form {
   align-content: center;
   box-shadow: #040607;
 }
-.login-page > button {
-  margin-top: 0;
-  cursor: grab;
-  box-sizing: border-box;
-  box-shadow: #282c34;
-}
+
 a {
   display: block;
 }
