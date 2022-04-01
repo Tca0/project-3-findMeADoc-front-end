@@ -7,12 +7,12 @@ const Register = () => {
   const backEndLink = process.env.REACT_APP_API
     ? process.env.REACT_APP_API
     : "http://localhost:4000";
-  // console.log(process.env);
+    console.log(backEndLink)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     confirmPassword: "",
-    role: ""
+    role: "",
   });
   //a state to store errors by typing
   const [formErrors, setFormErrors] = useState({});
@@ -23,9 +23,6 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onChange = (e) => {
-    // console.log(e.target.value);
-    // console.log(process.env.REACT_APP_API);
-    // console.log(backEndLink);
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setFormErrors({});
     console.log(formData);
@@ -73,9 +70,6 @@ const Register = () => {
       }
     }
   };
-  // console.log(isSucceeded);
-  // console.log(successMessage);
-  // console.log(isRegistered);
   const loginPage = () => {
     console.log("hello");
     navigate("/users/login");
@@ -83,86 +77,86 @@ const Register = () => {
   return (
     <div className="registerPage">
       {isRegistered ? (
-        <div className="failure">
+        <div className="results">
           {errorMessage && <h1>{errorMessage}</h1>}
           {isRegistered && <button onClick={loginPage}>Login</button>}
         </div>
       ) : (
-        <div>
-          <div>
-            {isSucceeded && (
-              <div style={{ left: "40%", top: "40%" }}>
-                <p className="success">
-                  Registration successful.
-                  <br />
-                  We sent you email to verify your account.
-                  <br />
-                  Check your email and click on the link, please
-                </p>
-              </div>
-            )}
-            {!isSucceeded && (
+        <div style={{ height: "100%" }}>
+          {isSucceeded && (
+            <div className="results">
+              <p className="success">
+                Registration successful.
+                <br />
+                We sent you email to verify your account.
+                <br />
+                Check your email and click on the link, please
+              </p>
+            </div>
+          )}
+          {!isSucceeded && (
+            <div className="register" style={{ height: "70%", padding: "50px" }}>
               <div>
-                <div>
-                  <h1 style={{ textAlign: "center" }}>Register</h1>
-                </div>
-                <div className="formContainer">
-                  <form onSubmit={onSubmit}>
-                    <div className="choose-role">
-                      <input
-                        type="radio"
-                        value="doctor"
-                        name="role"
-                        onChange={onChange}
-                      />
-                      Doctor
-                      <input
-                        type="radio"
-                        value="patient"
-                        name="role"
-                        defaultChecked
-                        onChange={onChange}
-                      />
-                      Patient
-                    </div>
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      name="email"
-                      value={formData.email}
-                      onChange={onChange}
-                    />
-                    {formErrors.email && (
-                      <p className="text-warning">{formErrors.email}</p>
-                    )}
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      name="password"
-                      value={formData.password}
-                      onChange={onChange}
-                    />
-                    {formErrors.password && (
-                      <p className="text-warning">{formErrors.password}</p>
-                    )}
-                    <input
-                      type="password"
-                      placeholder="Confirm password"
-                      name="confirmPassword"
-                      value={formData.confirmPassword}
-                      onChange={onChange}
-                    />
-                    {formErrors.confirmPassword && (
-                      <p className="text-warning">
-                        {formErrors.confirmPassword}
-                      </p>
-                    )}
-                    <button type="submit">Register</button>
-                  </form>
-                </div>
+                <h1 style={{ textAlign: "center" }}>Register</h1>
               </div>
-            )}
-          </div>
+              <form onSubmit={onSubmit} className="registrationForm">
+                <div className="choose-role">
+                  <input
+                    type="radio"
+                    value="doctor"
+                    name="role"
+                    onChange={onChange}
+                  />
+                  Doctor
+                  <input
+                    type="radio"
+                    value="patient"
+                    name="role"
+                    defaultChecked
+                    onChange={onChange}
+                  />
+                  Patient
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    value={formData.email}
+                    onChange={onChange}
+                    style={formErrors.email && { border: "2px solid red" }}
+                  />
+                </div>
+                <div>
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={formData.password}
+                    onChange={onChange}
+                    style={formErrors.password && { border: "2px solid red" }}
+                  />
+                </div>
+                <div>
+                  <input
+                    type="password"
+                    placeholder="Confirm password"
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={onChange}
+                    style={
+                      formErrors.confirmPassword && {
+                        border: "2px solid red",
+                      }
+                    }
+                  />
+                </div>
+                <div>
+                  <button type="submit">Register</button>
+                </div>
+              </form>
+            </div>
+          )}
         </div>
       )}
     </div>

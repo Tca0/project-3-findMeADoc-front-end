@@ -5,7 +5,8 @@ import {
   faHospitalUser,
   faUserPlus,
   faUserPen,
-  faArrowRightFromBracket
+  faArrowRightFromBracket,
+  faUserSlash
 } from "@fortawesome/free-solid-svg-icons";
 // import {} from "@fortawesome/fontawesome-free-brands";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +16,7 @@ import Register from "./Register.js";
 import Login from "./Login.js";
 
 import DoctorsIndex from "../doctors/DoctorsIndexCard";
+import { useNavigate } from "react-router-dom";
 
 //https://react-bootstrap.netlify.app/components/navbar/
 function NavBar({ storageToken, updateStorageToken }) {
@@ -24,7 +26,7 @@ function NavBar({ storageToken, updateStorageToken }) {
   if(storageToken){
     info = JSON.parse(atob(storageToken.split('.')[1]))
   }
-  
+  const navigate = useNavigate();
   console.log()
   return (
     <>
@@ -48,15 +50,56 @@ function NavBar({ storageToken, updateStorageToken }) {
             <Nav>
               {storageToken ? (
                 //check with Niklas why does this run
-                <>  
-                <Nav.Link disabled>Logged in as: {info.email
-                  }({info.role}) </Nav.Link>
+                <>
+                  <Nav.Link disabled>
+                    Logged in as: {info.email}({info.role}){" "}
+                  </Nav.Link>
                   <LinkContainer to="/users/edit">
                     <Nav.Link>
                       {" "}
                       Edit Profile <FontAwesomeIcon icon={faUserPen} />
                     </Nav.Link>
                   </LinkContainer>
+                  <NavDropdown title="Profile">
+                    <NavDropdown.Item
+                      onClick={() => {
+                        console.log("clicked");
+                        navigate("/users/edit");
+                      }}
+                    >
+                      {" "}
+                      Edit Profile <FontAwesomeIcon icon={faUserPen} />
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item
+                      onClick={() => {
+                        navigate("/users/myprofile/changePassword");
+                      }}
+                    >
+                      {" "}
+                      Change Password <FontAwesomeIcon />
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item
+                      onClick={() => {
+                        localStorage.removeItem("token");
+                        updateStorageToken(localStorage.token);
+                      }}
+                    >
+                      {" "}
+                      Logout <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item
+                      onClick={() => {
+                        console.log("clicked");
+                        navigate("/users/myprofile/deleteAccount");
+                      }}
+                    >
+                      {" "}
+                      Delete Account <FontAwesomeIcon icon={faUserSlash} />
+                    </NavDropdown.Item>
+                  </NavDropdown>
                   <Nav.Link
                     onClick={() => {
                       console.log("clicked");
@@ -65,7 +108,7 @@ function NavBar({ storageToken, updateStorageToken }) {
                     }}
                   >
                     {" "}
-                    Logout{" "}<FontAwesomeIcon icon={faArrowRightFromBracket}/>
+                    Logout <FontAwesomeIcon icon={faArrowRightFromBracket} />
                   </Nav.Link>
                 </>
               ) : (
