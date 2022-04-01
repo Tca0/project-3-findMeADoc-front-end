@@ -6,7 +6,8 @@ import {
   faUserPlus,
   faUserPen,
   faArrowRightFromBracket,
-  faUserSlash
+  faUserSlash,
+  faKey
 } from "@fortawesome/free-solid-svg-icons";
 // import {} from "@fortawesome/fontawesome-free-brands";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -54,12 +55,12 @@ function NavBar({ storageToken, updateStorageToken }) {
                   <Nav.Link disabled>
                     Logged in as: {info.email}({info.role}){" "}
                   </Nav.Link>
-                  <LinkContainer to="/users/edit">
+                  {/* <LinkContainer to="/users/edit">
                     <Nav.Link>
                       {" "}
                       Edit Profile <FontAwesomeIcon icon={faUserPen} />
                     </Nav.Link>
-                  </LinkContainer>
+                  </LinkContainer> */}
                   <NavDropdown title="Profile">
                     <NavDropdown.Item
                       onClick={() => {
@@ -77,7 +78,7 @@ function NavBar({ storageToken, updateStorageToken }) {
                       }}
                     >
                       {" "}
-                      Change Password <FontAwesomeIcon />
+                      Change Password <FontAwesomeIcon icon={faKey}/>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item
@@ -100,7 +101,7 @@ function NavBar({ storageToken, updateStorageToken }) {
                       Delete Account <FontAwesomeIcon icon={faUserSlash} />
                     </NavDropdown.Item>
                   </NavDropdown>
-                  <Nav.Link
+                  {/* <Nav.Link
                     onClick={() => {
                       console.log("clicked");
                       localStorage.removeItem("token");
@@ -109,7 +110,7 @@ function NavBar({ storageToken, updateStorageToken }) {
                   >
                     {" "}
                     Logout <FontAwesomeIcon icon={faArrowRightFromBracket} />
-                  </Nav.Link>
+                  </Nav.Link> */}
                 </>
               ) : (
                 <>

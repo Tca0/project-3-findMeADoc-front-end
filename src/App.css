@@ -1,13 +1,14 @@
 html {
-   margin: 0px;
-   height: 100%;
-   width: 100%;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
 }
 body {
   font-family: "Montserrat", sans-serif;
   height: 100vh;
   width: 100%;
 }
+
 #root {
   min-height: 100%;
   width: 100%;
@@ -15,8 +16,10 @@ body {
 
 ul {
   list-style-type: none;
+  overflow-x: hidden;
+  white-space: nowrap;
+  display: inline;
 }
-
 
 .App {
   text-align: center;
@@ -71,7 +74,11 @@ ul {
   margin: 0 auto;
   text-align: center;
 }
-.login-page, .registerPage, .changePassword, .deletePage, .confirmationResults {
+.login-page,
+.registerPage,
+.changePassword,
+.deletePage,
+.confirmationResults {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -116,7 +123,8 @@ ul {
   flex-grow: 1;
   align-items: center;
 }
-.registrationForm, .changePassword-form {
+.registrationForm,
+.changePassword-form {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -157,7 +165,7 @@ ul {
 .passwordChanged > p {
   padding-top: 35px;
 }
-.results{
+.results {
   transform: translateY(30vh);
   box-shadow: 20px 20px 50px 10px gray;
 }
@@ -217,12 +225,69 @@ ul {
   box-shadow: #040607;
 }
 
-a {
+/* doctorsIndex */
+a,
+a:hover {
   display: block;
+  color: inherit;
 }
 
-.movie-tile {
-  width: 50vw;
-  margin: 0 auto;
-  border-bottom: 1px solid green;
+footer {
+  width: 100%;
+  height: 10vh;
+}
+
+.cardContent {
+  text-align: left;
+}
+
+.cardContent h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  display: inline;
+}
+
+#header {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #285596;
+}
+
+.doctorsIndex {
+  background-color: #eff8ff;
+}
+
+header {
+  width: 100%;
+  height: 10vh;
+}
+
+.star-rating > button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+/* .on {
+  color: #000;
+}
+.off {
+  color: #ccc;
+} */
+
+.editDoctorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.editDoctor {
+  width: 35vw;
+  min-width: 500px;
+}
+
+#editProfileHeading {
+  font-size: 2rem;
+  margin-bottom: 5vh;
 }

@@ -43,7 +43,7 @@ function DeleteAccount({ updateStorageToken }) {
         const userId = userInfo.userId;
         //In delete request the data and header goes inside one object
         const res = await axios.delete(
-          `http://localhost:4000/users/${userId}/delete`,
+          `${backEndLink}/users/${userId}/delete`,
           {
             headers: { authorization: `Bearer ${token}` },
             data: formData,

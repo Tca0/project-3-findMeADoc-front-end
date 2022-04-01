@@ -55,9 +55,7 @@ function DoctorShow() {
           </Container>
 
           <Container>
-            <DisplayReviews reviews={doctor.reviews}/>
-            <CreateNewReview />
-
+              <DisplayReviews reviews={doctor.reviews} setDoctor={setDoctor} doctorID={doctorID}/>
           </Container>
 
         </Container>

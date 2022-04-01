@@ -7,7 +7,6 @@ const Register = () => {
   const backEndLink = process.env.REACT_APP_API
     ? process.env.REACT_APP_API
     : "http://localhost:4000";
-    console.log(backEndLink)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
