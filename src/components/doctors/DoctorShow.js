@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import DoctorShowMap from "../mapbox/DoctorShowMap.js";
 import { Container } from "react-bootstrap";
 import DisplayReviews from './DisplayReviews'
+import CreateNewReview from './CreateNewReview'
 
 function DoctorShow() {
   const [doctor, setDoctor] = React.useState(undefined);
@@ -11,8 +12,10 @@ function DoctorShow() {
   React.useEffect(() => {
     fetch(`https://findmeadoc.herokuapp.com/doctors/${doctorID}`)
       .then((resp) => resp.json())
-      .then((data) => setDoctor(data));
-  }, [doctorID]);
+      .then((data) => {
+        console.log(data,"data")
+        setDoctor(data)});
+  }, []);
 
   return (
     <>
@@ -46,8 +49,17 @@ function DoctorShow() {
               {console.log(doctor.address.coordinates)}
             </div>
           </Container>
+          <Container>
           <div>{<DoctorShowMap {...doctor} />}</div>
-          <DisplayReviews reviews={doctor.reviews}/>
+
+          </Container>
+
+          <Container>
+            <DisplayReviews reviews={doctor.reviews}/>
+            <CreateNewReview />
+
+          </Container>
+
         </Container>
       ) : (
         <p>Loading...</p>

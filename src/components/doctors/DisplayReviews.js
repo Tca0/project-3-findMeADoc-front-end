@@ -1,69 +1,37 @@
 import {useState,useEffect} from 'react'
 import {CardGroup, Card} from 'react-bootstrap'
+import {faStar as regularStar} from '@fortawesome/free-regular-svg-icons'
+import {faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function DisplayReviews({reviews}){
-    console.log(reviews)
+    console.log(reviews.length)
+    if(!reviews || reviews.length<1) return<></>
     return <>
-        <Card>
-  <Card.Header>Quote</Card.Header>
-  <Card.Body>
-    <blockquote className="blockquote mb-0">
-      <p>
-        {' '}
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-        erat a ante.{' '}
-      </p>
-      <footer className="blockquote-footer">
-        Someone famous in <cite title="Source Title">Source Title</cite>
-      </footer>
-    </blockquote>
-  </Card.Body>
-</Card>
-<Card>
-  <Card.Header>Quote</Card.Header>
-  <Card.Body>
-    <blockquote className="blockquote mb-0">
-      <p>
-        {' '}
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-        erat a ante.{' '}
-      </p>
-      <footer className="blockquote-footer">
-        Someone famous in <cite title="Source Title">Source Title</cite>
-      </footer>
-    </blockquote>
-  </Card.Body>
-</Card>
-<Card>
-  <Card.Header>Quote</Card.Header>
-  <Card.Body>
-    <blockquote className="blockquote mb-0">
-      <p>
-        {' '}
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-        erat a ante.{' '}
-      </p>
-      <footer className="blockquote-footer">
-        Someone famous in <cite title="Source Title">Source Title</cite>
-      </footer>
-    </blockquote>
-  </Card.Body>
-</Card>
-<Card>
-  <Card.Header>Quote</Card.Header>
-  <Card.Body>
-    <blockquote className="blockquote mb-0">
-      <p>
-        {' '}
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-        erat a ante.{' '}
-      </p>
-      <footer className="blockquote-footer">
-        Someone famous in <cite title="Source Title">Source Title</cite>
-      </footer>
-    </blockquote>
-  </Card.Body>
-</Card>
+        {reviews.map((review,i)=>{
+            console.log(review)
+            const starsReceived = review.rate
+            return <Card key ={i}>
+                <Card.Header>
+                    {[...Array(5)].map((e,i)=>{
+                        console.log(i)
+                        return i<starsReceived? <FontAwesomeIcon icon={solidStar} /> : <FontAwesomeIcon icon={regularStar} />
+                    })}
+                </Card.Header>
+                <Card.Body>
+                    <blockquote className="blockquote mb-0">
+                    <p>
+                        {' '}
+                        {review.comment}{' '}
+                    </p>
+                    <footer className="blockquote-footer">
+                        <cite title="Source Title">{review.user}</cite>
+                    </footer>
+                    </blockquote>
+                </Card.Body>
+                </Card>
+        })}
     </>
 }
 
