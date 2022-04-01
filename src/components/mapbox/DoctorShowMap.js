@@ -2,9 +2,8 @@ import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-const Map = ({ doctorData }) => {
-  console.log(doctorData);
-
+const DoctorShowMap = ({ address, fullName }) => {
+  console.log(address.coordinates);
   // popup offsets
   const markerHeight = 50;
   const markerRadius = 10;
@@ -34,9 +33,10 @@ const Map = ({ doctorData }) => {
   const [lng, setLng] = useState(-0.11);
   const [lat, setLat] = useState(51.5);
   const [zoom, setZoom] = useState(9);
+  //   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
-    if (map.current || !doctorData.length) return; // initialize map only once
+    if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
@@ -44,23 +44,21 @@ const Map = ({ doctorData }) => {
       zoom: zoom,
     });
 
-    for (const doctor of Object.values(doctorData)) {
-      // create a HTML element for each feature
-      // make a marker for each feature and add it to the map
-      new mapboxgl.Marker()
-        .setLngLat(doctor.address.coordinates)
-        .setPopup(
-          new mapboxgl.Popup({ offset: 25 }) // add popups
-            .setHTML(`<h4>${doctor.fullName}</h4>
+    const marker = new mapboxgl.Marker()
+      .setLngLat(address.coordinates)
+      .setPopup(
+        new mapboxgl.Popup({
+          offset: popupOffsets,
+          className: "popup",
+        }).setHTML(`<h4>${fullName}</h4>
           <ul>
-          <li>${doctor.address.addressLine1}</li>
-          <li>${doctor.address.town}</li>
-          <li>${doctor.address.country}</li>
-          <li>${doctor.address.postcode.toUpperCase()}</li>
+          <li>${address.addressLine1}</li>
+          <li>${address.town}</li>
+          <li>${address.country}</li>
+          <li>${address.postcode.toUpperCase()}</li>
         </ul>`)
-        )
-        .addTo(map.current);
-    }
+      )
+      .addTo(map.current);
 
     map.current.addControl(
       new mapboxgl.GeolocateControl({
@@ -78,9 +76,9 @@ const Map = ({ doctorData }) => {
       setLat(map.current.getCenter().lat.toFixed(4));
       setZoom(map.current.getZoom().toFixed(2));
     });
-  }, [doctorData]);
+  });
 
   return <div ref={mapContainer} className="map-container" />;
 };
 
-export default Map;
+export default DoctorShowMap;

@@ -12,6 +12,12 @@ body {
   min-height: 100%;
   width: 100%;
 }
+
+ul {
+  list-style-type: none;
+}
+
+
 .App {
   text-align: center;
   height: 100vh;

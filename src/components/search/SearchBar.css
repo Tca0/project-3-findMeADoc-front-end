@@ -12,7 +12,7 @@
 
 .searchInputs {
   margin: 0 auto;
-  width: 35vw;
+  width: 40vw;
   height: 60px;
   margin-top: 5vh;
   display: flex;
@@ -51,7 +51,7 @@ input:focus {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  width: 450px;
+  width: 40vw;
   height: auto;
   max-height: 20vh;
   background-color: white;
@@ -59,6 +59,7 @@ input:focus {
   overflow: hidden;
   overflow-y: auto;
 }
+
 .dataResult .dataItem {
   width: 100%;
   height: 50px;

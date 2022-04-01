@@ -182,7 +182,7 @@ const EditDoctor = ({profileInformation,token,collection,id}) =>{
         formData={formData}
         onChangeArray={onChangeArray}
         array={"languages"}
-        add={"language"}
+        add={"language"} 
 
         />
 
@@ -190,7 +190,7 @@ const EditDoctor = ({profileInformation,token,collection,id}) =>{
         formData={formData}
         onChangeArray={onChangeArray}
         array={"specialties"}
-        add={"speciality"}
+        add={"specialty"}
         />
 
         <Form.Group className="mb-3" controlId="about">

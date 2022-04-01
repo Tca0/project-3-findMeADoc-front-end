@@ -16,9 +16,11 @@ import ResetPassword from "./components/PasswordReset";
 import Testing from "./components/mapbox/Testing";
 import ChangePassword from "./components/navigation/ChangePassword";
 import DeleteAccount from "./components/navigation/DeleteAccount";
+import SpecialtyIndex from "./components/doctors/SpecialtyIndex.js";
 
 function App() {
   const [storageToken, updateStorageToken] = useState(localStorage.token);
+  console.log("token from App", storageToken);
   // lesson code
   return (
     <div className="App">
@@ -34,7 +36,7 @@ function App() {
         <Route path="/doctors/:doctorID" element={<DoctorShow />} />
         <Route
           path="/search/speciality=:speciality"
-          element={<DoctorsIndex />}
+          element={<SpecialtyIndex />}
         />
         //patient routes
         <Route path="/users/edit" element={<EditPage />} />
