@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import DoctorsIndexCard from "./DoctorsIndexCard.js";
 import Map from "../mapbox/Map.js";
 import SearchBar from "../search/SearchBar.js";
+import { Container, Row, Stack, Col } from "react-bootstrap";
 
 // import "dotenv/config";
 
@@ -32,27 +33,34 @@ const DoctorsIndex = () => {
   console.log(doctorData);
 
   return (
-    <>
-      <div>
-        <div>
+    <section className="doctorsIndex">
+      <Container>
+        <Stack gap={5}>
           <SearchBar
             placeholder="Speciality or doctor name"
             doctorData={doctorData}
             specialtyData={specialtyData}
           />
-        </div>
-        <div>
-          {doctorData ? (
-            doctorData.map((doctor) => (
-              <DoctorsIndexCard key={doctor._id} {...doctor} />
-            ))
-          ) : (
-            <p>...loading</p>
-          )}
-        </div>
-      </div>
-      <div>{<Map doctorData={doctorData} />}</div>
-    </>
+          <Row>
+            <Col>
+              <Stack gap={3} className="g-4">
+                {doctorData ? (
+                  doctorData.map((doctor) => (
+                    <Col>
+                      <DoctorsIndexCard key={doctor._id} {...doctor} />
+                    </Col>
+                  ))
+                ) : (
+                  <p>...loading</p>
+                )}
+              </Stack>
+            </Col>
+            <Col>{<Map doctorData={doctorData} />}</Col>
+          </Row>
+        </Stack>
+      </Container>
+      <footer></footer>
+    </section>
   );
 };
 
