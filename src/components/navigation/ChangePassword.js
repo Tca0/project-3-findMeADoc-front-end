@@ -19,15 +19,15 @@ function ChangePassword({ updateStorageToken }) {
   const [isWriting, setUserStates] = useState(false)
 
   const onChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setFormErrors({});
     setChanged(false)
     setUserStates(true)
-    console.log(formData);
+    // console.log({ ...formData, [e.target.name]: e.target.value });
   };
   const validateForm = () => {
-    console.log("frontend validator");
+    // console.log("frontend validator");
     let errors = {};
     if (!formData.oldPassword) {
       errors.oldPassword = "Old Password required";
@@ -54,13 +54,13 @@ function ChangePassword({ updateStorageToken }) {
     if (validateForm()) {
       try {
         const token = localStorage.token;
-        console.log(token);
+        // console.log(token,"token");
         const userInfo = jwt_decode(token);
-        console.log(userInfo.userId);
+        // console.log(userInfo.userId);
         const userId = userInfo.userId;
-        console.group(formData);
+        // console.group(formData);
         const res = await axios.patch(
-          `http://localhost:4000/users/${userId}/changePassword`,
+          `${backEndLink}/users/${userId}/changePassword`,
           formData,
           {
             headers: {
@@ -68,8 +68,8 @@ function ChangePassword({ updateStorageToken }) {
             },
           }
         );
-        console.log(res.status);
-        console.log(res.data.message);
+        // console.log(res.status);
+        // console.log(res.data.message);
         setResults(res.data.message);
         setErrorMessage(null)
         setChanged(true);

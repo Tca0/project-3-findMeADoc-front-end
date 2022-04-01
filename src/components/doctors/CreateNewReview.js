@@ -1,5 +1,5 @@
 import {useState,useEffect} from 'react'
-import {Form, Button, FloatingLabel} from 'react-bootstrap'
+import {Form, Button, FloatingLabel, Card} from 'react-bootstrap'
 import {faStar as regularStar} from '@fortawesome/free-regular-svg-icons'
 import {faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -52,8 +52,11 @@ function CreateNewReview({doctorID,setDoctor}){
         }
       };
 
-    return <>
+    return <Card>
+    <Card.Body>
+        <Card.Title>Leave a review:</Card.Title>
         <Form onSubmit={onSubmit}>
+        <Card.Header>
         <div className="star-rating">
             <Form.Label>Rating</Form.Label>
             {[...Array(5)].map((star, index) => {
@@ -75,7 +78,8 @@ function CreateNewReview({doctorID,setDoctor}){
                 )
             })}
         </div>
-
+        </Card.Header>
+        <Card.Text>
             <FloatingLabel controlId="comment" label="comment">
                 <Form.Control
                 name="comment"
@@ -89,8 +93,10 @@ function CreateNewReview({doctorID,setDoctor}){
             <Button variant="primary" type="submit">
                 Submit
             </Button>
+            </Card.Text>
         </Form>
-    </>
+        </Card.Body>
+    </Card>
 }
 
 export default CreateNewReview
