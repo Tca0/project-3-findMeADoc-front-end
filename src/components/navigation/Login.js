@@ -50,7 +50,7 @@ const Login = ({ updateStorageToken }) => {
           localStorage.setItem("token", res.data.token);
           updateStorageToken(localStorage.token);
           console.log(localStorage.token);
-          navigate("/doctors");
+          navigate("/");
         }
       } catch (e) {
         console.log(e.response.data.message);
