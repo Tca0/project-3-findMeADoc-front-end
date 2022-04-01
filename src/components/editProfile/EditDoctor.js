@@ -1,34 +1,32 @@
-import {Form, Row, Col,Button} from 'react-bootstrap'
-import axios from 'axios'
-import {useState,useEffect} from 'react'
-import {useNavigate} from 'react-router-dom'
-import ProfileArrItems from './ProfileArrItems'
-import PostcodeLngLat from './PostcodeLngLat'
+import { Form, Row, Col, Button, Stack } from "react-bootstrap";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ProfileArrItems from "./ProfileArrItems";
+import PostcodeLngLat from "./PostcodeLngLat";
 
-const EditDoctor = ({profileInformation,token,collection,id}) =>{
-    const [formData,setFormData] = useState(profileInformation)
-    const [errorMessage, setErrorMessage] = useState(null)
+const EditDoctor = ({ profileInformation, token, collection, id }) => {
+  const [formData, setFormData] = useState(profileInformation);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-    useEffect(()=>{
-        setFormData(profileInformation)},[profileInformation])
-        console.log(formData)
-        
-    
-    const onChange = (e) =>{
-        setFormData({...formData, [e.target.name]: e.target.value })
-    }
+  useEffect(() => {
+    setFormData(profileInformation);
+  }, [profileInformation]);
+  console.log(formData);
 
-    const onChangeAddress = (e) =>{
-        if(!formData.address)formData.address={}
-        const street=formData.address[e.target.name]=e.target.value
-        setFormData({...formData,street })
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
+  const onChangeAddress = (e) => {
+    const street = (formData.address[e.target.name] = e.target.value);
+    setFormData({ ...formData, street });
+  };
 
-
-  const onChangeArray = (arrName,newArr) =>{
-        const updatedArr = formData[arrName]=newArr
-        setFormData({...formData,updatedArr})
-    }
+  const onChangeArray = (arrName, newArr) => {
+    const updatedArr = (formData[arrName] = newArr);
+    setFormData({ ...formData, updatedArr });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,19 +77,7 @@ const EditDoctor = ({profileInformation,token,collection,id}) =>{
                 placeholder="Last Name"
               />
             </Form.Group>
-
-            <Form.Group as={Col} controlId="experience">
-            <Form.Label>experience</Form.Label>
-            <Form.Control 
-            name="experience" 
-            value ={formData.experience} 
-            onChange={onChange} 
-            type="number" 
-            placeholder="Years of Experience as Doctor" />
-            </Form.Group>
-        </Row>
-
-
+          </Row>
 
           <Row className="mb-3">
             <Form.Group
@@ -145,7 +131,7 @@ const EditDoctor = ({profileInformation,token,collection,id}) =>{
               <Form.Label>Address</Form.Label>
               <Form.Control
                 name="addressLine1"
-                value ={formData.address?formData.address.addressLine1:""} 
+                value={formData.address.addressLine1}
                 onChange={onChangeAddress}
                 placeholder="1st Floor, The Relay Building"
               />
@@ -155,8 +141,7 @@ const EditDoctor = ({profileInformation,token,collection,id}) =>{
               <Form.Label>Address 2</Form.Label>
               <Form.Control
                 name="addressLine2"
-                value ={formData.address?formData.address.addressLine2:""} 
-
+                value={formData.address.addressLine2}
                 onChange={onChangeAddress}
                 placeholder="114 Whitechapel High St"
               />
@@ -167,7 +152,7 @@ const EditDoctor = ({profileInformation,token,collection,id}) =>{
               <Form.Label>Town</Form.Label>
               <Form.Control
                 name="town"
-                value ={formData.address?formData.address.town:""}
+                value={formData.address.town}
                 onChange={onChangeAddress}
                 placeholder="London"
               />
@@ -176,8 +161,7 @@ const EditDoctor = ({profileInformation,token,collection,id}) =>{
               <Form.Label>Country</Form.Label>
               <Form.Control
                 name="country"
-                value ={formData.address?formData.address.country:""} 
-
+                value={formData.address.country}
                 onChange={onChangeAddress}
                 placeholder="United Kingdom"
               />
