@@ -16,6 +16,7 @@ const Login = ({ updateStorageToken }) => {
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setFormErrors({});
+    setErrorMessage(null)
   };
 
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const Login = ({ updateStorageToken }) => {
     }
   };
   const onSubmit = async (e) => {
+    console.log(localStorage.token)
     e.preventDefault();
     if (validateForm()) {
       try {
@@ -63,40 +65,40 @@ const Login = ({ updateStorageToken }) => {
     <>
       <div className="login-page">
         <div>
-          <h1 style={{ textAlign: "center" }}>Login</h1>
+          <h1 className="header">Login</h1>
         </div>
         {errorMessage && (
-          <div className="failure">
-            <p style={{ textAlign: "center" }}>{errorMessage}</p>
+          <div>
+            <p style={{ textAlign: "center", color: "red" }}>{errorMessage}</p>
           </div>
         )}
-        <div className="formContainer">
-          <form onSubmit={onSubmit}>
+
+        <form onSubmit={onSubmit} className="loginForm">
+          <div style={{ marginTop: "10px" }}>
             <input
               type="text"
               placeholder="email"
               name="email"
               onChange={onChange}
-              style={{ marginTop: "10px" }}
+              style={formErrors.email && { border: "2px solid red" }}
             />
-            {formErrors.email && (
-              <p className="text-warning">{formErrors.email}</p>
-            )}
+          </div>
+          <div style={{ marginTop: "10px" }}>
             <input
               type="password"
               placeholder="Password"
               name="password"
               onChange={onChange}
-              style={{ marginTop: "10px" }}
+              style={formErrors.password && { border: "2px solid red" }}
             />
-            {formErrors.password && (
-              <p className="text-warning">{formErrors.password}</p>
-            )}
+          </div>
+          <div style={{ marginTop: "10px" }}>
             <button type="submit" style={{ marginTop: "10px" }}>
               Login
             </button>
-          </form>
-        </div>
+          </div>
+        </form>
+
         <div>
           <p style={{ marginTop: "10px", textAlign: "center" }}>
             Forgot your password{" "}

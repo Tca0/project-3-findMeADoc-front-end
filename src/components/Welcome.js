@@ -49,6 +49,7 @@ const WelcomeRegistration = () => {
           }
         } catch(error) {
           console.log(error.message)
+          displayResults(error.data.message)
         }
       }
       checkConfirmation()
@@ -60,8 +61,20 @@ const WelcomeRegistration = () => {
   }
   return (
     <div className="confirmationResults">
-      <p>{results}</p>
-      {isConfirmed && <button onClick={loginPage}>Login</button>}
+      {isConfirmed ? (
+        <div>
+          <p className="textResults">
+            Thank you for registering in our service.
+            <br />
+            Login in into your account to complete your information.
+          </p>
+          {isConfirmed && <button onClick={loginPage}>Login</button>}
+        </div>
+      ) : (
+        <div>
+          <p className="textResults">{results}</p>
+        </div>
+      )}
     </div>
   );
 };

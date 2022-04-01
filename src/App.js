@@ -15,10 +15,12 @@ import ResetpasswordRequest from "./components/ResetpasswordRequest";
 import ResetPassword from "./components/PasswordReset";
 import Testing from "./components/mapbox/Testing";
 import ChangePassword from "./components/navigation/ChangePassword";
+import DeleteAccount from "./components/navigation/DeleteAccount";
+import SpecialtyIndex from "./components/doctors/SpecialtyIndex.js";
 
 function App() {
   const [storageToken, updateStorageToken] = useState(localStorage.token);
-  console.log("token from App", storageToken)
+  console.log("token from App", storageToken);
   // lesson code
   return (
     <div className="App">
@@ -34,7 +36,7 @@ function App() {
         <Route path="/doctors/:doctorID" element={<DoctorShow />} />
         <Route
           path="/search/speciality=:speciality"
-          element={<DoctorsIndex />}
+          element={<SpecialtyIndex />}
         />
         //patient routes
         <Route path="/users/edit" element={<EditPage />} />
@@ -54,7 +56,22 @@ function App() {
         />
         <Route path="/test" element={<Testing />} />
         <Route path="/users/resetPassword/:code" element={<ResetPassword />} />
-        <Route path="/users/me/changePassword" element={<ChangePassword />} />
+        <Route
+          path="/users/myprofile/changePassword"
+          element={
+            <ChangePassword
+              updateStorageToken={updateStorageToken}
+            />
+          }
+        />
+        <Route
+          path="/users/myprofile/deleteAccount"
+          element={
+            <DeleteAccount
+              updateStorageToken={updateStorageToken}
+            />
+          }
+        />
       </Routes>
     </div>
   );
