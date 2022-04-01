@@ -6,17 +6,15 @@ import {faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function DisplayReviews({reviews}){
-    console.log(reviews.length)
     if(!reviews || reviews.length<1) return<></>
     return <>
         {reviews.map((review,i)=>{
-            console.log(review)
             const starsReceived = review.rate
             return <Card key ={i}>
                 <Card.Header>
                     {[...Array(5)].map((e,i)=>{
                         console.log(i)
-                        return i<starsReceived? <FontAwesomeIcon icon={solidStar} /> : <FontAwesomeIcon icon={regularStar} />
+                        return <span key={i}> {i<starsReceived? <FontAwesomeIcon  icon={solidStar} /> : <FontAwesomeIcon icon={regularStar} />}</span>
                     })}
                 </Card.Header>
                 <Card.Body>

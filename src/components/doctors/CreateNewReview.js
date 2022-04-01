@@ -6,10 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import axios from 'axios'
 
-function CreateNewReview(){
+function CreateNewReview({doctorID,setDoctor}){
 
     const [rating, setRating] = useState(undefined);
     const [hover, setHover] = useState(0);
+    const [inputField,setInputField] = useState("")
 
     const [formData, setFormData] = useState({});
     const [errorMessage, setErrorMessage] = useState(null);
@@ -19,6 +20,7 @@ function CreateNewReview(){
     const tokenPayload = JSON.parse(atob(token.split('.')[1]))
 
     function onChange(e){
+        setInputField(e.target.value)
         setFormData({ ...formData,comment:rating, [e.target.name]: e.target.value });
         console.log({ ...formData, [e.target.name]: e.target.value });
         setFormErrors({});
@@ -35,10 +37,17 @@ function CreateNewReview(){
                 "Authorization" :`Bearer ${token}`
             }}
             )
-            console.log(res)
+            setRating(undefined)
+            setFormData({})
+            setInputField("")
+            fetch(`https://findmeadoc.herokuapp.com/doctors/${doctorID}`)
+            .then((resp) => resp.json())
+            .then((data) => {
+                console.log(data,"data")
+                setDoctor(data)});
             
           } catch (e) {
-            console.log(e.response.data.message);
+            console.log(e.response);
             setErrorMessage(e.response.data.message);
         }
       };
@@ -72,6 +81,7 @@ function CreateNewReview(){
                 name="comment"
                 as="textarea"
                 placeholder="Leave a comment here"
+                value={inputField}
                 style={{ height: '100px' }}
                 onChange={onChange}
                 />
