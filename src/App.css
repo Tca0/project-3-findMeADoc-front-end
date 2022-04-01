@@ -65,7 +65,7 @@ body {
   margin: 0 auto;
   text-align: center;
 }
-.login-page, .registerPage, .changePassword, .deletePage {
+.login-page, .registerPage, .changePassword, .deletePage, .confirmationResults {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -176,17 +176,21 @@ body {
   justify-content: center;
 }
 .confirmationResults {
-  margin-top: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   justify-items: center;
   align-items: center;
   align-content: center;
-  height: 150px;
+  background-image: url(../src/assets/pexels-thirdman-7659869.jpg);
 }
 .confirmationResults > button {
   box-sizing: border-box;
+}
+.textResults {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 26px;
 }
 .confirmationResults > button:active {
   transform: scale(1.2);
@@ -197,10 +201,6 @@ body {
 }
 .changePassword-form > .changePassword-form {
   border: 2px solid black;
-}
-.confirmationResults > p {
-  text-align: center;
-  font-weight: bolder;
 }
 .registerDoctorReq {
   display: flex;
