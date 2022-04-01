@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DoctorsIndexCard from "./DoctorsIndexCard.js";
 import Map from "../mapbox/Map.js";
+import { Container, Row, Stack, Col } from "react-bootstrap";
+
 // import "dotenv/config";
 
 // const backEndLink = process.env.BACKEND_CONNECTION
@@ -33,20 +35,27 @@ const DoctorsIndex = () => {
     );
   }
   return (
-    <>
-      <div>
-        <div>
-          {doctorData ? (
-            doctorData.map((doctor) => (
-              <DoctorsIndexCard key={doctor._id} {...doctor} />
-            ))
-          ) : (
-            <p>...loading</p>
-          )}
-        </div>
-      </div>
-      <div>{<Map doctorData={doctorData} />}</div>
-    </>
+    <section className="doctorsIndex">
+      <header></header>
+      <Container>
+        <Row>
+          <Col>
+            <Stack gap={3} className="g-4">
+              {doctorData ? (
+                doctorData.map((doctor) => (
+                  <DoctorsIndexCard key={doctor._id} {...doctor} />
+                ))
+              ) : (
+                <p>...loading</p>
+              )}
+            </Stack>
+          </Col>
+
+          <Col>{<Map doctorData={doctorData} />}</Col>
+        </Row>
+      </Container>
+      <footer></footer>
+    </section>
   );
 };
 
