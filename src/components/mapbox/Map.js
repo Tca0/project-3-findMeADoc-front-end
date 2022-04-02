@@ -80,7 +80,7 @@ const Map = ({ doctorData }) => {
     });
   }, [doctorData]);
 
-  return <div ref={mapContainer} className="map-container" />;
+  return <div ref={mapContainer} className="map" />;
 };
 
 export default Map;

@@ -253,7 +253,13 @@ footer {
   color: #285596;
 }
 
-.doctorsIndex {
+.doctorsIndex,
+.doctorShow {
+  background-color: #eff8ff;
+}
+
+.noResult {
+  height: 95vh;
   background-color: #eff8ff;
 }
 

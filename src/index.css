@@ -1,8 +1,13 @@
 /* mapbox */
 
-.map-container {
+.map {
   height: 70vh;
   width: 25vw;
+}
+
+.doctorShowMap {
+  height: 30vh;
+  width: 30vh;
 }
 
 .marker {
