@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { Button } from "react-bootstrap";
 // a state to store entered data
 const Register = () => {
   const backEndLink = process.env.REACT_APP_API
@@ -78,7 +78,11 @@ const Register = () => {
       {isRegistered ? (
         <div className="results">
           {errorMessage && <h1>{errorMessage}</h1>}
-          {isRegistered && <button onClick={loginPage}>Login</button>}
+          {isRegistered && (
+            <Button variant="info" size="lg" onClick={loginPage}>
+              Login
+            </Button>
+          )}
         </div>
       ) : (
         <div style={{ height: "100%" }}>
@@ -94,7 +98,10 @@ const Register = () => {
             </div>
           )}
           {!isSucceeded && (
-            <div className="register" style={{ height: "70%", padding: "50px" }}>
+            <div
+              className="register"
+              style={{ height: "70%", padding: "50px" }}
+            >
               <div>
                 <h1 style={{ textAlign: "center" }}>Register</h1>
               </div>
@@ -151,7 +158,9 @@ const Register = () => {
                   />
                 </div>
                 <div>
-                  <button type="submit">Register</button>
+                  <Button variant="outline-dark" type="submit">
+                    Register
+                  </Button>
                 </div>
               </form>
             </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 
 function ResetpasswordRequest() {
   const backEndLink = process.env.REACT_APP_API_URL
@@ -48,37 +49,41 @@ function ResetpasswordRequest() {
         if (res.status === 200) {
           setSResponse(res.data.message);
           setResStatus(true);
+          console.log("response to display", response);
+          console.log(status);
         }
       } catch (err) {
         console.log(err.response.data.message);
         setSResponse(err.response.data.message);
         setResStatus(false);
+        console.log("response to display",response);
+        console.log(status);
       }
     }
   };
   return (
-    <div
-      className="RestPassword-container"
-    >
+    <div className="RestPassword-container">
       <div className="forgotPassword">
-        <form onSubmit={onSubmit}>
+        <form className="RestPassword-form" onSubmit={onSubmit}>
           <input
             type="email"
             placeholder="Enter your email"
             name="email"
             value={email.email}
             onChange={onChange}
+            style={formErrors.email && { border: "2px solid red" }}
           />
-          {formErrors && <p className="text-warning">{formErrors.email}</p>}
-          <button type="submit">Send</button>
+          <Button variant="outline-danger" size="lg" type="submit">
+            Send
+          </Button>
         </form>
-      </div>
-      <div className="forgotRes">
-        {!status ? (
-          <p style={{ color: "red" }}>{response}</p>
-        ) : (
-          <p>{response}</p>
-        )}
+        <div className="forgotRes">
+          {!status ? (
+            <p style={{ color: "red" }}>{response}</p>
+          ) : (
+            <p>{response}</p>
+          )}
+        </div>
       </div>
     </div>
   );

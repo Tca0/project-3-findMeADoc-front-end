@@ -94,7 +94,7 @@ function NavBar({ storageToken, updateStorageToken }) {
                     <NavDropdown.Item
                       onClick={() => {
                         console.log("clicked");
-                        navigate("/");
+                        navigate("/users/myprofile/deleteAccount");
                       }}
                     >
                       {" "}

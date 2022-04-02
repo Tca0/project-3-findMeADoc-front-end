@@ -3,6 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Login = ({ updateStorageToken }) => {
   const backEndLink = process.env.REACT_APP_API
@@ -93,9 +94,14 @@ const Login = ({ updateStorageToken }) => {
             />
           </div>
           <div style={{ marginTop: "10px" }}>
-            <button type="submit" style={{ marginTop: "10px" }}>
+            <Button
+              variant="outline-warning"
+              type="submit"
+              style={{ marginTop: "10px" }}
+              active
+            >
               Login
-            </button>
+            </Button>
           </div>
         </form>
 
