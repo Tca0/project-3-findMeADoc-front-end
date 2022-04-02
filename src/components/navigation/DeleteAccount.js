@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 function DeleteAccount({ updateStorageToken }) {
   const backEndLink = process.env.REACT_APP_API
@@ -14,6 +15,7 @@ function DeleteAccount({ updateStorageToken }) {
   const [formErrors, setFormErrors] = useState({});
   const [isDeleted, setDeleted] = useState(false);
   const [isWriting, setUserStates] = useState(false);
+  const navigate = useNavigate();
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setFormErrors({});
@@ -55,6 +57,7 @@ function DeleteAccount({ updateStorageToken }) {
         localStorage.removeItem("token");
         updateStorageToken(localStorage.token);
         setDeleted(true);
+        navigate("/");
       } catch (e) {
         console.log(e);
         console.log(e.response.data.message);
