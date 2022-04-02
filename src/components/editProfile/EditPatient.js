@@ -1,7 +1,6 @@
-import { Form, Row, Col, Button } from "react-bootstrap";
-import axios from "axios";
-import { useEffect, useState } from "react";
-// import {useNavigate} from 'react-router-dom'
+import {Form, Row, Col,Button, Stack} from 'react-bootstrap'
+import axios from 'axios'
+import {useEffect, useState} from 'react'
 
 const EditPatient = ({ profileInformation, token, collection, id }) => {
   const [formData, setFormData] = useState(profileInformation);
