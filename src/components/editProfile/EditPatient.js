@@ -17,6 +17,7 @@ const EditPatient = ({ profileInformation, token, collection, id }) => {
   };
 
   const onChangeAddress = (e) => {
+    if (!formData.address) formData.address = {};
     const street = (formData.address[e.target.name] = e.target.value);
     setFormData({ ...formData, street });
   };
