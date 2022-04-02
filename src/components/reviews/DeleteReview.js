@@ -17,14 +17,11 @@ function DeleteReview({reviewID,doctorID,setDoctor}){
                     .then(res=>{
                         if(res.status===200){
                             const res = axios.get(
-                                `https://findmeadoc.herokuapp.com/doctors/${doctorID}`,{
-                                  headers: {
-                                    "authorization": `Bearer ${localStorage.token}`,
-                                  },
-                                }
+                                fetch(`https://findmeadoc.herokuapp.com/doctors/${doctorID}`)
+                                .then((resp) => resp.json())
+                                .then((data) => {
+                                    setDoctor(data)})
                               )
-                              .then(res=>res.json)
-                              .then(json=>setDoctor(json))
                         }
                     })
                 
