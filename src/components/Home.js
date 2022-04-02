@@ -10,17 +10,22 @@ const Home = () => {
   const [specialtyData, setSpecialty] = useState([]);
 
   useEffect(() => {
-    console.log("Running useEffect");
-    const getData = async () => {
-      const res = await axios.get("https://findmeadoc.herokuapp.com/doctors", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setDoctorData(res.data);
-    };
-    getData();
+    // fetch(`${backEndLink}/doctors`)
+    fetch(`https://findmeadoc.herokuapp.com/doctors/`,{
+      headers:{
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      }
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        const filteredData = data.filter(doctor =>{
+          return doctor.completed == true
+        })
+        // console.log(filteredData,"filteredData")
+        // console.log(data,"Data")
+        setDoctorData(filteredData)});
   }, []);
+
 
   useEffect(() => {
     fetch("https://findmeadoc.herokuapp.com/specialties")
