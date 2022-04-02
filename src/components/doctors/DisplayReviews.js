@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import jwt_decode from 'jwt-decode'
 
 import CreateNewReview from './CreateNewReview'
+import DeleteReview from '../reviews/DeleteReview'
 
 
 
@@ -17,17 +18,22 @@ function DisplayReviews({reviews,doctorID,setDoctor}){
     }
     if(!reviews || reviews.length<1) return <CreateNewReview setDoctor={setDoctor} doctorID={doctorID} userData={userData}/>
     if(!userData) return <></>
+
+    
     return <>
         <Stack gap={3} className="g-4">
         {reviews.map((review,i)=>{
+            console.log(review)
             if(i===0){
-                console.log(review)
+                console.log(review,"review")
+                console.log(review.user._id,"created user id")
+                console.log(review._id,"id review")
             }
             if(userData && userData.patientID){
                 console.log("patient")
-            console.log(userData.patientID==review.user._id)
-
+                console.log(userData.patientID==review.user._id)
             }
+
             const starsReceived = review.rate
             return <>
                     <Card key ={i}>
@@ -46,6 +52,7 @@ function DisplayReviews({reviews,doctorID,setDoctor}){
                                 <cite title="Source Title">{review.user.fullName}</cite>
                             </footer>
                             </blockquote>
+                            {userData.patientID==review.user._id ? <DeleteReview reviewID={review._id} userData={userData} doctorID={doctorID} setDoctor={setDoctor} />:"no"}
                         </Card.Body>
                     </Card>
                     </>
