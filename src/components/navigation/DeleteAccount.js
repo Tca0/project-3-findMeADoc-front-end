@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 function DeleteAccount({ updateStorageToken }) {
   const backEndLink = process.env.REACT_APP_API
@@ -71,7 +72,7 @@ function DeleteAccount({ updateStorageToken }) {
       <div className="secondContainer">
         {isDeleted ? (
           <div className="results">
-            <p style={{fontSize: "30px"}}>Your account has been deleted.</p>
+            <p style={{ fontSize: "30px" }}>Your account has been deleted.</p>
           </div>
         ) : (
           <div>
@@ -89,9 +90,13 @@ function DeleteAccount({ updateStorageToken }) {
                 onChange={onChange}
                 style={formErrors.password && { border: "2px solid red" }}
               />
-              <button type="submit" style={{ marginLeft: "15px" }}>
+              <Button
+                type="submit"
+                style={{ marginLeft: "15px" }}
+                variant="outline-danger"
+              >
                 Delete Account
-              </button>
+              </Button>
             </form>
           </div>
         )}
