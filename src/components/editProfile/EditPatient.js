@@ -6,7 +6,7 @@ import {useEffect, useState} from 'react'
 const EditPatient = ({profileInformation,token,collection,id}) =>{
     const [formData,setFormData] = useState(profileInformation)
     const [errorMessage, setErrorMessage] = useState(null)
-    
+    console.log(localStorage.token)
     useEffect(()=>{
         setFormData(profileInformation)},[profileInformation])
     
