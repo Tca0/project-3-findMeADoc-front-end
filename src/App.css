@@ -147,17 +147,25 @@ ul {
   transform: translateY(40%);
   box-sizing: border-box;
   padding: 10px;
-  box-shadow: 20px 20px 50px 10px pink inset;
+  box-shadow: 20px 20px 50px 10px #9A425B inset;
+}
+.changePassword-form > button {
+  background-color: #9A425B;
+  padding: 10px;
+}
+.changePassword-form > button:hover {
+  box-shadow: 20px 20px 50px 10px, -10px 0 10px olive ;
+  transform: scale(1.4);
 }
 .passwordChanged {
-  box-shadow: 20px 20px 50px 10px pink inset;
-  transform: translateY(200px);
+  box-shadow: 20px 20px 50px 10px #9A425B inset;
+  transform: translateY(30%);
   font-size: 25px;
   height: 150px;
   border-radius: 50%;
 }
 .passwordChanged > p {
-  padding-top: 35px;
+  padding: 35px;
 }
 .results {
   transform: translateY(30vh);
@@ -177,6 +185,9 @@ ul {
 }
 .deletePage > .secondContainer {
   transform: translateY(200px);
+  border: 2px dotted gray;
+  padding: 30px 0 50px 0;
+  box-shadow: 20px 20px 50px 10px #263840 inset;
 }
 .delete {
   display: flex;
@@ -192,31 +203,19 @@ ul {
   align-content: center;
   background-image: url(../src/assets/pexels-thirdman-7659869.jpg);
 }
-.confirmationResults > button {
+#welcomePage {
   box-sizing: border-box;
 }
 .textResults {
   text-align: center;
   font-weight: bolder;
   font-size: 26px;
+  color: #41422b;
 }
-.confirmationResults > button:active {
-  transform: scale(1.2);
-}
-.confirmationResults > button:hover {
-  transform: scale(1.2);
-  background-color: #61dafb;
-}
-.changePassword-form > .changePassword-form {
-  border: 2px solid black;
-}
-.registerDoctorReq {
-  display: flex;
-  flex-direction: column;
-  justify-content: baseline;
-  align-items: center;
-  align-content: center;
-  box-shadow: #040607;
+.resultsContainer {
+  padding: 18px;
+  border: 4px ridge #3b5769;
+  box-shadow: 20px 20px 50px 10px #4e5e68 inset;
 }
 .RestPassword-container {
   background-image: url("../src/assets/pexels-klaus-nielsen-6303655.jpg");

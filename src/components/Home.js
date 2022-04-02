@@ -11,21 +11,21 @@ const Home = () => {
 
   useEffect(() => {
     // fetch(`${backEndLink}/doctors`)
-    fetch(`https://findmeadoc.herokuapp.com/doctors/`,{
-      headers:{
+    fetch(`https://findmeadoc.herokuapp.com/doctors/`, {
+      headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
-      }
+      },
     })
       .then((resp) => resp.json())
       .then((data) => {
-        const filteredData = data.filter(doctor =>{
-          return doctor.completed == true
-        })
-        // console.log(filteredData,"filteredData")
+        const filteredData = data.filter((doctor) => {
+          return doctor.completed == true;
+        });
+        console.log(filteredData, "filteredData");
         // console.log(data,"Data")
-        setDoctorData(filteredData)});
+        setDoctorData(filteredData);
+      });
   }, []);
-
 
   useEffect(() => {
     fetch("https://findmeadoc.herokuapp.com/specialties")
