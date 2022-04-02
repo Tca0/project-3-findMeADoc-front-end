@@ -21,7 +21,13 @@ const DoctorsIndex = () => {
     // fetch(`${backEndLink}/doctors`)
     fetch(`https://findmeadoc.herokuapp.com/doctors/`)
       .then((resp) => resp.json())
-      .then((data) => setDoctorData(data));
+      .then((data) => {
+        const filteredData = data.filter(doctor =>{
+          return doctor.completed == true
+        })
+        // console.log(filteredData,"filteredData")
+        // console.log(data,"Data")
+        setDoctorData(filteredData)});
   }, []);
 
   useEffect(() => {
@@ -30,7 +36,7 @@ const DoctorsIndex = () => {
       .then((data) => setSpecialty(data));
   }, []);
 
-  console.log(doctorData);
+  console.log(doctorData,"doctorData");
 
   return (
     <section className="doctorsIndex">
@@ -45,7 +51,8 @@ const DoctorsIndex = () => {
             <Col>
               <Stack gap={3} className="g-4">
                 {doctorData ? (
-                  doctorData.map((doctor) => (
+                  doctorData
+                  .map((doctor) => (
                     <Col>
                       <DoctorsIndexCard key={doctor._id} {...doctor} />
                     </Col>
