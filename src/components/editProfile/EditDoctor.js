@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ProfileArrItems from "./ProfileArrItems";
 import PostcodeLngLat from "./PostcodeLngLat";
 
-const EditDoctor = ({ profileInformation, token, collection, id }) => {
+const EditDoctor = ({ profileInformation, token, collection, id , num, setNum}) => {
   const [formData, setFormData] = useState(profileInformation);
   const [errorMessage, setErrorMessage] = useState(null);
   const [dataSubmitted, setDataSubmitted] = useState(false);
@@ -30,11 +30,33 @@ const EditDoctor = ({ profileInformation, token, collection, id }) => {
     const updatedArr = (formData[arrName] = newArr);
     setFormData({ ...formData, updatedArr });
   };
+  function checkFieldsForCompletion(){
+    return (
+      formData.firstName &&
+      formData.secondName &&
+      formData.DOB &&
+      formData.address &&
+      formData.address.addressLine1 &&
+      formData.address.addressLine2 &&
+      formData.address.town &&
+      formData.address.country &&
+      formData.address.postcode &&
+      formData.address.coordinates &&
+      (formData.languages &&
+        formData.languages.length>0) &&
+      (
+      formData.specialties &&
+      formData.specialties.length>0)
+      ) ? true: false
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("trying validations")
+    console.log(checkFieldsForCompletion())
     try {
-      formData.fullName = `${formData.firstName} ${formData.secondName}`;
+      formData.fullName = `${formData.firstName} ${formData.secondName}`
+      formData.completed = checkFieldsForCompletion()
       console.log(formData);
       const res = await axios.put(
         `https://findmeadoc.herokuapp.com/${collection}/${id}`,
@@ -47,6 +69,7 @@ const EditDoctor = ({ profileInformation, token, collection, id }) => {
       );
       console.log(res);
       setDataSubmitted(true);
+      setNum(num+1)
       window.scrollTo(0, 0);
       setTimeout(() => {
         setDataSubmitted(false);
