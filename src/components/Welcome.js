@@ -62,7 +62,7 @@ const WelcomeRegistration = () => {
   return (
     <div className="confirmationResults">
       {isConfirmed ? (
-        <div>
+        <div className="resultsContainer">
           <p className="textResults">
             Thank you for registering in our service.
             <br />
