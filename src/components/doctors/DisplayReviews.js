@@ -11,7 +11,6 @@ import DeleteReview from '../reviews/DeleteReview'
 
 
 function DisplayReviews({reviews,doctorID,setDoctor}){
-    console.log(jwt_decode(localStorage.token))
     let userData
     if(localStorage.token){
         userData = jwt_decode(localStorage.token)
