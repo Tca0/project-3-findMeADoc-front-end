@@ -1,4 +1,4 @@
-import {Form, Row, Col,Button} from 'react-bootstrap'
+import {Form, Row, Col,Button, Stack} from 'react-bootstrap'
 import axios from 'axios'
 import {useEffect, useState} from 'react'
 // import {useNavigate} from 'react-router-dom'
@@ -43,9 +43,11 @@ const EditPatient = ({profileInformation,token,collection,id}) =>{
     
 
     if(!formData.email) return <h1>Getting info</h1>
-    return <>
-        <h1>Edit Patient</h1>
-        <Form onSubmit={handleSubmit}>
+    return (
+        <section className="editDoctorContainer">
+        <h1 id="editProfileHeading">Edit Profile (Patient)</h1>
+        <Form className="editDoctor" onSubmit={handleSubmit}>
+        <Stack gap={2}>
             <Row className="mb-3">
                 <Form.Group as={Col} controlId="firstName">
                 <Form.Label>First Name</Form.Label>
@@ -163,8 +165,10 @@ const EditPatient = ({profileInformation,token,collection,id}) =>{
             <Button variant="primary" type="submit">
                 Submit
             </Button>
+            </Stack>
         </Form>
-    </>
+        </section>
+)
     
 
 }
