@@ -61,14 +61,6 @@ ul {
     transform: rotate(360deg);
   }
 }
-.RestPassword-container {
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
-  align-content: center;
-  padding: 20px 0px;
-  height: 100%;
-}
 .success {
   font-size: 20px;
   font-weight: bold;
@@ -79,7 +71,8 @@ ul {
 .registerPage,
 .changePassword,
 .deletePage,
-.confirmationResults {
+.confirmationResults,
+.RestPassword-container {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -224,6 +217,27 @@ ul {
   align-items: center;
   align-content: center;
   box-shadow: #040607;
+}
+.RestPassword-container {
+  background-image: url("../src/assets/pexels-klaus-nielsen-6303655.jpg");
+}
+.forgotPassword {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+}
+.RestPassword-form {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
 }
 
 /* doctorsIndex */

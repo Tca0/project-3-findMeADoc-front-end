@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import { Button } from "react-bootstrap";
 
 
 const WelcomeRegistration = () => {
@@ -68,7 +68,11 @@ const WelcomeRegistration = () => {
             <br />
             Login in into your account to complete your information.
           </p>
-          {isConfirmed && <button onClick={loginPage}>Login</button>}
+          {isConfirmed && (
+            <Button variant="outline-light" onClick={loginPage}>
+              Login
+            </Button>
+          )}
         </div>
       ) : (
         <div>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {Button} from 'react-bootstrap'
 
+
 const Login = ({ updateStorageToken }) => {
   const backEndLink = process.env.REACT_APP_API
     ? process.env.REACT_APP_API
@@ -51,7 +52,7 @@ const Login = ({ updateStorageToken }) => {
           localStorage.setItem("token", res.data.token);
           updateStorageToken(localStorage.token);
           console.log(localStorage.token);
-          navigate("/doctors");
+          navigate("/");
         }
       } catch (e) {
         console.log(e.response.data.message);
@@ -94,9 +95,14 @@ const Login = ({ updateStorageToken }) => {
             />
           </div>
           <div style={{ marginTop: "10px" }}>
-            <button type="submit" style={{ marginTop: "10px" }}>
+            <Button
+              variant="outline-warning"
+              type="submit"
+              style={{ marginTop: "10px" }}
+              active
+            >
               Login
-            </button>
+            </Button>
           </div>
         </form>
 
