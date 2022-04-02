@@ -310,5 +310,10 @@ header {
 
 #editProfileHeading {
   font-size: 2rem;
-  margin-bottom: 5vh;
+  margin-bottom: 3vh;
+}
+
+.dataSubmitted {
+  font-size: 1.3rem;
+  margin-bottom: 3vh;
 }

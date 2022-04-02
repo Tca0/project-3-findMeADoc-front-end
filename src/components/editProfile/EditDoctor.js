@@ -1,7 +1,6 @@
-import { Form, Row, Col, Button, Stack } from "react-bootstrap";
+import { Form, Row, Col, Button, Stack, Badge } from "react-bootstrap";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import ProfileArrItems from "./ProfileArrItems";
 import PostcodeLngLat from "./PostcodeLngLat";
 
@@ -9,7 +8,6 @@ const EditDoctor = ({ profileInformation, token, collection, id }) => {
   const [formData, setFormData] = useState(profileInformation);
   const [errorMessage, setErrorMessage] = useState(null);
   const [dataSubmitted, setDataSubmitted] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setFormData(profileInformation);
@@ -61,7 +59,13 @@ const EditDoctor = ({ profileInformation, token, collection, id }) => {
     <section className="editDoctorContainer">
       <header></header>
       <h1 id="editProfileHeading">Edit Profile (Doctor)</h1>
-      {dataSubmitted && <h2>Data submitted</h2>}
+      {dataSubmitted && (
+        <h5 className="dataSubmitted">
+          <Badge pill bg="success">
+            Data successfully submitted
+          </Badge>
+        </h5>
+      )}
       <Form className="editDoctor" onSubmit={handleSubmit}>
         <Stack gap={2}>
           <Row className="mb-3">
