@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import DoctorsIndexCard from "./DoctorsIndexCard.js";
 import Map from "../mapbox/Map.js";
 import { Container, Row, Stack, Col } from "react-bootstrap";
+import SearchBar from "../search/SearchBar.js";
 
 // import "dotenv/config";
 
@@ -12,9 +13,24 @@ import { Container, Row, Stack, Col } from "react-bootstrap";
 //   : "http://localhost:4000";
 // console.log(backEndLink);
 
-const DoctorsIndex = () => {
+const SpecialtyDoctorsIndex = () => {
   const [doctorData, setDoctorData] = useState([]);
+  const [specialtyData, setSpecialty] = useState([]);
+  const [specialtyDoctorData, setSpecialtyDoctorData] = useState([]);
   const { speciality } = useParams();
+
+  useEffect(() => {
+    // fetch(`${backEndLink}/doctors`)
+    fetch(`https://findmeadoc.herokuapp.com/doctors/`)
+      .then((resp) => resp.json())
+      .then((data) => setDoctorData(data));
+  }, []);
+
+  useEffect(() => {
+    fetch("https://findmeadoc.herokuapp.com/specialties")
+      .then((resp) => resp.json())
+      .then((data) => setSpecialty(data));
+  }, []);
 
   useEffect(() => {
     // fetch(`${backEndLink}/doctors`)
@@ -22,16 +38,22 @@ const DoctorsIndex = () => {
       `https://findmeadoc.herokuapp.com/doctors/search?speciality=${speciality}`
     )
       .then((resp) => resp.json())
-      .then((data) => setDoctorData(data));
+      .then((data) => setSpecialtyDoctorData(data));
   }, []);
 
-  console.log(doctorData);
-
-  if (Object.keys(doctorData)[0] === "message") {
+  if (Object.values(specialtyDoctorData)[0] === "No matching result found.") {
     return (
-      <>
-        <div>{Object.values(doctorData)[0]}</div>
-      </>
+      <section className="noResult">
+        <header></header>
+        <h5>Sorry, we couldn’t find any professional for your search…</h5>
+        <h5>Try with other search criteria.</h5>
+        <SearchBar
+          placeholder="Speciality or doctor name"
+          doctorData={doctorData}
+          specialtyData={specialtyData}
+        />
+        <footer></footer>
+      </section>
     );
   }
   return (
@@ -41,8 +63,8 @@ const DoctorsIndex = () => {
         <Row>
           <Col>
             <Stack gap={3} className="g-4">
-              {doctorData ? (
-                doctorData.map((doctor) => (
+              {specialtyDoctorData ? (
+                specialtyDoctorData.map((doctor) => (
                   <DoctorsIndexCard key={doctor._id} {...doctor} />
                 ))
               ) : (
@@ -51,7 +73,7 @@ const DoctorsIndex = () => {
             </Stack>
           </Col>
 
-          <Col>{<Map doctorData={doctorData} />}</Col>
+          <Col>{<Map doctorData={specialtyDoctorData} />}</Col>
         </Row>
       </Container>
       <footer></footer>
@@ -59,4 +81,4 @@ const DoctorsIndex = () => {
   );
 };
 
-export default DoctorsIndex;
+export default SpecialtyDoctorsIndex;

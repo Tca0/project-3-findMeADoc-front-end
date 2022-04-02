@@ -78,7 +78,7 @@ const DoctorShowMap = ({ address, fullName }) => {
     });
   });
 
-  return <div ref={mapContainer} className="map-container" />;
+  return <div ref={mapContainer} className="doctorShowMap" />;
 };
 
 export default DoctorShowMap;

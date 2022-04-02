@@ -5,8 +5,9 @@ html {
 }
 body {
   font-family: "Montserrat", sans-serif;
-  height: 100vh;
+  height: 100%;
   width: 100%;
+  background-color: #eff8ff;
 }
 
 #root {
@@ -267,7 +268,13 @@ footer {
   color: #285596;
 }
 
-.doctorsIndex {
+.doctorsIndex,
+.noResult,
+.doctorShow {
+  background-size: cover;
+  min-height: 100%;
+  width: 100%;
+  height: 100vh;
   background-color: #eff8ff;
 }
 
