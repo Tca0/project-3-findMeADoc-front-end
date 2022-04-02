@@ -8,6 +8,8 @@ import PostcodeLngLat from "./PostcodeLngLat";
 const EditDoctor = ({ profileInformation, token, collection, id }) => {
   const [formData, setFormData] = useState(profileInformation);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [dataSubmitted, setDataSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setFormData(profileInformation);
@@ -44,6 +46,11 @@ const EditDoctor = ({ profileInformation, token, collection, id }) => {
         }
       );
       console.log(res);
+      setDataSubmitted(true);
+      window.scrollTo(0, 0);
+      setTimeout(() => {
+        setDataSubmitted(false);
+      }, 2000);
     } catch (e) {
       console.log(e);
     }
@@ -54,6 +61,7 @@ const EditDoctor = ({ profileInformation, token, collection, id }) => {
     <section className="editDoctorContainer">
       <header></header>
       <h1 id="editProfileHeading">Edit Profile (Doctor)</h1>
+      {dataSubmitted && <h2>Data submitted</h2>}
       <Form className="editDoctor" onSubmit={handleSubmit}>
         <Stack gap={2}>
           <Row className="mb-3">
