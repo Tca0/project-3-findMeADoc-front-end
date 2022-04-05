@@ -23,7 +23,12 @@ const SpecialtyDoctorsIndex = () => {
     // fetch(`${backEndLink}/doctors`)
     fetch(`https://findmeadoc.herokuapp.com/doctors/`)
       .then((resp) => resp.json())
-      .then((data) => setDoctorData(data));
+      .then((data) => {
+        const filteredData = data.filter((doctor) => {
+          return doctor.completed == true;
+        });
+        setDoctorData(filteredData);
+      });
   }, []);
 
   useEffect(() => {
