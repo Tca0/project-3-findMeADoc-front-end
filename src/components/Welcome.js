@@ -49,7 +49,7 @@ const WelcomeRegistration = () => {
       }
     }
     checkConfirmation();
-  }, []);
+  });
   console.log(isConfirmed, results);
   const loginPage = () => {
     console.log("hello");

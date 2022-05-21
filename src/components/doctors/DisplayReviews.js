@@ -1,4 +1,4 @@
-import { CardGroup, Card, Stack } from "react-bootstrap";
+import { Card, Stack } from "react-bootstrap";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -34,7 +34,7 @@ function DisplayReviews({ reviews, doctorID, setDoctor }) {
           }
           if (userData && userData.patientID) {
             console.log("patient");
-            console.log(userData.patientID == review.user._id);
+            console.log(userData.patientID === review.user._id);
           }
 
           const starsReceived = review.rate;
@@ -62,7 +62,7 @@ function DisplayReviews({ reviews, doctorID, setDoctor }) {
                       <cite title="Source Title">{review.user.fullName}</cite>
                     </footer>
                   </blockquote>
-                  {userData.patientID == review.user._id ? (
+                  {userData.patientID === review.user._id ? (
                     <DeleteReview
                       reviewID={review._id}
                       userData={userData}

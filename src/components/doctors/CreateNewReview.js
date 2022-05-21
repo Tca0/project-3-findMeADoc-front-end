@@ -4,7 +4,7 @@ import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 import axios from "axios";
 
 function CreateNewReview({ doctorID, setDoctor, userData }) {
@@ -27,6 +27,7 @@ function CreateNewReview({ doctorID, setDoctor, userData }) {
     });
     console.log({ ...formData, [e.target.name]: e.target.value });
     setFormErrors({});
+    console.log(formErrors);
   }
 
   const onSubmit = async (e) => {
@@ -43,6 +44,7 @@ function CreateNewReview({ doctorID, setDoctor, userData }) {
           },
         }
       );
+      console.log(res);
       setRating(undefined);
       setFormData({});
       setInputField("");
@@ -54,6 +56,7 @@ function CreateNewReview({ doctorID, setDoctor, userData }) {
     } catch (e) {
       console.log(e.response);
       setErrorMessage(e.response.data.message);
+      console.log(errorMessage);
     }
   };
   if (!userData || userData.role === "doctor") return <></>;
