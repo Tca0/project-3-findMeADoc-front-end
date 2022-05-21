@@ -38,9 +38,7 @@ function App() {
           path="/search/speciality=:speciality"
           element={<SpecialtyIndex />}
         />
-        //patient routes
         <Route path="/users/edit" element={<EditPage />} />
-        //doctor routes //user routes
         <Route path="/users/register" element={<Register />} />
         <Route
           path="/users/confirm/:code/account"
@@ -58,19 +56,11 @@ function App() {
         <Route path="/users/resetPassword/:code" element={<ResetPassword />} />
         <Route
           path="/users/myprofile/changePassword"
-          element={
-            <ChangePassword
-              updateStorageToken={updateStorageToken}
-            />
-          }
+          element={<ChangePassword updateStorageToken={updateStorageToken} />}
         />
         <Route
           path="/users/myprofile/deleteAccount"
-          element={
-            <DeleteAccount
-              updateStorageToken={updateStorageToken}
-            />
-          }
+          element={<DeleteAccount updateStorageToken={updateStorageToken} />}
         />
       </Routes>
     </div>

@@ -1,5 +1,5 @@
 import SearchBar from "./search/SearchBar";
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import React from "react";
 import "../../src/App.css";
@@ -19,7 +19,7 @@ const Home = () => {
       .then((resp) => resp.json())
       .then((data) => {
         const filteredData = data.filter((doctor) => {
-          return doctor.completed == true;
+          return doctor.completed === true;
         });
         console.log(filteredData, "filteredData");
         // console.log(data,"Data")
