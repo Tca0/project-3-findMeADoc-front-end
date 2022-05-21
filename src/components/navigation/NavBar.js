@@ -7,7 +7,7 @@ import {
   faUserPen,
   faArrowRightFromBracket,
   faUserSlash,
-  faKey
+  faKey,
 } from "@fortawesome/free-solid-svg-icons";
 // import {} from "@fortawesome/fontawesome-free-brands";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,12 +23,12 @@ import { useNavigate } from "react-router-dom";
 function NavBar({ storageToken, updateStorageToken }) {
   // const [storageToken,updateStorageToken] = useState(localStorage.token)
   useEffect(() => console.log("rerendered"), [storageToken]);
-  let info
-  if(storageToken){
-    info = JSON.parse(atob(storageToken.split('.')[1]))
+  let info;
+  if (storageToken) {
+    info = JSON.parse(atob(storageToken.split(".")[1]));
   }
   const navigate = useNavigate();
-  console.log()
+  console.log();
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -78,13 +78,15 @@ function NavBar({ storageToken, updateStorageToken }) {
                       }}
                     >
                       {" "}
-                      Change Password <FontAwesomeIcon icon={faKey}/>
+                      Change Password <FontAwesomeIcon icon={faKey} />
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item
                       onClick={() => {
+                        console.log("logout clicked");
                         localStorage.removeItem("token");
                         updateStorageToken(localStorage.token);
+                        navigate("/");
                       }}
                     >
                       {" "}
@@ -93,7 +95,7 @@ function NavBar({ storageToken, updateStorageToken }) {
                     <NavDropdown.Divider />
                     <NavDropdown.Item
                       onClick={() => {
-                        console.log("clicked");
+                        console.log("delete account clicked");
                         navigate("/users/myprofile/deleteAccount");
                       }}
                     >
