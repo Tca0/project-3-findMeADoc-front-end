@@ -1,7 +1,31 @@
-/* lesson code */
+html {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  height: 100%;
+  width: 100%;
+  background-color: #eff8ff;
+}
+
+#root {
+  min-height: 100%;
+  width: 100%;
+}
+
+ul {
+  list-style-type: none;
+  overflow-x: hidden;
+  white-space: nowrap;
+  display: inline;
+}
 
 .App {
   text-align: center;
+  height: 100vh;
+  max-width: 100%;
 }
 
 .App-logo {
@@ -14,25 +38,6 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-.success {
-  background-color: green;
-  width: 50vw;
-  margin: 0 auto;
-  margin-top: 10px;
-  text-align: center;
-  padding: 10px;
-  border: 2px solid darkgray;
-  border-radius: 50%;
-}
-
-.failure {
-  background-color: red;
-  width: 50vw;
-  margin: 0 auto;
-  margin-top: 10px;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -56,34 +61,258 @@
     transform: rotate(360deg);
   }
 }
-
-form {
+.success {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 auto;
+  text-align: center;
+}
+.login-page,
+.registerPage,
+.changePassword,
+.deletePage,
+.confirmationResults,
+.RestPassword-container {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+}
+.login-page {
+  background-image: url("../src/assets/pexels-karolina-grabowska-4047074.jpg");
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+.login-page > button {
+  margin-top: 0;
+  cursor: grab;
+  box-sizing: border-box;
+  box-shadow: #282c34;
+}
+.login-page > div > .header {
+  text-align: center;
+  font-weight: 900;
+  font-size: 40px;
+}
+.loginForm {
+  box-shadow: 20px 20px 50px 10px rgb(202, 184, 184);
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 250px;
+}
+.registerPage {
+  background-image: url("../src/assets/pexels-nataliya-vaitkevich-5863397.jpg");
+}
+.register {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+}
+.registrationForm,
+.changePassword-form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.registrationForm {
+  height: 80%;
+  box-shadow: 20px 20px 50px 10px rgb(202, 184, 184);
+  width: 460px;
+}
+.choose-role {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: fit-content;
+}
+.choose-role > * {
+  margin: 0 20px;
+}
+.changePassword {
+  background-image: url("../src/assets/pexels-pavel-danilyuk-5998472.jpg");
+}
+.changePassword-form {
+  height: 50%;
+  transform: translateY(40%);
+  box-sizing: border-box;
+  padding: 10px;
+  box-shadow: 20px 20px 50px 10px #9A425B inset;
+}
+.changePassword-form > button {
+  background-color: #9A425B;
+  padding: 10px;
+}
+.changePassword-form > button:hover {
+  box-shadow: 20px 20px 50px 10px, -10px 0 10px olive ;
+  transform: scale(1.4);
+}
+.passwordChanged {
+  box-shadow: 20px 20px 50px 10px #9A425B inset;
+  transform: translateY(30%);
+  font-size: 25px;
+  height: 150px;
+  border-radius: 50%;
+}
+.passwordChanged > p {
+  padding: 35px;
+}
+.results {
+  transform: translateY(30vh);
+  box-shadow: 20px 20px 50px 10px gray;
+}
+.results > button {
+  box-sizing: border-box;
+  margin: 10px 0;
+}
+.results > button:hover {
+  background-color: #1e2430;
+  transform: scale(1.2);
+  border-radius: 50%;
+}
+.deletePage {
+  background-image: url("../src/assets/pexels-negative-space-48603.jpg");
+}
+.deletePage > .secondContainer {
+  transform: translateY(200px);
+  border: 2px dotted gray;
+  padding: 30px 0 50px 0;
+  box-shadow: 20px 20px 50px 10px #263840 inset;
+}
+.delete {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.confirmationResults {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-items: center;
   align-items: center;
-  margin: 0 auto;
-  width: 50vw;
+  align-content: center;
+  background-image: url(../src/assets/pexels-thirdman-7659869.jpg);
+}
+#welcomePage {
+  box-sizing: border-box;
+}
+.textResults {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 26px;
+  color: #41422b;
+}
+.resultsContainer {
+  padding: 18px;
+  border: 4px ridge #3b5769;
+  box-shadow: 20px 20px 50px 10px #4e5e68 inset;
+}
+.RestPassword-container {
+  background-image: url("../src/assets/pexels-klaus-nielsen-6303655.jpg");
+}
+.forgotPassword {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+}
+.RestPassword-form {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
 }
 
-input {
-  margin-top: 15px;
-}
-
-button {
-  margin-top: 30px;
-}
-
-.login-page {
-  background-color: aquamarine;
-}
-
-a {
+/* doctorsIndex */
+a,
+a:hover {
   display: block;
+  color: inherit;
 }
 
-.movie-tile {
-  width: 50vw;
-  margin: 0 auto;
-  border-bottom: 1px solid green;
+footer {
+  width: 100%;
+  height: 10vh;
+}
+
+.cardContent {
+  text-align: left;
+}
+
+.cardContent h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  display: inline;
+}
+
+#header {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #285596;
+}
+
+.doctorsIndex,
+.noResult,
+.doctorShow {
+  background-size: cover;
+  min-height: 100%;
+  width: 100%;
+  height: 100vh;
+  background-color: #eff8ff;
+}
+
+header {
+  width: 100%;
+  height: 10vh;
+}
+
+.star-rating > button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+/* .on {
+  color: #000;
+}
+.off {
+  color: #ccc;
+} */
+
+.editDoctorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.editDoctor {
+  width: 35vw;
+  min-width: 500px;
+}
+
+#editProfileHeading {
+  font-size: 2rem;
+  margin-bottom: 3vh;
+}
+
+.dataSubmitted {
+  font-size: 1.3rem;
+  margin-bottom: 3vh;
 }
