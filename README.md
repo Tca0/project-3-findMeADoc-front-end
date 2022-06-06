@@ -39,6 +39,8 @@
 
 ### <a name='planning'>Planning</a>
 
+![Sketch](./screenshots/sketch.png "Sketch")
+
 ### <a name='login-register'>Login / Register</a>
 
 ### <a name='departments'>Departments</a>
