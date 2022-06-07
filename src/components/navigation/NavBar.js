@@ -50,17 +50,10 @@ function NavBar({ storageToken, updateStorageToken }) {
 
             <Nav>
               {storageToken ? (
-                //check with Niklas why does this run
                 <>
                   <Nav.Link disabled>
                     Logged in as: {info.email}({info.role}){" "}
                   </Nav.Link>
-                  {/* <LinkContainer to="/users/edit">
-                    <Nav.Link>
-                      {" "}
-                      Edit Profile <FontAwesomeIcon icon={faUserPen} />
-                    </Nav.Link>
-                  </LinkContainer> */}
                   <NavDropdown title="Profile">
                     <NavDropdown.Item
                       onClick={() => {
@@ -103,16 +96,6 @@ function NavBar({ storageToken, updateStorageToken }) {
                       Delete Account <FontAwesomeIcon icon={faUserSlash} />
                     </NavDropdown.Item>
                   </NavDropdown>
-                  {/* <Nav.Link
-                    onClick={() => {
-                      console.log("clicked");
-                      localStorage.removeItem("token");
-                      updateStorageToken(localStorage.token);
-                    }}
-                  >
-                    {" "}
-                    Logout <FontAwesomeIcon icon={faArrowRightFromBracket} />
-                  </Nav.Link> */}
                 </>
               ) : (
                 <>

@@ -27,11 +27,43 @@
 
 ## <a name='overview'>Overview</a>
 
+**To view deployed project please click [here](https://findmedoc.netlify.app/).**
+
+The third project on General Assembly's Software Engineering Immersive bootcamp was to build a full-stack MERN application with Node, Express and Mongo for the backend and ReactJS for the frontend.
+
+We were choosing between discord clone, an e-commerce site or a therapy platform to connect patients to doctors. After brief discussion all of us agreed that the latest project would allow us to challenge ourselves and work with interesting technologies.
+
+We were inspired by a [findoc platform](https://www.findoc.co.uk/) and have aimed to recreate a clone similar to this platform.
+
+We were able to make the MVP and went above and beyond to implement most of our stretch goals, but unfortunately had to pass on image upload due to some unexpected deployment issues towards the end of the project.
+
+Project duration: 2 weeks as part of the part-time course.
+
+Team consisted of: Julie Park, Taher Khatieb, Zan Makarov.
+
 ### <a name='brief'>Brief</a>
+
+- Make a group project in pre-assigned groups of 3.
+- Build a full-stack application by making your own backend and your own frontend.
+- Use an Express API to server data from a Mongo database.
+- Consume your API with a front-end built with React.
+- Make a complete product using multiple relationships and CRUD functionality for some models.
+- Deploy the project online.
 
 ### <a name='technologies-used'>Technologies</a>
 
+Backend: Node, Mongo, Express, mongoose, @types/nodemailer, bcrypt.
+
+Frontend: React, ReactDOM, react-bootstrap, axios, mapbox, jwt-decode, fontAwesome.
+
+Development tools: VS Code, NPM, Insomnia/Postman, Git, Heroku, Netlify.
+
 ### <a name='installation'>Installation</a>
+
+- Clone the repo
+- Install all frontend packages (from package.json) by running `npm install`
+- Create '.env' file inside project directory and list `REACT_APP_API='backendAPIURL'` replacing backendAPIURL with your running clone of backend URL.
+- Start server with `npm run start`
 
 ### <a name='demo'>Demo</a>
 
@@ -43,17 +75,28 @@
 
 ### <a name='login-register'>Login / Register</a>
 
-### <a name='departments'>Departments</a>
+### <a name='profile-management'>Profile Management</a>
 
-#### <a name='department'>Department</a>
+### <a name='doctors'>Doctors</a>
 
-#### <a name='posts'>Posts</a>
+#### <a name='map'>Map</a>
 
-#### <a name='staff'>Staff</a>
+#### <a name='reviews'>Reviews</a>
 
-#### <a name='checklists'>Checklists</a>
+All doctors have a `DisplayReviews` component.
+The component receives doctors reviews, doctorID and setDoctor function as props.
+
+Each review consists of rating, comment and author.
+
+has been left by the currently logged in user - there will be `delete` button under the review. This will delete the review and re-render the component to display the remaining reviews.
+
+Only patients are allowed to leave reviews, when doctors view other doctors profile - they will only be allowed to see previously left reviews.
+
+When creating new review - data will be posted to `doctorID/reviews` route and a request from API will trigger `setDoctor(response)` to re-render reviews component to display all new reviews.
 
 ### <a name='styling'>Styling</a>
+
+React-Bootstrap library was used to get styled base components. Additional plain CSS was used to style error messages, forms and some minor general aspects of the platform.
 
 ## <a name='difficulties-wins'>Difficulties and Wins</a>
 
@@ -61,6 +104,49 @@
 
 ### <a name='challenges-wins'>Challenges and Wins</a>
 
+- localStorage stores the user information that can be accessed throughout application to allow permissions on the front end.
+
+```
+let userData;
+  if (localStorage.token) {
+    userData = jwt_decode(localStorage.token);
+  }
+```
+
+- Navbar correctly renders components based on login/logout state by using localStorage info.
+
+- Address field was nested two levels, which was returning error `cannot read property of undefined` during development. To overcome the issue the following solution was used. However with new JavaScript syntax `?.` operator could be used to shorten the code.
+
+```
+<h5>Address:</h5>
+                            <ul>
+                              {doctor.address.addressLine2 && (
+                                <li>{doctor.address.addressLine2}</li>
+                              )}
+```
+
+Other team members have done brilliant job - Taher has implemented the whole complex code for user email authorization, password resets on both front end and backend. While Julie has made the mapbox functionality happen and worked on displaying list of doctors and filtering the search results based on name/ speciality.
+
 ## <a name='future-improvements'>Future improvements</a>
 
+- <s>Fix the bug with posting a review</s>
+
+- Application still has console.logs for debugging.
+
+- Some areas of the code are very WET - needs DRY-ing up.
+
+- General styling of forms components.
+
+- Some of the forms are built without React-Bootstrap forms templates, which stands out from the rest of the application.
+
+- Include search functionality by distance.
+
+- Allow patients to book doctors by adding calendar functionality.
+
 ## <a name='key-learnings'>Key Learnings</a>
+
+- We have all agreed that during this project the communication has improved since second project during which everyone worked in pairs.
+
+- Having frequent zoom calls and communicating what everyone is currently working on via slack worked out really well. We have used Trello for some part of the project, but most of the organisation was done by actually scheduling calls and making frequent posts in the group chat.
+
+- We have were reviewing each others code and researching for solutions to the problems when someone from the group got stuck.

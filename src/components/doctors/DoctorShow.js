@@ -70,7 +70,7 @@ function DoctorShow() {
                 </Col>
               </Stack>
             </Card>
-            <DisplayReviews reviews={doctor.reviews} />
+            <DisplayReviews reviews={doctor.reviews} doctorID={doctorID} setDoctor={setDoctor}/>
           </Stack>
         </Container>
       ) : (
