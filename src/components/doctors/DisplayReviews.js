@@ -70,7 +70,7 @@ function DisplayReviews({ reviews, doctorID, setDoctor }) {
                       setDoctor={setDoctor}
                     />
                   ) : (
-                    "no"
+                    ""
                   )}
                 </Card.Body>
               </Card>
