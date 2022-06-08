@@ -21,7 +21,6 @@ const EditForm = ({token,collection,id,model,role}) =>{
             setUserInfo({...json, DOB:DOB.toLocaleDateString().split("/").reverse().join("-")})
         })
     },[num])
-    // return <h1>Hi</h1>
     if(role==="patient") return <EditPatient profileInformation={userInfo} collection={collection} id={id} token={token} />
     if(role==="doctor") return <EditDoctor profileInformation={userInfo} collection={collection} id={id} token={token} num={num} setNum={setNum}/>
 

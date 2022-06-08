@@ -31,7 +31,7 @@ function DeleteReview({reviewID,doctorID,setDoctor}){
         }
 
 
-    return <Button size="sm" variant="outline-danger" onClick={handleClick}>Danger</Button>
+    return <Button size="sm" variant="outline-danger" onClick={handleClick}>Delete</Button>
 }
 
 export default DeleteReview
