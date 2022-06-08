@@ -63,6 +63,8 @@ Development tools: VS Code, NPM, Insomnia/Postman, Git, Heroku, Netlify.
 
 ### <a name='demo'>Demo</a>
 
+![Demo](./screenshots "Demo")
+
 ## <a name='development'>Development</a>
 
 ### <a name='planning'>Planning</a>
