@@ -27,7 +27,7 @@
 
 The third project on General Assembly's Software Engineering Immersive bootcamp was to build a full-stack MERN application with Node, Express and Mongo for the backend and ReactJS for the frontend.
 
-We were choosing between a discord clone, an e-commerce site or a therapy platform to connect patients to doctors. After a brief discussion, all of us agreed that the latest project would allow us to challenge ourselves and work with interesting technologies.
+We were choosing between a Discord clone, an e-commerce site or a therapy platform to connect patients to doctors. After a brief discussion, all of us agreed that the latest project would allow us to challenge ourselves and work with interesting technologies.
 
 We were inspired by a [findoc platform](https://www.findoc.co.uk/) and have aimed to recreate a clone similar to this platform.
 
@@ -41,7 +41,7 @@ Team consisted of: Julie Park, Taher Khatieb, Zan Makarov.
 
 - Make a group project in pre-assigned groups of 3.
 - Build a full-stack application by making your own backend and your own frontend.
-- Use an Express API to server data from a Mongo database.
+- Use an Express API to serve data from a Mongo database.
 - Consume your API with a front-end built with React.
 - Make a complete product using multiple relationships and CRUD functionality for some models.
 - Deploy the project online.
@@ -58,7 +58,7 @@ Development tools: VS Code, NPM, Insomnia/Postman, Git, Heroku, Netlify.
 
 - Clone the repo
 - Install all frontend packages (from package.json) by running `npm install`
-- Create a '.env' file inside project directory and list `REACT_APP_API='backendAPIURL'` replacing backendAPIURL with your running clone of backend URL.
+- Create a '.env' file inside the project directory and list `REACT_APP_API='backendAPIURL'` replacing backendAPIURL with your running clone of the backend URL.
 - Start server with `npm run start`
 
 ### <a name='demo'>Demo</a>
@@ -72,7 +72,7 @@ Development tools: VS Code, NPM, Insomnia/Postman, Git, Heroku, Netlify.
 Backend API can be found [here](https://github.com/rodages/Project-3-findMeADoc-API)
 
 ![Sketch](./screenshots/sketch.png "Sketch")
-During the first day of Project development, we have collectively written the structure for the doctor and patient model and made the project sketch. Throughout the project we were coordinating the development of different aspects of the project via `Slack` and regular team calls on `Zoom`.
+During the first day of Project development, we collectively wrote the structure for the doctor and patient model and made the project sketch. Throughout the project we were coordinating the development of different aspects of the project via `Slack` and regular team calls on `Zoom`.
 
 Below follows a detailed breakdown of the development and responsibilities of each developer for the main aspects of the project.
 
@@ -196,7 +196,7 @@ When creating a new review - data will be posted to the `doctorID/reviews` route
 
 ### <a name='styling'>Styling</a>
 
-React-Bootstrap library was used to get styled base components. Additional plain CSS was used to style error messages, forms and some minor general aspects of the platform.
+The React-Bootstrap library was used to get styled base components. Additional plain CSS was used to style error messages, forms and some minor general aspects of the platform.
 
 ## <a name='difficulties-wins'>Difficulties and Wins</a>
 
@@ -295,7 +295,7 @@ Other team members have done a brilliant job - Taher has implemented the whole c
 
 - <s>Fix the bug with posting a review</s>
 
-- Application still has `console.log's` for debugging.
+- Application still has `consovle.log's` for debugging.
 
 - Some areas of the code are very WET - needs DRY-ing up.
 
@@ -311,8 +311,9 @@ Other team members have done a brilliant job - Taher has implemented the whole c
 
 - We have all agreed that during this project the communication has improved since the second project during which everyone worked in pairs.
 
-- Having frequent zoom calls and communicating what everyone is currently working on via slack worked out really well. We have used Trello for some part of the project, but most of the organisation was done by actually scheduling calls and making frequent posts in the group chat.
+- Having frequent Zoom calls and communicating what everyone is currently working on via Slack worked out really well. We used Trello for some parts of the project, but most of the organisation was done by actually scheduling calls and making frequent posts in the group chat.
 
 - We were reviewing each other's code and researching for solutions to the problems when someone from the group got stuck. We also shared useful/ interesting code snippets on Slack. These methods helped all of us to grow as developers collectively and maintained a good team spirit throughout the project.
 
 - I have personally felt proud of the results achieved in the `Edit Forms` component. This was my first time working with complex nested data structures on the frontend. And I was happy to manage to achieve the result by implementing functionality from scratch rather than using code found online.
+
