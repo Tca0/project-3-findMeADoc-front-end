@@ -1,4 +1,4 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) GA London SEI Project-3-findMeADoc
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) GA London SEI Project-4-CompanyPlanner
 
 ## TABLE OF CONTENTS
 
@@ -27,7 +27,7 @@
 
 The third project on General Assembly's Software Engineering Immersive bootcamp was to build a full-stack MERN application with Node, Express and Mongo for the backend and ReactJS for the frontend.
 
-We were choosing between a Discord clone, an e-commerce site or a therapy platform to connect patients to doctors. After a brief discussion, all of us agreed that the latest project would allow us to challenge ourselves and work with interesting technologies.
+We were choosing between a Discord clone, an e-commerce site or a therapy platform to connect patients to doctors. After a brief discussion, all of us agreed that the last project would allow us to challenge ourselves and work with interesting technologies.
 
 We were inspired by a [findoc platform](https://www.findoc.co.uk/) and have aimed to recreate a clone similar to this platform.
 
@@ -72,7 +72,7 @@ Development tools: VS Code, NPM, Insomnia/Postman, Git, Heroku, Netlify.
 Backend API can be found [here](https://github.com/rodages/Project-3-findMeADoc-API)
 
 ![Sketch](./screenshots/sketch.png "Sketch")
-During the first day of Project development, we collectively wrote the structure for the doctor and patient model and made the project sketch. Throughout the project we were coordinating the development of different aspects of the project via `Slack` and regular team calls on `Zoom`.
+During the first day of the project development, we collectively wrote the structure for the doctor and patient model and made the project sketch. Throughout the project we were coordinating the development of different aspects of the project via `Slack` and regular team calls on `Zoom`.
 
 Below follows a detailed breakdown of the development and responsibilities of each developer for the main aspects of the project.
 
